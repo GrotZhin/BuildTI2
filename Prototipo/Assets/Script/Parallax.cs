@@ -25,8 +25,8 @@ public class Parallax : MonoBehaviour
 
         pos.x -= realSpeed * Time.fixedDeltaTime;
 
-        if (pos.x <= -45 )
-        pos.x = 45;
+        if (pos.x <= -30 )
+        pos.x = 80;
             
         
         transform.position = pos;

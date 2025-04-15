@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public float groundHeight = 10;
     public bool isGrounded = false;
     public bool isHoldingJump = false;
+    public float maxHoldJumpTime = 0.4f;
     public float maxHoldJump = 0.4f;
     public float jumpTimer = 0.0f;
     public float jumpGroundTreshhold = 1;
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
         if (isHoldingJump)
         {
             jumpTimer += Time.fixedDeltaTime;
-            if (jumpTimer >= maxHoldJump)
+            if (jumpTimer >= maxHoldJumpTime)
             {
                 isHoldingJump = false;
 
@@ -98,11 +99,12 @@ public class Player : MonoBehaviour
             speed.x += acceleration * Time.fixedDeltaTime;
             float speedRatio = speed.x / maxXSpeed;
             acceleration = maxAcceleration * (1 - speedRatio);
+            maxHoldJumpTime = maxHoldJump * speedRatio;
             if (speed.x >= maxXSpeed)
             {
                 speed.x = maxXSpeed;
             }
-            
+
             Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y);
             Vector2 rayDirection = Vector2.up;
             float rayDistance = speed.y * Time.fixedDeltaTime;
