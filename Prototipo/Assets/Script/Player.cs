@@ -118,6 +118,34 @@ public class Player : MonoBehaviour
 
         }
 
+
+            Vector2 obstOrigin = new Vector2(pos.x,pos.y); 
+            RaycastHit2D obstHitX = Physics2D.Raycast(obstOrigin,Vector2.right, speed.x * Time.fixedDeltaTime); 
+            if (obstHitX.collider !=null)
+            {
+                Obstacle obstacle = obstHitX.collider.GetComponent<Obstacle>();
+                if (obstacle != null)
+                {
+                    HitObstacle(obstacle);
+                }
+            }
+
+             RaycastHit2D obstHitY = Physics2D.Raycast(obstOrigin,Vector2.up, speed.y * Time.fixedDeltaTime); 
+            if (obstHitY.collider !=null)
+            {
+                Obstacle obstacle = obstHitY.collider.GetComponent<Obstacle>();
+                if (obstacle != null)
+                {
+                    HitObstacle(obstacle);
+                }
+            }
+
         transform.position = pos;
+    }
+
+    void HitObstacle(Obstacle obstacle)
+    {
+        obstacle.boxCollider2D.enabled = false;
+        speed.x *= 0.5f;
     }
 }
