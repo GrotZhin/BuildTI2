@@ -4,6 +4,7 @@ public class Obstacle : MonoBehaviour
 {
     Player player;
    public BoxCollider2D boxCollider2D;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {

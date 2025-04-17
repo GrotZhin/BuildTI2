@@ -111,7 +111,7 @@ public class Ground : MonoBehaviour
             
 
             float y = goGround.groundHeight + 1;
-            float halfWidth = goCollider.size.x / 2 - 1;
+            float halfWidth = goCollider.size.x /2 - 1;
             float left = go.transform.position.x - halfWidth;
             float right = go.transform.position.x + halfWidth;
             float x = UnityEngine.Random.Range(left,right); 
