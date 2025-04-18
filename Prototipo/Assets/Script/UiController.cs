@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
 using TMPro;
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -34,13 +34,13 @@ public class UiController : MonoBehaviour
     {
         int distance = Mathf.FloorToInt(player.distance);
         distanceTxt.text = distance + "m";
-        scoreTxt.text = player.score + "";
+        scoreTxt.text ="Score: " + player.score;
 
         if (player.isDead)
         {
             resultPanel.SetActive(true);
             finalDistanceTxt.text = distance + "m";
-            finalScoreTxt.text = player.score + "";
+            finalScoreTxt.text ="Score: " + player.score;
         }
 
     }

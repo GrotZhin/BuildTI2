@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+
+    
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -27,35 +30,47 @@ public class Player : MonoBehaviour
     public LayerMask groundLayerMask;
     public LayerMask obstacleLayerMask;
     public LayerMask scoreLayerMask;
+    public LayerMask powerUpLayerMask;
+
 
     public bool isDead = false;
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
         Vector2 pos = transform.position;
-        float groundDistance = Math.Abs(pos.y - groundHeight);
-        if (isGrounded || groundDistance <= jumpGroundTreshhold)
+        float groundDistance = Mathf.Abs(pos.y - groundHeight);
+
+        if ((isGrounded || groundDistance <= jumpGroundTreshhold))
         {
+            // Teclado
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                isGrounded = false;
-                speed.y = jumpSpeed;
-                isHoldingJump = true;
-                jumpTimer = 0f;
+                Jump();
             }
         }
+
+        // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            isHoldingJump = false;
+            ReleaseJump();
         }
     }
+    public void Jump()
+    {
+        isGrounded = false;
+        speed.y = jumpSpeed;
+        isHoldingJump = true;
+        jumpTimer = 0f;
+    }
+
+    public void ReleaseJump()
+    {
+        isHoldingJump = false;
+    }
+
     private void FixedUpdate()
     {
 
@@ -153,8 +168,8 @@ public class Player : MonoBehaviour
                 isGrounded = false;
             }
             Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
-            
-            
+
+
             Vector2 obstOrigin = new Vector2(pos.x, pos.y);
             RaycastHit2D obstHitX = Physics2D.Raycast(obstOrigin, Vector2.right, speed.x * Time.fixedDeltaTime, obstacleLayerMask);
             if (obstHitX.collider != null)
@@ -175,29 +190,53 @@ public class Player : MonoBehaviour
                     HitObstacle(obstacle);
                 }
             }
+
         }
 
 
-            Vector2 obstScore = new Vector2(pos.x, pos.y);
-            RaycastHit2D obstScoreX = Physics2D.Raycast(obstScore, Vector2.right, speed.x * Time.fixedDeltaTime, scoreLayerMask);
-            if (obstScoreX.collider != null)
+        Vector2 powerUp = new Vector2(pos.x, pos.y);
+        RaycastHit2D powerUpX = Physics2D.Raycast(powerUp, Vector2.right, speed.x * Time.fixedDeltaTime, powerUpLayerMask);
+        if (powerUpX.collider != null)
+        {
+            PowerUp scores = powerUpX.collider.gameObject.GetComponent<PowerUp>();
+            if (scores != null)
             {
-                Obstacle obstacle = obstScoreX.collider.GetComponent<Obstacle>();
-                if (obstacle != null)
-                {
-                    score += 10;
-                }
+                HitPowerUp(scores);
             }
+        }
 
-            RaycastHit2D obstScoreY = Physics2D.Raycast(obstScore, Vector2.up, speed.y * Time.fixedDeltaTime, scoreLayerMask);
-            if (obstScoreY.collider != null)
+        RaycastHit2D powerUpY = Physics2D.Raycast(powerUp, Vector2.up, speed.y * Time.fixedDeltaTime, powerUpLayerMask);
+        if (powerUpY.collider != null)
+        {
+            PowerUp scores = powerUpY.collider.gameObject.GetComponent<PowerUp>();
+
+            if (scores != null)
             {
-                Obstacle obstacle = obstScoreY.collider.GetComponent<Obstacle>();
-                if (obstacle != null)
-                {
-                    score += 10;
-                }
+                HitPowerUp(scores);
             }
+        }
+
+        Vector2 obstScore = new Vector2(pos.x, pos.y);
+        RaycastHit2D obstScoreX = Physics2D.Raycast(obstScore, Vector2.right, speed.x * Time.fixedDeltaTime, scoreLayerMask);
+        if (obstScoreX.collider != null)
+        {
+            Score scores = obstScoreX.collider.gameObject.GetComponent<Score>();
+            if (scores != null)
+            {
+                HitScore(scores);
+            }
+        }
+
+        RaycastHit2D obstScoreY = Physics2D.Raycast(obstScore, Vector2.up, speed.y * Time.fixedDeltaTime, scoreLayerMask);
+        if (obstScoreY.collider != null)
+        {
+            Score scores = obstScoreY.collider.gameObject.GetComponent<Score>();
+
+            if (scores != null)
+            {
+                HitScore(scores);
+            }
+        }
 
 
 
@@ -209,5 +248,16 @@ public class Player : MonoBehaviour
     {
         obstacle.boxCollider2D.enabled = false;
         speed.x *= 0.8f;
+    }
+    void HitScore(Score obstacle)
+    {
+        obstacle.boxCollider2D.enabled = false;
+        score += 10;
+
+    }
+    void HitPowerUp(PowerUp powerUp)
+    {
+        Destroy(powerUp.gameObject);
+        speed.x += speed.x * 0.10f;
     }
 }

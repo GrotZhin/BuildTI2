@@ -12,6 +12,8 @@ public class Ground : MonoBehaviour
     bool didGenerateGround = false;
 
     public  GameObject[] boxPrefab;
+    public GameObject scoreCollider;
+    public GameObject powerUp;
 
     private void Awake()
     {
@@ -104,11 +106,14 @@ public class Ground : MonoBehaviour
 
 
         int obstacleNum = UnityEngine.Random.Range(0, 3);
+        
+        
         for (int i = 0; i < obstacleNum; i++)
         {
             var random = UnityEngine.Random.Range(0, boxPrefab.Length);
             GameObject box = Instantiate(boxPrefab[random].gameObject);
-            
+            GameObject scoreBox = Instantiate(scoreCollider.gameObject);
+            GameObject powerUps = Instantiate(powerUp.gameObject);
 
             float y = goGround.groundHeight + 1;
             float halfWidth = goCollider.size.x /2 - 1;
@@ -117,7 +122,12 @@ public class Ground : MonoBehaviour
             float x = UnityEngine.Random.Range(left,right); 
             
             Vector2 boxPos = new Vector2(x,y);
+            Vector2 boxPos2 = new Vector2(x-5,y - 0.5f);
             box.transform.position = boxPos;
+            scoreBox.transform.position = boxPos;
+            powerUps.transform.position = boxPos2;
+            
         }
+       
     }
 }

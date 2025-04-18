@@ -11,16 +11,6 @@ public class Obstacle : MonoBehaviour
         boxCollider2D = GetComponent<BoxCollider2D>();  
         player = GameObject.Find("Player").GetComponent<Player>();
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {

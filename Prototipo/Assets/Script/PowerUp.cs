@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Score : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
     Player player;
    public BoxCollider2D boxCollider2D;
