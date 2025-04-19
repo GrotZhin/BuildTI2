@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 9
-  limiteDireita: 38.2
-  limiteEsquerda: -19
+  limiteDireita: 19.2
+  limiteEsquerda: -38
   camera: {fileID: 0}
 --- !u!212 &70576361
 SpriteRenderer:
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   depth: 9
   limiteDireita: 19.2
-  limiteEsquerda: 0
+  limiteEsquerda: -38
   camera: {fileID: 0}
 --- !u!212 &849260852
 SpriteRenderer:
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 9
-  limiteDireita: 0.2
+  limiteDireita: 19.2
   limiteEsquerda: -38
   camera: {fileID: 0}
 --- !u!212 &1444372451
