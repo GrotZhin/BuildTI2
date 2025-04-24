@@ -16,12 +16,15 @@ public class UiController : MonoBehaviour
     public TextMeshProUGUI finalDistanceTxt;
     public TextMeshProUGUI finalScoreTxt;
     public GameObject resultPanel;
+    public GameObject pausePanel;
 
     // Start is called before the first frame update
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         resultPanel.SetActive(false);
+        pausePanel.SetActive(false);
+
 
     }
     void Start()
@@ -51,5 +54,20 @@ public class UiController : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene("GameScene");
+    }
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        pausePanel.SetActive(true);
+    }
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pausePanel.SetActive(false);
+    }
+    public void Quit()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("menu");
     }
 }

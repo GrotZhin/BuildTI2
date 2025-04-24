@@ -239,7 +239,7 @@ public class Player : MonoBehaviour
         }
 
 
-
+        pos.x += speed.x * Time.fixedDeltaTime;
 
         transform.position = pos;
     }

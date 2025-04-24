@@ -25,12 +25,14 @@ public class Parallax : MonoBehaviour
     {
         float realSpeed = player.speed.x / depth;
         Vector2 pos = transform.position;
+        Vector2 playerPos = player.transform.position;
 
-        pos.x -= realSpeed * Time.fixedDeltaTime;
+        
 
-        if (pos.x <= limiteEsquerda )
-        pos.x = limiteDireita;
-            
+        if(playerPos.x % 8 == 0 && playerPos.x != 0)
+        {
+            pos.x = playerPos.x + 19.2f; 
+        }
         
         transform.position = pos;
     }
