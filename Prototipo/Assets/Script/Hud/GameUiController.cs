@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class UiController : MonoBehaviour
+public class GameUiController : MonoBehaviour
 {
     Player player;
     public TextMeshProUGUI distanceTxt;
@@ -26,13 +26,11 @@ public class UiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
+       
 
 
     }
-    void Start()
-    {
 
-    }
 
     // Update is called once per frame
     void Update()
@@ -70,7 +68,7 @@ public class UiController : MonoBehaviour
     public void Quit()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("menu");
+        SceneManager.LoadScene("MainMenu");
     }
     public void Settings()
     {
@@ -80,4 +78,6 @@ public class UiController : MonoBehaviour
     {
         settingsPanel.SetActive(false);
     }
+
+    
 }
