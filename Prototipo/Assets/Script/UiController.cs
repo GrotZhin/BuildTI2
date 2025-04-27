@@ -17,6 +17,7 @@ public class UiController : MonoBehaviour
     public TextMeshProUGUI finalScoreTxt;
     public GameObject resultPanel;
     public GameObject pausePanel;
+    public GameObject settingsPanel;
 
     // Start is called before the first frame update
     private void Awake()
@@ -24,6 +25,7 @@ public class UiController : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
+        settingsPanel.SetActive(false);
 
 
     }
@@ -69,5 +71,13 @@ public class UiController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("menu");
+    }
+    public void Settings()
+    {
+        settingsPanel.SetActive(true);
+    }
+    public void Apply()
+    {
+        settingsPanel.SetActive(false);
     }
 }
