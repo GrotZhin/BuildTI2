@@ -7,7 +7,11 @@ public class Ground : MonoBehaviour
     public float groundHeight;
     public float groundRight;
     public float screenRight;
+    public float screenLeft;
     BoxCollider2D collider2D;
+    public float cameraHalfSize;
+    
+
 
     bool didGenerateGround = false;
 
@@ -20,25 +24,22 @@ public class Ground : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
         collider2D = GetComponent<BoxCollider2D>();
         groundHeight = transform.position.y + (collider2D.size.y / 2);
-        screenRight = Camera.main.transform.position.x * 2;
-
+     
+       
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
+    
     private void FixedUpdate()
-    {
+    { 
+        cameraHalfSize = Camera.main.orthographicSize * Camera.main.aspect;
+
+        screenRight = Camera.main.transform.position.x * 2;
+        screenLeft =  Camera.main.transform.position.x - cameraHalfSize;
+
         Vector2 pos = transform.position;
-        pos.x -= player.speed.x * Time.fixedDeltaTime;
-        if (groundRight < 0)
+       
+        if (screenLeft >= groundRight)
         {
             Destroy(gameObject);
             return;

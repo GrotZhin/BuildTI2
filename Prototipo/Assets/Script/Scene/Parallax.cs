@@ -7,33 +7,31 @@ public class Parallax : MonoBehaviour
     public float depth = 1;
     public float limiteDireita;
     public float limiteEsquerda;
-    public new GameObject camera;
+
+    public float cameraHalfSize;
+    public float screenLeft;
+    public float screenRight;
 
     Player player;
     // Start is called before the first frame update
-    private void Awake()
+
+    void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
     }
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        cameraHalfSize = Camera.main.orthographicSize * Camera.main.aspect;
+        screenLeft =  Camera.main.transform.position.x - cameraHalfSize;
+        screenRight =  Camera.main.transform.position.x + cameraHalfSize;
+
         float realSpeed = player.speed.x / depth;
-        Vector2 pos = transform.position;
-        Vector2 playerPos = player.transform.position;
-
-        
-
-        if(playerPos.x % 8 == 0 && playerPos.x != 0)
-        {
-            pos.x = playerPos.x + 19.2f; 
-        }
-        
+       
+        Vector2 pos = transform.position; 
+        pos.x -= realSpeed * Time.fixedDeltaTime;
+     
         transform.position = pos;
     }
 }

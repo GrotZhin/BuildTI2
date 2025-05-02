@@ -42,9 +42,11 @@ public class Player : MonoBehaviour
     {
         Vector2 pos = transform.position;
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
+        
 
-        if ((isGrounded || groundDistance <= jumpGroundTreshhold))
+        if (isGrounded || groundDistance <= jumpGroundTreshhold)
         {
+            Debug.Log("aq" + groundDistance);
             // Teclado
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -80,8 +82,6 @@ public class Player : MonoBehaviour
         {
             return;
         }
-
-
 
         if (pos.y <= -20)
 
@@ -240,6 +240,7 @@ public class Player : MonoBehaviour
 
 
         pos.x += speed.x * Time.fixedDeltaTime;
+       
 
         transform.position = pos;
     }
