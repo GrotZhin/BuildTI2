@@ -101,10 +101,10 @@ public class GameUiController : MonoBehaviour
         SettingsAni();
         
     }
-    public void Apply()
+    public async void Apply()
     {
         settingsPanel.SetActive(false);
-        SettingsAniOutro();
+         await SettingsAniOutro();
     }
 
     public void InGameMenuAniIntro(){
@@ -132,9 +132,9 @@ public class GameUiController : MonoBehaviour
         SettingsMenu.DOScale(0.81f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
         
     }
-    public void SettingsAniOutro(){
+    async Task SettingsAniOutro(){
 
-        SettingsMenu.DOScale(0.7f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
+       await SettingsMenu.DOScale(0.7f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
        
     }
 }
