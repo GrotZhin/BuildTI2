@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
 using TMPro;
+using DG.Tweening;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using DG.Tweening.Core;
 
 public class MenuUiController : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class MenuUiController : MonoBehaviour
    
     public GameObject settingsPanel;
     public GameObject shopPanel;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -52,7 +55,9 @@ public class MenuUiController : MonoBehaviour
     }
     public void Shop()
     {
+        
         shopPanel.SetActive(true);
+        
     }
     public void Back()
     {
