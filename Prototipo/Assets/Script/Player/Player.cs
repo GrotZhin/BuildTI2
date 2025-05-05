@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 
         if (isGrounded || groundDistance <= jumpGroundTreshhold)
         {
-            Debug.Log("aq" + groundDistance);
+      
             // Teclado
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     {
         isGrounded = false;
         speed.y = jumpSpeed;
-        isHoldingJump = true;
+
         jumpTimer = 0f;
     }
 
@@ -112,6 +112,7 @@ public class Player : MonoBehaviour
             RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance, groundLayerMask);
             if (hit2D.collider != null)
             {
+                Debug.Log("colidiu");
                 Ground ground = hit2D.collider.GetComponent<Ground>();
                 if (ground != null)
                 {
@@ -237,6 +238,7 @@ public class Player : MonoBehaviour
                 HitScore(scores);
             }
         }
+        
 
 
         pos.x += speed.x * Time.fixedDeltaTime;

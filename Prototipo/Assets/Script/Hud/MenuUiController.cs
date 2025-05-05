@@ -119,7 +119,7 @@ public class MenuUiController : MonoBehaviour
     async Task ShopAniintro(){
 
        await ShopTrans.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
-       await ShopTrans.DOShakeAnchorPos(TweenShopDur,10,10).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
+       await ShopTrans.DOShakeAnchorPos(TweenShopDur,10,10,0,false,true).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
        
     }
 
