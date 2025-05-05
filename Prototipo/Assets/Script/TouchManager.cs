@@ -4,8 +4,13 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class TouchHandler : MonoBehaviour
 {
+    private CharacterController characterController;
     public Player player;
 
+    void Start()
+    {
+        characterController= GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
+    }
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();
@@ -31,7 +36,7 @@ public class TouchHandler : MonoBehaviour
             Vector2 pos = player.transform.position;
             float groundDistance = Mathf.Abs(pos.y - player.groundHeight);
 
-            if (player.isGrounded || groundDistance <= player.jumpGroundTreshhold)
+            if (characterController.isGrounded || groundDistance <= player.jumpGroundTreshhold)
             {
                 player.Jump();
             }

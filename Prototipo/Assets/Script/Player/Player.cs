@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
 
-    
+    private CharacterController characterController;
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     public float jumpSpeed = 20;
     public float groundHeight = 10;
-    public bool isGrounded = false;
+
     public bool isHoldingJump = false;
     public float maxHoldJumpTime = 0.4f;
     public float maxHoldJump = 0.4f;
@@ -35,7 +35,10 @@ public class Player : MonoBehaviour
 
     public bool isDead = false;
     // Start is called before the first frame update
-    
+    void Start()
+    {
+            characterController=this.GetComponent<CharacterController>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
         float groundDistance = Mathf.Abs(pos.y - groundHeight);
         
 
-        if (isGrounded || groundDistance <= jumpGroundTreshhold)
+        if (characterController.isGrounded || groundDistance <= jumpGroundTreshhold)
         {
       
             // Teclado
@@ -62,10 +65,8 @@ public class Player : MonoBehaviour
     }
     public void Jump()
     {
-        isGrounded = false;
-        speed.y = jumpSpeed;
-
-        jumpTimer = 0f;
+       
+         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
     }
 
     public void ReleaseJump()
@@ -98,7 +99,7 @@ public class Player : MonoBehaviour
 
             }
         }
-        if (!isGrounded)
+        if (!characterController.isGrounded)
         {
             pos.y += speed.y * Time.fixedDeltaTime;
             if (!isHoldingJump)
@@ -121,11 +122,11 @@ public class Player : MonoBehaviour
                         groundHeight = ground.groundHeight;
                         pos.y = groundHeight;
                         speed.y = 0;
-                        isGrounded = true;
+                        
                     }
                 }
             }
-            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.red);
+       
 
 
             Vector2 wallOrigin = new Vector2(pos.x, pos.y);
@@ -148,7 +149,7 @@ public class Player : MonoBehaviour
 
         distance += speed.x * Time.fixedDeltaTime;
 
-        if (isGrounded)
+        if (characterController.isGrounded)
         {
             speed.x += acceleration * Time.fixedDeltaTime;
             float speedRatio = speed.x / maxXSpeed;
@@ -159,16 +160,7 @@ public class Player : MonoBehaviour
                 speed.x = maxXSpeed;
             }
 
-            Vector2 rayOrigin = new Vector2(pos.x - 0.7f, pos.y);
-            Vector2 rayDirection = Vector2.up;
-            float rayDistance = speed.y * Time.fixedDeltaTime;
-
-            RaycastHit2D hit2D = Physics2D.Raycast(rayOrigin, rayDirection, rayDistance);
-            if (hit2D.collider == null)
-            {
-                isGrounded = false;
-            }
-            Debug.DrawRay(rayOrigin, rayDirection * rayDistance, Color.yellow);
+ 
 
 
             Vector2 obstOrigin = new Vector2(pos.x, pos.y);
@@ -244,7 +236,9 @@ public class Player : MonoBehaviour
         pos.x += speed.x * Time.fixedDeltaTime;
        
 
-        transform.position = pos;
+         
+
+        characterController.Move(new Vector2 (1,speed.y )*Time.deltaTime);
     }
 
     void HitObstacle(Obstacle obstacle)
