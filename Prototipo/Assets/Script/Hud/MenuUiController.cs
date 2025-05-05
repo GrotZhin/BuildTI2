@@ -22,9 +22,12 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] RawImage Fade;
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform SettingsMenu;
+    [SerializeField] RectTransform ShopTrans;
 
     //DOtween positions
     [SerializeField] float TweenDur;
+    [SerializeField] float TweenShopDur;
+    [SerializeField] float ShopTopPosx,ShopmiddlePosx;
     [SerializeField] float MenuSizein;
 
 
@@ -68,23 +71,39 @@ public class MenuUiController : MonoBehaviour
        
 
     }
-    public void Shop()
+    public async void Shop()
     {
-        
+        NosincFadein();
+        await ShopAniintro();
+        NosincFade0ut();
+        ShopAnioutro();
         shopPanel.SetActive(true);
         
     }
-    public void Back()
-    {
+    public async void Back()
+    {   
+        NosincFadein();
+        await ShopAniintro();
+        NosincFade0ut();
+        ShopAnioutro();
         shopPanel.SetActive(false) ;
     }
 
     async Task Fadeani(){
 
-            MenuAni.DOScale(MenuSizein,TweenDur);
+        MenuAni.DOScale(MenuSizein,TweenDur);
          await Fade.DOFade(1,TweenDur).AsyncWaitForCompletion();
          
 
+    }
+
+    public void NosincFadein()
+    {
+        Fade.DOFade(1,TweenShopDur);
+    }
+    public void NosincFade0ut()
+    {
+        Fade.DOFade(0,TweenShopDur);
     }
 
     public void SettingsAni(){
@@ -95,6 +114,18 @@ public class MenuUiController : MonoBehaviour
     async Task SettingsAniOutro(){
 
        await SettingsMenu.DOScale(0.7f,0.08f).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
+       
+    }
+    async Task ShopAniintro(){
+
+       await ShopTrans.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+       await ShopTrans.DOShakeAnchorPos(TweenShopDur,10,10).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
+       
+    }
+
+    public void ShopAnioutro(){
+        ShopTrans.DOShakeAnchorPos(TweenShopDur,10,5).SetEase(Ease.InOutFlash);
+        ShopTrans.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
        
     }
 }
