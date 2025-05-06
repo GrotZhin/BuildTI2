@@ -30,6 +30,8 @@ public class GameUiController : MonoBehaviour
     [SerializeField] Image MenuBackground;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] CanvasGroup PauseFade;
+    [SerializeField] Image CamSnap;
+    [SerializeField] RectTransform resoultsAni;
 
     //DOtween positions
     [SerializeField] float MenuSizein,MenuSizeout;
@@ -38,7 +40,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] float UpHudTopPosY,UpHudmiddlePosY;
     [SerializeField] float DownHudTopPosY,DownHudmiddlePosY;
     [SerializeField] float TweenDur;
-
+    [SerializeField] float ReTweenDur;
   
 
     // Start is called before the first frame update
@@ -63,6 +65,7 @@ public class GameUiController : MonoBehaviour
 
         if (player.isDead)
         {
+            ResoultsAni();
             resultPanel.SetActive(true);
             finalDistanceTxt.text = distance + "m";
             finalScoreTxt.text ="Score: " + player.score;
@@ -73,9 +76,11 @@ public class GameUiController : MonoBehaviour
     {
         Application.Quit();
     }
-    public void Retry()
+    public async void Retry()
     {
+        await RetryAni();
         SceneManager.LoadScene("GameScene");
+        
     }
     public void Pause()
     {
@@ -137,4 +142,17 @@ public class GameUiController : MonoBehaviour
        await SettingsMenu.DOScale(0.7f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
        
     }
+
+    public void  ResoultsAni()
+    {
+        
+        resoultsAni.DOScale(1,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+    }
+    async Task RetryAni()
+    {
+
+        await resoultsAni.DOScale(1.6f,0.5f).SetEase(Ease.OutCubic).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+    
 }
