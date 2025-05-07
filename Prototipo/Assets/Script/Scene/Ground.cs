@@ -77,13 +77,13 @@ public class Ground : MonoBehaviour
 
 
         pos.y = actualY - goCollider.size.y / 2;
-        if (pos.y > 3)
+        if (pos.y > 10)
         {
-            pos.y = 3;
+            pos.y = 10;
         }
-        if (pos.y < -15)
+        if (pos.y < 7)
         {
-            pos.y = -15;
+            pos.y =7 ;
         }
 
 
