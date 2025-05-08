@@ -17,7 +17,7 @@ public class Parallax : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     // Update is called once per frame
     void FixedUpdate()

@@ -9,7 +9,7 @@ public class Obstacle : MonoBehaviour
     private void Awake()
     {
         boxCollider2D = GetComponent<BoxCollider2D>();  
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void FixedUpdate()

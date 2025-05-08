@@ -21,7 +21,7 @@ public class Ground : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         collider2D = GetComponent<BoxCollider2D>();
         groundHeight = transform.position.y + (collider2D.size.y / 2);
      
