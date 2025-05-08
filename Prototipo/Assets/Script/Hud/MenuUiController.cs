@@ -100,6 +100,8 @@ public class MenuUiController : MonoBehaviour
         RannaShopRand();
         NosincFade0ut();
         ShopAnioutro();
+        ShopchgCam.SetActive(false);
+        ShopchgRan.SetActive(true);
         
         shopPanel.SetActive(true);
         await ShopPanelAniintro();
@@ -125,13 +127,13 @@ public class MenuUiController : MonoBehaviour
         shopOutro.SetActive(true);
         shopIntro.SetActive(false);
         NosincFadein();
+        ShopPanelAnioutro();
+        ShopPanel2Anioutro();
         await ShopAniintro();
         RannaShopGO.SetActive(false);
         ShopkShopGO.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
-        ShopPanelAnioutro();
-        ShopPanel2Anioutro();
         shopPanel.SetActive(false) ;
     }
 
@@ -188,7 +190,7 @@ public class MenuUiController : MonoBehaviour
     }
 
      public void ShopPanelAnioutro(){
-        ShopPanel.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
+        ShopPanel.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
     
        
     }
@@ -200,7 +202,7 @@ public class MenuUiController : MonoBehaviour
     }
 
      public void ShopPanel2Anioutro(){
-        ShopPanel2.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
+        ShopPanel2.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
     
        
     }
