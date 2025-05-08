@@ -125,9 +125,9 @@ public class Player : MonoBehaviour
 
         distance += speed.x * Time.fixedDeltaTime;
 
-        if (characterController.isGrounded || groundDistance <= jumpGroundTreshhold)
+        if (characterController.isGrounded)
         {
-            Debug.Log("asasdasdasdsads");
+            Debug.Log(characterController.isGrounded);
             speed.x += acceleration * Time.fixedDeltaTime;
             float speedRatio = speed.x / maxXSpeed;
             acceleration = maxAcceleration * (1 - speedRatio);
@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
             Obstacle obstacle = obstHitY.collider.GetComponent<Obstacle>();
             if (obstacle != null)
             {
-                HitObstacle(obstacle);
+                
             }
         }
 

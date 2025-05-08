@@ -13,7 +13,8 @@ public class TouchHandler : MonoBehaviour
     }
     private void OnEnable()
     {
-     
+       EnhancedTouchSupport.Enable();
+        TouchSimulation.Enable();
         Touch.onFingerDown += HandleTouchStart;
         Touch.onFingerUp += HandleTouchEnd;
     }

@@ -111,6 +111,7 @@ public class GameUiController : MonoBehaviour
         settingsPanel.SetActive(false);
          await SettingsAniOutro();
     }
+       //Dotween Stuff
 
     public void InGameMenuAniIntro(){
         MenuBackground.DOFade(0.90f,TweenDur).SetUpdate(true);
@@ -122,7 +123,6 @@ public class GameUiController : MonoBehaviour
         DownHud.DOAnchorPosY(DownHudmiddlePosY,0.1f).SetEase(Ease.InCubic).SetUpdate(true);
 
     }
-
     async Task InGameMenuAniOutro(){
          MenuBackground.DOFade(0,TweenDur).SetUpdate(true);
          PauseFade.DOFade(0f,0.5f).SetEase(Ease.InOutCubic).SetUpdate(true);
@@ -132,6 +132,7 @@ public class GameUiController : MonoBehaviour
           await UpHud.DOAnchorPosY(UpHudTopPosY,TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
          await DownHud.DOAnchorPosY(DownHudTopPosY,TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
     }
+
     public void SettingsAni(){
 
         SettingsMenu.DOScale(0.81f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);

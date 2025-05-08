@@ -27,6 +27,7 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] RectTransform ShopTrans;
+    [SerializeField] RectTransform ShopPanel;
     [SerializeField] Sprite[] RannaShop;
     [SerializeField] Image RannaShopRend;
      [SerializeField] Sprite[] ShopkShop;
@@ -37,6 +38,7 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] float TweenDur;
     [SerializeField] float TweenShopDur;
     [SerializeField] float ShopTopPosx,ShopmiddlePosx;
+     [SerializeField] float ShopPanelTopPosx,ShopPanelmiddlePosx;
     [SerializeField] float MenuSizein;
 
 
@@ -91,8 +93,9 @@ public class MenuUiController : MonoBehaviour
         RannaShopRand();
         NosincFade0ut();
         ShopAnioutro();
-        shopPanel.SetActive(true);
         
+        shopPanel.SetActive(true);
+        await ShopPanelAniintro();
     }
     public async void Back()
     {   
@@ -104,6 +107,7 @@ public class MenuUiController : MonoBehaviour
         ShopkShopGO.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
+        ShopPanelAnioutro();
         shopPanel.SetActive(false) ;
     }
 
@@ -144,6 +148,17 @@ public class MenuUiController : MonoBehaviour
     public void ShopAnioutro(){
         ShopTrans.DOShakeAnchorPos(TweenShopDur,10,5).SetEase(Ease.InOutFlash);
         ShopTrans.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
+       
+    }
+    async Task ShopPanelAniintro(){
+
+       await ShopPanel.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+     public void ShopPanelAnioutro(){
+        ShopPanel.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
+    
        
     }
 

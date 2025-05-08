@@ -8,7 +8,7 @@ public class Ground : MonoBehaviour
     public float groundRight;
     public float screenRight;
     public float screenLeft;
-    BoxCollider2D collider2D;
+    BoxCollider collider;
     public float cameraHalfSize;
     
 
@@ -22,10 +22,8 @@ public class Ground : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        collider2D = GetComponent<BoxCollider2D>();
-        groundHeight = transform.position.y + (collider2D.size.y / 2);
-     
-       
+        collider = GetComponent<BoxCollider>();
+        groundHeight = transform.position.y + (collider.size.y / 2);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
@@ -45,7 +43,7 @@ public class Ground : MonoBehaviour
             return;
         }
 
-        groundRight = transform.position.x + (collider2D.size.x / 2);
+        groundRight = transform.position.x + (collider.size.x / 2);
 
         if (!didGenerateGround)
         {
@@ -62,7 +60,7 @@ public class Ground : MonoBehaviour
     void GenerateGround()
     {
         GameObject go = Instantiate(gameObject);
-        BoxCollider2D goCollider = GetComponent<BoxCollider2D>();
+        BoxCollider goCollider = GetComponent<BoxCollider>();
         Vector2 pos;
 
         float h1 = player.jumpSpeed * player.maxHoldJumpTime;
@@ -77,9 +75,9 @@ public class Ground : MonoBehaviour
 
 
         pos.y = actualY - goCollider.size.y / 2;
-        if (pos.y > 10)
+        if (pos.y > 11)
         {
-            pos.y = 10;
+            pos.y = 11;
         }
         if (pos.y < 7)
         {
