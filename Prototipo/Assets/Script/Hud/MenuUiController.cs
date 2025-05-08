@@ -22,12 +22,18 @@ public class MenuUiController : MonoBehaviour
     public GameObject RannaShopGO;
     public GameObject ShopkShopGO;
 
+    public GameObject ShopchgRan;
+    public GameObject ShopchgCam;
+
     //Dotween animations
     [SerializeField] RawImage Fade;
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] RectTransform ShopTrans;
     [SerializeField] RectTransform ShopPanel;
+    [SerializeField] RectTransform ShopPanel2;
+    [SerializeField] RectTransform RannaIcon;
+    [SerializeField] RectTransform CamIcon;
     [SerializeField] Sprite[] RannaShop;
     [SerializeField] Image RannaShopRend;
      [SerializeField] Sprite[] ShopkShop;
@@ -37,6 +43,7 @@ public class MenuUiController : MonoBehaviour
     //DOtween positions
     [SerializeField] float TweenDur;
     [SerializeField] float TweenShopDur;
+    [SerializeField] float TweenShopiconDur;
     [SerializeField] float ShopTopPosx,ShopmiddlePosx;
      [SerializeField] float ShopPanelTopPosx,ShopPanelmiddlePosx;
     [SerializeField] float MenuSizein;
@@ -97,6 +104,22 @@ public class MenuUiController : MonoBehaviour
         shopPanel.SetActive(true);
         await ShopPanelAniintro();
     }
+
+    public async void ShopChange(){
+        ShopIconShake();
+         ShopPanelAnioutro();
+         ShopchgRan.SetActive(false);
+        ShopchgCam.SetActive(true);
+        await ShopPanel2Aniintro();
+        
+    }
+    public async void ShopChange2(){
+        ShopIconShake();
+         ShopPanel2Anioutro();
+         ShopchgCam.SetActive(false);
+        ShopchgRan.SetActive(true);
+        await ShopPanelAniintro();
+    }
     public async void Back()
     {   
         shopOutro.SetActive(true);
@@ -108,6 +131,7 @@ public class MenuUiController : MonoBehaviour
         NosincFade0ut();
         ShopAnioutro();
         ShopPanelAnioutro();
+        ShopPanel2Anioutro();
         shopPanel.SetActive(false) ;
     }
 
@@ -145,6 +169,13 @@ public class MenuUiController : MonoBehaviour
        
     }
 
+    public void ShopIconShake(){
+
+     RannaIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
+     CamIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
+
+    }
+
     public void ShopAnioutro(){
         ShopTrans.DOShakeAnchorPos(TweenShopDur,10,5).SetEase(Ease.InOutFlash);
         ShopTrans.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
@@ -158,6 +189,18 @@ public class MenuUiController : MonoBehaviour
 
      public void ShopPanelAnioutro(){
         ShopPanel.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
+    
+       
+    }
+
+     async Task ShopPanel2Aniintro(){
+
+       await ShopPanel2.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+     public void ShopPanel2Anioutro(){
+        ShopPanel2.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
     
        
     }
