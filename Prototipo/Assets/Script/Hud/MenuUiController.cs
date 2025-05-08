@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
@@ -17,12 +17,21 @@ public class MenuUiController : MonoBehaviour
    
     public GameObject settingsPanel;
     public GameObject shopPanel;
+    public GameObject shopIntro;
+    public GameObject shopOutro;
+    public GameObject RannaShopGO;
+    public GameObject ShopkShopGO;
 
     //Dotween animations
     [SerializeField] RawImage Fade;
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] RectTransform ShopTrans;
+    [SerializeField] Sprite[] RannaShop;
+    [SerializeField] Image RannaShopRend;
+     [SerializeField] Sprite[] ShopkShop;
+    [SerializeField] Image ShopkShopRend;
+
 
     //DOtween positions
     [SerializeField] float TweenDur;
@@ -73,8 +82,13 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Shop()
     {
+        shopIntro.SetActive(true);
+        shopOutro.SetActive(false);
         NosincFadein();
         await ShopAniintro();
+        RannaShopGO.SetActive(true);
+        ShopkShopGO.SetActive(true);
+        RannaShopRand();
         NosincFade0ut();
         ShopAnioutro();
         shopPanel.SetActive(true);
@@ -82,8 +96,12 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Back()
     {   
+        shopOutro.SetActive(true);
+        shopIntro.SetActive(false);
         NosincFadein();
         await ShopAniintro();
+        RannaShopGO.SetActive(false);
+        ShopkShopGO.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
         shopPanel.SetActive(false) ;
@@ -128,4 +146,17 @@ public class MenuUiController : MonoBehaviour
         ShopTrans.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
        
     }
+
+    public void RannaShopRand()
+    {
+        float rand = Random.Range(0,RannaShop.Length);
+
+        RannaShopRend.sprite = RannaShop[(int)rand];
+
+        float rand2 = Random.Range(0,ShopkShop.Length);
+
+        ShopkShopRend.sprite = ShopkShop[(int)rand2];
+    }
+
 }
+
