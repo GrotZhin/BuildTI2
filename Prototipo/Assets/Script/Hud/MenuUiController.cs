@@ -87,7 +87,6 @@ public class MenuUiController : MonoBehaviour
         await Fadeani();
         SceneManager.LoadScene("GameScene");
        
-
     }
     public async void Shop()
     {
