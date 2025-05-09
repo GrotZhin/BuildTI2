@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (pos.y <= -20)
+        if (pos.y <= 3)
 
         {
             isDead = true;
