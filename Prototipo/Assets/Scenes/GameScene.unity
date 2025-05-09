@@ -1003,7 +1003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &568143564
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568143562}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -4459,6 +4459,7 @@ MonoBehaviour:
   MenuBackground: {fileID: 1676944651}
   SettingsMenu: {fileID: 2131894788}
   PauseFade: {fileID: 568143566}
+  ResultFade: {fileID: 568143566}
   CamSnap: {fileID: 0}
   resoultsAni: {fileID: 568143565}
   MenuSizein: 1

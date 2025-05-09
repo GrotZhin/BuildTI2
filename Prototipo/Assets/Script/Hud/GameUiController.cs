@@ -30,6 +30,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] Image MenuBackground;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] CanvasGroup PauseFade;
+    [SerializeField] CanvasGroup ResultFade;
     [SerializeField] Image CamSnap;
     [SerializeField] RectTransform resoultsAni;
 
@@ -148,11 +149,13 @@ public class GameUiController : MonoBehaviour
     {
         
         resoultsAni.DOScale(1,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+        ResultFade.DOFade(1,0.2f).SetEase(Ease.OutFlash);
     }
     async Task RetryAni()
     {
 
         await resoultsAni.DOScale(1.6f,0.5f).SetEase(Ease.OutCubic).SetUpdate(true).AsyncWaitForCompletion();
+        ResultFade.DOFade(0,0.2f).SetEase(Ease.OutFlash);
 
     }
     

@@ -34,6 +34,7 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] RectTransform ShopPanel2;
     [SerializeField] RectTransform RannaIcon;
     [SerializeField] RectTransform CamIcon;
+    [SerializeField] RawImage Backbtn;
     [SerializeField] Sprite[] RannaShop;
     [SerializeField] Image RannaShopRend;
      [SerializeField] Sprite[] ShopkShop;
@@ -99,9 +100,9 @@ public class MenuUiController : MonoBehaviour
         RannaShopRand();
         NosincFade0ut();
         ShopAnioutro();
+         ShopBackAniintro();
         ShopchgCam.SetActive(false);
         ShopchgRan.SetActive(true);
-        
         shopPanel.SetActive(true);
         await ShopPanelAniintro();
     }
@@ -123,6 +124,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Back()
     {   
+        ShopBackAnioutro();
         shopOutro.SetActive(true);
         shopIntro.SetActive(false);
         NosincFadein();
@@ -163,13 +165,6 @@ public class MenuUiController : MonoBehaviour
        await SettingsMenu.DOScale(0.7f,0.08f).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
        
     }
-    async Task ShopAniintro(){
-
-       await ShopTrans.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
-       await ShopTrans.DOShakeAnchorPos(TweenShopDur,10,10,0,false,true).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
-       
-    }
-
     public void ShopIconShake(){
 
      RannaIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
@@ -177,6 +172,12 @@ public class MenuUiController : MonoBehaviour
 
     }
 
+    async Task ShopAniintro(){
+
+       await ShopTrans.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+       await ShopTrans.DOShakeAnchorPos(TweenShopDur,10,10,0,false,true).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
+       
+    }
     public void ShopAnioutro(){
         ShopTrans.DOShakeAnchorPos(TweenShopDur,10,5).SetEase(Ease.InOutFlash);
         ShopTrans.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
@@ -215,6 +216,16 @@ public class MenuUiController : MonoBehaviour
         float rand2 = Random.Range(0,ShopkShop.Length);
 
         ShopkShopRend.sprite = ShopkShop[(int)rand2];
+    }
+
+    public void  ShopBackAniintro(){
+
+      Backbtn.DOFade(1,2f).SetEase(Ease.OutCubic);
+       
+    }
+    public void ShopBackAnioutro(){
+        Backbtn.DOFade(0,3);
+       
     }
 
 }
