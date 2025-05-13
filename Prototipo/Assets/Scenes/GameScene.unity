@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9837c729448c1b4d94583bb923a202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 1
+  depth: 9
   limiteDireita: 19.2
   limiteEsquerda: -38.2
   cameraHalfSize: 0
@@ -1800,7 +1800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9837c729448c1b4d94583bb923a202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 1
+  depth: 9
   limiteDireita: 19.2
   limiteEsquerda: -38.2
   cameraHalfSize: 0
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9837c729448c1b4d94583bb923a202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 1
+  depth: 12
   limiteDireita: 0
   limiteEsquerda: 0
   cameraHalfSize: 0
@@ -3351,7 +3351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9837c729448c1b4d94583bb923a202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 1
+  depth: 9
   limiteDireita: 19.2
   limiteEsquerda: -38.2
   cameraHalfSize: 0
@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9837c729448c1b4d94583bb923a202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 1
+  depth: 12
   limiteDireita: 0
   limiteEsquerda: 0
   cameraHalfSize: 0
@@ -5443,7 +5443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9837c729448c1b4d94583bb923a202b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  depth: 1
+  depth: 12
   limiteDireita: 0
   limiteEsquerda: 0
   cameraHalfSize: 0
