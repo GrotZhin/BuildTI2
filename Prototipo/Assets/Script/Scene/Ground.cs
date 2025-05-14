@@ -9,6 +9,7 @@ public class Ground : MonoBehaviour
     public float screenRight;
     public float screenLeft;
     BoxCollider collider;
+     GameObject box;
     public float cameraHalfSize;
     
 
@@ -39,6 +40,7 @@ public class Ground : MonoBehaviour
        
         if (screenLeft >= groundRight)
         {
+            Destroy(box.gameObject);
             Destroy(gameObject);
             return;
         }
@@ -67,10 +69,10 @@ public class Ground : MonoBehaviour
         float t = player.jumpSpeed / -player.gravity;
         float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
-        float maxY = maxJumpHeight * 0.7f;
+        float maxY = player.transform.position.y + maxJumpHeight * 0.7f;
         maxY += groundHeight;
 
-        float minY = 1;
+        float minY = 7;
         float actualY = UnityEngine.Random.Range(minY, maxY);
 
 
@@ -92,7 +94,7 @@ public class Ground : MonoBehaviour
         float maxX = totalTime * player.speed.x;
         maxX *= 0.7f;
         maxX += groundRight;
-        float minX = screenRight;
+        float minX = screenRight +5;
         float actualX = UnityEngine.Random.Range(minX, maxX);
 
 
@@ -110,11 +112,11 @@ public class Ground : MonoBehaviour
         for (int i = 0; i < obstacleNum; i++)
         {
             var random = UnityEngine.Random.Range(0, boxPrefab.Length);
-            GameObject box = Instantiate(boxPrefab[random].gameObject);
+             box = Instantiate(boxPrefab[random].gameObject);
             GameObject scoreBox = Instantiate(scoreCollider.gameObject);
             GameObject powerUps = Instantiate(powerUp.gameObject);
 
-            float y = goGround.groundHeight + 1;
+            float y = goGround.groundHeight;
             float halfWidth = goCollider.size.x /2 - 1;
             float left = go.transform.position.x - halfWidth;
             float right = go.transform.position.x + halfWidth;

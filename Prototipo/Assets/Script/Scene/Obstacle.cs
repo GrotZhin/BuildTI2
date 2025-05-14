@@ -3,25 +3,25 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     Player player;
-   public BoxCollider2D boxCollider2D;
-   
+    Ground ground;
+
+    public BoxCollider boxCollider;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        boxCollider2D = GetComponent<BoxCollider2D>();  
+        ground = GameObject.Find("Ground").GetComponent<Ground>();
+        boxCollider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     private void FixedUpdate()
     {
         Vector2 pos = transform.position;
-        pos.x  -= player.speed.x * Time.fixedDeltaTime;
-        if (pos.x < -10)
-        {
-            Destroy(gameObject);
-        }
 
-
+  
+    
         transform.position = pos;
     }
 }

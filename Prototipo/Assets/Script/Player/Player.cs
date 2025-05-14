@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
 
     void HitObstacle(Obstacle obstacle)
     {
-        obstacle.boxCollider2D.enabled = false;
+        Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
     }
     void HitScore(Score obstacle)
