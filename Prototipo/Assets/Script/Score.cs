@@ -20,7 +20,10 @@ public class Score : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+    if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        
+    }
 
         transform.position = pos;
     }

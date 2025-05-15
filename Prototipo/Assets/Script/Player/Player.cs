@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class Player : MonoBehaviour
     public LayerMask scoreLayerMask;
     public LayerMask powerUpLayerMask;
     float groundDistance;
+    public BoxCollider sliderBox;
+    bool slider = false;
+    float sliderTimer;
 
 
     public bool isDead = false;
@@ -47,6 +51,17 @@ public class Player : MonoBehaviour
         Vector2 pos = transform.position;
         groundDistance = Mathf.Abs(pos.y - groundHeight);
 
+        if (slider)
+        {
+            sliderTimer += Time.deltaTime;
+            if (sliderTimer >= 0.5f)
+            {
+                slider = false;
+                sliderBox.enabled = false;
+
+            }
+
+        }
 
         if (characterController.isGrounded || groundDistance <= jumpGroundTreshhold)
         {
@@ -59,7 +74,10 @@ public class Player : MonoBehaviour
 
             }
         }
-
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Slide();
+        }
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -70,6 +88,12 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
+    }
+    public void Slide()
+    {
+        slider = true;
+        sliderBox.enabled = true;
+
     }
 
     public void ReleaseJump()
@@ -232,7 +256,7 @@ public class Player : MonoBehaviour
             Obstacle obstacle = obstHitY.collider.GetComponent<Obstacle>();
             if (obstacle != null)
             {
-                
+
             }
         }
 
