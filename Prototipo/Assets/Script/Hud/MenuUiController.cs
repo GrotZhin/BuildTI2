@@ -13,8 +13,11 @@ using System.Threading.Tasks;
 
 public class MenuUiController : MonoBehaviour
 {
-  
-   
+    public GameObject MainCam;
+    public GameObject WardrobeCam;
+    public GameObject MirrorCam;
+    public GameObject MainMenuPanel;
+    public GameObject WarPanel;
     public GameObject settingsPanel;
     public GameObject shopPanel;
     public GameObject shopIntro;
@@ -25,15 +28,22 @@ public class MenuUiController : MonoBehaviour
     public GameObject ShopchgRan;
     public GameObject ShopchgCam;
 
+    public GameObject WdbchgRan;
+    public GameObject WdbchgCam;
+
     //Dotween animations
     [SerializeField] RawImage Fade;
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] RectTransform ShopTrans;
+     [SerializeField] RectTransform WdbPanel;
+    [SerializeField] RectTransform WdbPanel2;
     [SerializeField] RectTransform ShopPanel;
     [SerializeField] RectTransform ShopPanel2;
     [SerializeField] RectTransform RannaIcon;
     [SerializeField] RectTransform CamIcon;
+    [SerializeField] RectTransform WdbRannaIcon;
+    [SerializeField] RectTransform WdbCamIcon;
     [SerializeField] RawImage Backbtn;
     [SerializeField] Sprite[] RannaShop;
     [SerializeField] Image RannaShopRend;
@@ -87,7 +97,57 @@ public class MenuUiController : MonoBehaviour
     {
         await Fadeani();
         SceneManager.LoadScene("GameScene");
+
        
+    }
+    public async void Wardrobe(){
+        shopIntro.SetActive(true);
+        shopOutro.SetActive(false);
+        NosincFadein();
+        await ShopAniintro();
+        NosincFade0ut();
+        ShopAnioutro();
+        WdbchgCam.SetActive(false);
+        WdbchgRan.SetActive(true);
+        MainCam.SetActive(false);
+        MirrorCam.SetActive(true);
+        WarPanel.SetActive(true);
+        MainMenuPanel.SetActive(false);   
+        WardrobeCam.SetActive(true);
+        await WdbPanelAniintro();
+     }
+     public async void WdbBack()
+    {   
+         ShopBackAnioutro();
+        shopOutro.SetActive(true);
+        shopIntro.SetActive(false);
+        NosincFadein();
+        WdbPanelAnioutro();
+        WdbPanel2Anioutro();
+        await ShopAniintro();
+        NosincFade0ut();
+        ShopAnioutro();
+        MainCam.SetActive(true);
+        MainMenuPanel.SetActive(true);   
+        WardrobeCam.SetActive(false);
+        MirrorCam.SetActive(false);
+        WarPanel.SetActive(false);
+        
+    }
+    public async void WdbChange(){
+        WdbIconShake();
+         WdbPanelAnioutro();
+         WdbchgRan.SetActive(false);
+        WdbchgCam.SetActive(true);
+        await WdbPanel2Aniintro();
+        
+    }
+    public async void WdbChange2(){
+        WdbIconShake();
+         WdbPanel2Anioutro();
+         WdbchgCam.SetActive(false);
+        WdbchgRan.SetActive(true);
+        await WdbPanelAniintro();
     }
     public async void Shop()
     {
@@ -145,7 +205,7 @@ public class MenuUiController : MonoBehaviour
          
 
     }
-
+#region TweenAni
     public void NosincFadein()
     {
         Fade.DOFade(1,TweenShopDur);
@@ -227,6 +287,38 @@ public class MenuUiController : MonoBehaviour
         Backbtn.DOFade(0,3);
        
     }
+    #endregion
 
+#region WardrobeTweenAni
+async Task WdbPanelAniintro(){
+
+       await WdbPanel.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+     public void WdbPanelAnioutro(){
+        WdbPanel.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
+    
+       
+    }
+
+     async Task WdbPanel2Aniintro(){
+
+       await WdbPanel2.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+     public void WdbPanel2Anioutro(){
+        WdbPanel2.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
+    
+       
+    }
+    public void WdbIconShake(){
+
+     WdbRannaIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
+     WdbCamIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
+
+    }
+#endregion
 }
 
