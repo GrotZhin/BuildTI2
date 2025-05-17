@@ -10,6 +10,7 @@ using UnityEngine.SocialPlatforms.Impl;
 using DG.Tweening.Core;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 public class MenuUiController : MonoBehaviour
 {
@@ -31,12 +32,17 @@ public class MenuUiController : MonoBehaviour
     public GameObject WdbchgRan;
     public GameObject WdbchgCam;
 
+    public GameObject Ranna;
+    public Animator Ranani;
+
+   
+
     //Dotween animations
     [SerializeField] RawImage Fade;
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] RectTransform ShopTrans;
-     [SerializeField] RectTransform WdbPanel;
+    [SerializeField] RectTransform WdbPanel;
     [SerializeField] RectTransform WdbPanel2;
     [SerializeField] RectTransform ShopPanel;
     [SerializeField] RectTransform ShopPanel2;
@@ -47,7 +53,7 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] RawImage Backbtn;
     [SerializeField] Sprite[] RannaShop;
     [SerializeField] Image RannaShopRend;
-     [SerializeField] Sprite[] ShopkShop;
+    [SerializeField] Sprite[] ShopkShop;
     [SerializeField] Image ShopkShopRend;
 
 
@@ -55,15 +61,19 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] float TweenDur;
     [SerializeField] float TweenShopDur;
     [SerializeField] float TweenShopiconDur;
-    [SerializeField] float ShopTopPosx,ShopmiddlePosx;
-     [SerializeField] float ShopPanelTopPosx,ShopPanelmiddlePosx;
+    [SerializeField] float ShopTopPosx, ShopmiddlePosx;
+    [SerializeField] float ShopPanelTopPosx, ShopPanelmiddlePosx;
     [SerializeField] float MenuSizein;
 
 
     // Start is called before the first frame update
+    public void Start()
+    {
+        Ranani = Ranna.GetComponent<Animator>();
+    }
     private void Awake()
     {
-        
+
         settingsPanel.SetActive(false);
         shopPanel.SetActive(false);
 
@@ -71,13 +81,13 @@ public class MenuUiController : MonoBehaviour
 
 
     // Update is called once per frame
-   
+
 
     public void Exit()
     {
         Application.Quit();
     }
- 
+
     public void Quit()
     {
         Time.timeScale = 1;
@@ -98,12 +108,14 @@ public class MenuUiController : MonoBehaviour
         await Fadeani();
         SceneManager.LoadScene("GameScene");
 
-       
+
     }
-    public async void Wardrobe(){
+    public async void Wardrobe()
+    {
         shopIntro.SetActive(true);
         shopOutro.SetActive(false);
         NosincFadein();
+        RannaAniWdb();
         await ShopAniintro();
         NosincFade0ut();
         ShopAnioutro();
@@ -112,40 +124,43 @@ public class MenuUiController : MonoBehaviour
         MainCam.SetActive(false);
         MirrorCam.SetActive(true);
         WarPanel.SetActive(true);
-        MainMenuPanel.SetActive(false);   
+        MainMenuPanel.SetActive(false);
         WardrobeCam.SetActive(true);
         await WdbPanelAniintro();
-     }
-     public async void WdbBack()
-    {   
-         ShopBackAnioutro();
+    }
+    public async void WdbBack()
+    {
+        ShopBackAnioutro();
         shopOutro.SetActive(true);
         shopIntro.SetActive(false);
         NosincFadein();
         WdbPanelAnioutro();
         WdbPanel2Anioutro();
         await ShopAniintro();
+        RannaAniMenu();
         NosincFade0ut();
         ShopAnioutro();
         MainCam.SetActive(true);
-        MainMenuPanel.SetActive(true);   
+        MainMenuPanel.SetActive(true);
         WardrobeCam.SetActive(false);
         MirrorCam.SetActive(false);
         WarPanel.SetActive(false);
-        
+
     }
-    public async void WdbChange(){
+    public async void WdbChange()
+    {
         WdbIconShake();
-         WdbPanelAnioutro();
-         WdbchgRan.SetActive(false);
+        WdbPanelAnioutro();
+        WdbchgRan.SetActive(false);
         WdbchgCam.SetActive(true);
         await WdbPanel2Aniintro();
-        
+
     }
-    public async void WdbChange2(){
+    public async void WdbChange2()
+    {
         WdbIconShake();
-         WdbPanel2Anioutro();
-         WdbchgCam.SetActive(false);
+        WdbPanel2Anioutro();
+        WdbchgCam.SetActive(false);
         WdbchgRan.SetActive(true);
         await WdbPanelAniintro();
     }
@@ -160,30 +175,32 @@ public class MenuUiController : MonoBehaviour
         RannaShopRand();
         NosincFade0ut();
         ShopAnioutro();
-         ShopBackAniintro();
+        ShopBackAniintro();
         ShopchgCam.SetActive(false);
         ShopchgRan.SetActive(true);
         shopPanel.SetActive(true);
         await ShopPanelAniintro();
     }
 
-    public async void ShopChange(){
+    public async void ShopChange()
+    {
         ShopIconShake();
-         ShopPanelAnioutro();
-         ShopchgRan.SetActive(false);
+        ShopPanelAnioutro();
+        ShopchgRan.SetActive(false);
         ShopchgCam.SetActive(true);
         await ShopPanel2Aniintro();
-        
+
     }
-    public async void ShopChange2(){
+    public async void ShopChange2()
+    {
         ShopIconShake();
-         ShopPanel2Anioutro();
-         ShopchgCam.SetActive(false);
+        ShopPanel2Anioutro();
+        ShopchgCam.SetActive(false);
         ShopchgRan.SetActive(true);
         await ShopPanelAniintro();
     }
     public async void Back()
-    {   
+    {
         ShopBackAnioutro();
         shopOutro.SetActive(true);
         shopIntro.SetActive(false);
@@ -195,130 +212,164 @@ public class MenuUiController : MonoBehaviour
         ShopkShopGO.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
-        shopPanel.SetActive(false) ;
+        shopPanel.SetActive(false);
     }
 
-    async Task Fadeani(){
+    async Task Fadeani()
+    {
 
-        MenuAni.DOScale(MenuSizein,TweenDur);
-         await Fade.DOFade(1,TweenDur).AsyncWaitForCompletion();
-         
+        MenuAni.DOScale(MenuSizein, TweenDur);
+        await Fade.DOFade(1, TweenDur).AsyncWaitForCompletion();
+
 
     }
-#region TweenAni
+    #region TweenAni
     public void NosincFadein()
     {
-        Fade.DOFade(1,TweenShopDur);
+        Fade.DOFade(1, TweenShopDur);
     }
     public void NosincFade0ut()
     {
-        Fade.DOFade(0,TweenShopDur);
+        Fade.DOFade(0, TweenShopDur);
     }
 
-    public void SettingsAni(){
+    public void SettingsAni()
+    {
 
-        SettingsMenu.DOScale(0.81f,0.08f).SetEase(Ease.InOutCubic);
-        
-    }
-    async Task SettingsAniOutro(){
-
-       await SettingsMenu.DOScale(0.7f,0.08f).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
-       
-    }
-    public void ShopIconShake(){
-
-     RannaIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
-     CamIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
+        SettingsMenu.DOScale(0.81f, 0.08f).SetEase(Ease.InOutCubic);
 
     }
+    async Task SettingsAniOutro()
+    {
 
-    async Task ShopAniintro(){
+        await SettingsMenu.DOScale(0.7f, 0.08f).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
 
-       await ShopTrans.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
-       await ShopTrans.DOShakeAnchorPos(TweenShopDur,10,10,0,false,true).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
-       
     }
-    public void ShopAnioutro(){
-        ShopTrans.DOShakeAnchorPos(TweenShopDur,10,5).SetEase(Ease.InOutFlash);
-        ShopTrans.DOAnchorPosX(ShopTopPosx,TweenShopDur).SetUpdate(true);
-       
-    }
-    async Task ShopPanelAniintro(){
+    public void ShopIconShake()
+    {
 
-       await ShopPanel.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        RannaIcon.DOShakeAnchorPos(TweenShopiconDur, 10, 10, 0, false, true).SetEase(Ease.InCubic);
+        CamIcon.DOShakeAnchorPos(TweenShopiconDur, 10, 10, 0, false, true).SetEase(Ease.InCubic);
 
     }
 
-     public void ShopPanelAnioutro(){
-        ShopPanel.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
-    
-       
-    }
+    async Task ShopAniintro()
+    {
 
-     async Task ShopPanel2Aniintro(){
-
-       await ShopPanel2.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await ShopTrans.DOAnchorPosX(ShopmiddlePosx, TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await ShopTrans.DOShakeAnchorPos(TweenShopDur, 10, 10, 0, false, true).SetEase(Ease.InOutFlash).AsyncWaitForCompletion();
 
     }
+    public void ShopAnioutro()
+    {
+        ShopTrans.DOShakeAnchorPos(TweenShopDur, 10, 5).SetEase(Ease.InOutFlash);
+        ShopTrans.DOAnchorPosX(ShopTopPosx, TweenShopDur).SetUpdate(true);
 
-     public void ShopPanel2Anioutro(){
-        ShopPanel2.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
-    
-       
+    }
+    async Task ShopPanelAniintro()
+    {
+
+        await ShopPanel.DOAnchorPosX(ShopmiddlePosx, TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+    public void ShopPanelAnioutro()
+    {
+        ShopPanel.DOAnchorPosX(ShopTopPosx, TweenDur).SetUpdate(true);
+
+
+    }
+
+    async Task ShopPanel2Aniintro()
+    {
+
+        await ShopPanel2.DOAnchorPosX(ShopmiddlePosx, TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+    public void ShopPanel2Anioutro()
+    {
+        ShopPanel2.DOAnchorPosX(ShopTopPosx, TweenDur).SetUpdate(true);
+
+
     }
 
     public void RannaShopRand()
     {
-        float rand = Random.Range(0,RannaShop.Length);
+        float rand = Random.Range(0, RannaShop.Length);
 
         RannaShopRend.sprite = RannaShop[(int)rand];
 
-        float rand2 = Random.Range(0,ShopkShop.Length);
+        float rand2 = Random.Range(0, ShopkShop.Length);
 
         ShopkShopRend.sprite = ShopkShop[(int)rand2];
     }
 
-    public void  ShopBackAniintro(){
+    public void ShopBackAniintro()
+    {
 
-      Backbtn.DOFade(1,2f).SetEase(Ease.OutCubic);
-       
+        Backbtn.DOFade(1, 2f).SetEase(Ease.OutCubic);
+
     }
-    public void ShopBackAnioutro(){
-        Backbtn.DOFade(0,3);
-       
+    public void ShopBackAnioutro()
+    {
+        Backbtn.DOFade(0, 3);
+
     }
     #endregion
 
-#region WardrobeTweenAni
-async Task WdbPanelAniintro(){
+    #region WardrobeTweenAni
 
-       await WdbPanel.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+    async Task WdbPanelAniintro()
+    {
 
-    }
-
-     public void WdbPanelAnioutro(){
-        WdbPanel.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
-    
-       
-    }
-
-     async Task WdbPanel2Aniintro(){
-
-       await WdbPanel2.DOAnchorPosX(ShopmiddlePosx,TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await WdbPanel.DOAnchorPosX(ShopmiddlePosx, TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
 
     }
 
-     public void WdbPanel2Anioutro(){
-        WdbPanel2.DOAnchorPosX(ShopTopPosx,TweenDur).SetUpdate(true);
-    
-       
-    }
-    public void WdbIconShake(){
+    public void WdbPanelAnioutro()
+    {
+        WdbPanel.DOAnchorPosX(ShopTopPosx, TweenDur).SetUpdate(true);
 
-     WdbRannaIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
-     WdbCamIcon.DOShakeAnchorPos(TweenShopiconDur,10,10,0,false,true).SetEase(Ease.InCubic);
 
     }
-#endregion
+
+    async Task WdbPanel2Aniintro()
+    {
+
+        await WdbPanel2.DOAnchorPosX(ShopmiddlePosx, TweenShopDur).SetEase(Ease.InOutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+    public void WdbPanel2Anioutro()
+    {
+        WdbPanel2.DOAnchorPosX(ShopTopPosx, TweenDur).SetUpdate(true);
+
+
+    }
+    public void WdbIconShake()
+    {
+
+        WdbRannaIcon.DOShakeAnchorPos(TweenShopiconDur, 10, 10, 0, false, true).SetEase(Ease.InCubic);
+        WdbCamIcon.DOShakeAnchorPos(TweenShopiconDur, 10, 10, 0, false, true).SetEase(Ease.InCubic);
+
+    }
+    #endregion
+
+    public void RannaAniWdb()
+    {
+        if (Ranna != null){
+            
+            Ranani.SetBool("IsCustom", true);
+        }
+    }
+    public void RannaAniMenu()
+    {
+        if (Ranna != null)
+        {
+            Ranani.SetBool("IsCustom", false); 
+        }
+    }
 }
+
 
