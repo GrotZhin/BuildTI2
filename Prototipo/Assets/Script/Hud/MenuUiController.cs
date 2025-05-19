@@ -34,6 +34,7 @@ public class MenuUiController : MonoBehaviour
 
     public GameObject Ranna;
     public Animator Ranani;
+    public GameObject CanvasB;
 
    
 
@@ -70,6 +71,7 @@ public class MenuUiController : MonoBehaviour
     public void Start()
     {
         Ranani = Ranna.GetComponent<Animator>();
+        CanvasB.SetActive(false);
     }
     private void Awake()
     {
@@ -105,6 +107,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Play()
     {
+        CanvasB.SetActive(true);
         await Fadeani();
         SceneManager.LoadScene("GameScene");
 
@@ -114,9 +117,12 @@ public class MenuUiController : MonoBehaviour
     {
         shopIntro.SetActive(true);
         shopOutro.SetActive(false);
+        CanvasB.SetActive(true);
         NosincFadein();
         RannaAniWdb();
         await ShopAniintro();
+        settingsPanel.SetActive(false);
+        CanvasB.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
         WdbchgCam.SetActive(false);
@@ -168,10 +174,12 @@ public class MenuUiController : MonoBehaviour
     {
         shopIntro.SetActive(true);
         shopOutro.SetActive(false);
+        CanvasB.SetActive(true);
         NosincFadein();
         await ShopAniintro();
         RannaShopGO.SetActive(true);
         ShopkShopGO.SetActive(true);
+        CanvasB.SetActive(false);
         RannaShopRand();
         NosincFade0ut();
         ShopAnioutro();
@@ -179,7 +187,9 @@ public class MenuUiController : MonoBehaviour
         ShopchgCam.SetActive(false);
         ShopchgRan.SetActive(true);
         shopPanel.SetActive(true);
+        settingsPanel.SetActive(false);
         await ShopPanelAniintro();
+        
     }
 
     public async void ShopChange()
