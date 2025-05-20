@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public float maxAcceleration = 10;
     public float acceleration = 10;
     public float distance = 0;
+    public int trickPoint;
 
     public float jumpSpeed = 20;
     public float groundHeight = 10;
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
     public LayerMask scoreLayerMask;
     public LayerMask powerUpLayerMask;
     float groundDistance;
-    public BoxCollider sliderBox;
+
     bool slider = false;
     float sliderTimer;
 
@@ -54,10 +55,11 @@ public class Player : MonoBehaviour
         if (slider)
         {
             sliderTimer += Time.deltaTime;
-            if (sliderTimer >= 0.5f)
+            if (sliderTimer >= 0.8f)
             {
+                characterController.height = 2.0f;
                 slider = false;
-                sliderBox.enabled = false;
+
 
             }
 
@@ -92,9 +94,10 @@ public class Player : MonoBehaviour
     public void Slide()
     {
         slider = true;
-        sliderBox.enabled = true;
+        characterController.height = 0.7f;
 
     }
+   
 
     public void ReleaseJump()
     {
@@ -133,16 +136,6 @@ public class Player : MonoBehaviour
             {
                 speed.y += gravity * Time.fixedDeltaTime;
             }
-            Vector2 rayOrigin = new Vector2(pos.x + 0.7f, pos.y);
-            Vector2 rayDirection = Vector2.up;
-            float rayDistance = speed.y * Time.fixedDeltaTime;
-
-            RayCastChao(rayOrigin, rayDirection, rayDistance, groundLayerMask, pos);
-
-
-            Vector2 wallOrigin = new Vector2(pos.x, pos.y);
-
-            RayCastWall(wallOrigin, Vector2.right, speed.x, groundLayerMask, pos);
 
 
         }
@@ -161,28 +154,13 @@ public class Player : MonoBehaviour
                 speed.x = maxXSpeed;
             }
 
-            Vector2 obstOrigin = new Vector2(pos.x, pos.y);
-            RayCastObstacle(obstOrigin, speed.x, speed.y, obstacleLayerMask);
-
         }
 
-
-        Vector2 powerUp = new Vector2(pos.x, pos.y);
-        RayCastPowerUp(powerUp, speed.x, speed.y, powerUpLayerMask);
-
-        Vector2 obstScore = new Vector2(pos.x, pos.y);
-        RayCastScore(obstScore, speed.x, speed.y, scoreLayerMask);
-
-
         pos.x += speed.x * Time.fixedDeltaTime;
-
-
-
-
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
     }
 
-    void HitObstacle(Obstacle obstacle)
+    public void HitObstacle(Obstacle obstacle)
     {
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
@@ -198,118 +176,50 @@ public class Player : MonoBehaviour
         Destroy(powerUp.gameObject);
         speed.x += speed.x * 0.10f;
     }
-    void RayCastChao(Vector2 Origin, Vector2 Direction, float distance, int layerMask, Vector2 pos)
+
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        RaycastHit2D hit2D = Physics2D.Raycast(Origin, Direction, distance, layerMask);
-        if (hit2D.collider != null)
+        Vector3 pos = transform.position;
+        Ground ground = hit.collider.GetComponent<Ground>();
+
+
+        if (ground == null && hit.moveDirection == Vector3.up)
         {
-            Debug.Log("aaaaaaaaaaaaaa" + characterController.isGrounded);
+            groundHeight = ground.groundHeight + 0.35f;
+            pos.y = groundHeight;
+            speed.y = 0;
+        }
 
-            Ground ground = hit2D.collider.GetComponent<Ground>();
-            if (ground != null)
-            {
-                if (pos.y >= ground.groundHeight)
-                {
+        if (ground == null && hit.moveDirection == Vector3.right)
+        {
+            Debug.Log("atingiuX");
+            speed.x = 0;
+        }
 
-                    groundHeight = ground.groundHeight + 0.35f;
-                    pos.y = groundHeight;
-                    speed.y = 0;
 
-                }
-            }
+        PowerUp powerUp = hit.collider.gameObject.GetComponent<PowerUp>();
+        if (powerUp == null)
+        {
+            HitPowerUp(powerUp);
+        }
+
+        Score scores = hit.collider.gameObject.GetComponent<Score>();
+        if (scores == null)
+        {
+            HitScore(scores);
         }
 
     }
 
-    void RayCastWall(Vector2 Origin, Vector2 Direction, float distance, int layerMask, Vector2 pos)
+    void OnTriggerEnter(Collider other)
     {
-        RaycastHit2D wallHit = Physics2D.Raycast(Origin, Direction, distance * Time.fixedDeltaTime, layerMask);
-
-        if (wallHit.collider != null)
+        Obstacle obstacle = other.GetComponent<Obstacle>();
+        if (obstacle != null)
         {
-            Ground ground = wallHit.collider.GetComponent<Ground>();
-            if (ground != null)
-            {
-                if (pos.y < ground.groundHeight)
-                {
-                    speed.x = 0;
-
-                }
-            }
+            HitObstacle(obstacle);
         }
     }
-    void RayCastObstacle(Vector2 Origin, float distanceX, float distanceY, int layerMask)
-    {
-        RaycastHit2D obstHitX = Physics2D.Raycast(Origin, Vector2.right, distanceX * Time.fixedDeltaTime, layerMask);
-        if (obstHitX.collider != null)
-        {
-            Obstacle obstacle = obstHitX.collider.GetComponent<Obstacle>();
-            if (obstacle != null)
-            {
-                HitObstacle(obstacle);
-            }
-        }
-
-        RaycastHit2D obstHitY = Physics2D.Raycast(Origin, Vector2.up, distanceY * Time.fixedDeltaTime, layerMask);
-        if (obstHitY.collider != null)
-        {
-            Obstacle obstacle = obstHitY.collider.GetComponent<Obstacle>();
-            if (obstacle != null)
-            {
-
-            }
-        }
-
-    }
-
-    void RayCastPowerUp(Vector2 Origin, float distanceX, float distanceY, int layerMask)
-    {
-        RaycastHit2D powerUpX = Physics2D.Raycast(Origin, Vector2.right, distanceX * Time.fixedDeltaTime, layerMask);
-        if (powerUpX.collider != null)
-        {
-            PowerUp scores = powerUpX.collider.gameObject.GetComponent<PowerUp>();
-            if (scores != null)
-            {
-                HitPowerUp(scores);
-            }
-        }
-
-        RaycastHit2D powerUpY = Physics2D.Raycast(Origin, Vector2.up, distanceY * Time.fixedDeltaTime, layerMask);
-        if (powerUpY.collider != null)
-        {
-            PowerUp scores = powerUpY.collider.gameObject.GetComponent<PowerUp>();
-
-            if (scores != null)
-            {
-                HitPowerUp(scores);
-            }
-        }
-    }
-
-    void RayCastScore(Vector2 Origin, float distanceX, float distanceY, int layerMask)
-    {
-        RaycastHit2D obstScoreX = Physics2D.Raycast(Origin, Vector2.right, distanceX * Time.fixedDeltaTime, layerMask);
-        if (obstScoreX.collider != null)
-        {
-            Score scores = obstScoreX.collider.gameObject.GetComponent<Score>();
-            if (scores != null)
-            {
-                HitScore(scores);
-            }
-        }
-
-        RaycastHit2D obstScoreY = Physics2D.Raycast(Origin, Vector2.up, distanceY * Time.fixedDeltaTime, layerMask);
-        if (obstScoreY.collider != null)
-        {
-            Score scores = obstScoreY.collider.gameObject.GetComponent<Score>();
-
-            if (scores != null)
-            {
-                HitScore(scores);
-            }
-        }
-    }
-
 
 
 }

@@ -17,6 +17,7 @@ public class Ground : MonoBehaviour
     bool didGenerateGround = false;
 
     public  GameObject[] boxPrefab;
+    public  GameObject[] groundPrefab;
     public GameObject scoreCollider;
     public GameObject powerUp;
 
@@ -36,22 +37,26 @@ public class Ground : MonoBehaviour
         screenRight = Camera.main.transform.position.x * 2;
         screenLeft =  Camera.main.transform.position.x - cameraHalfSize;
 
-        Vector2 pos = transform.position;
-       
+      
+        Vector3 pos = transform.position;
+
+        groundRight = transform.position.x + (collider.size.x / 2);
+
         if (screenLeft >= groundRight)
         {
-            Destroy(box.gameObject);
+            // Destroy(box.gameObject);
             Destroy(gameObject);
             return;
         }
 
-        groundRight = transform.position.x + (collider.size.x / 2);
+       
 
         if (!didGenerateGround)
         {
             if (groundRight < screenRight)
             {
                 didGenerateGround = true;
+                Debug.Log("Gerar");
                 GenerateGround();
             }
         }
@@ -61,9 +66,11 @@ public class Ground : MonoBehaviour
 
     void GenerateGround()
     {
-        GameObject go = Instantiate(gameObject);
+        int rdGround = UnityEngine.Random.Range(0, groundPrefab.Length);
+
+        GameObject go = Instantiate(groundPrefab[rdGround]);
         BoxCollider goCollider = GetComponent<BoxCollider>();
-        Vector2 pos;
+        Vector3 pos;
 
         float h1 = player.jumpSpeed * player.maxHoldJumpTime;
         float t = player.jumpSpeed / -player.gravity;
@@ -99,7 +106,7 @@ public class Ground : MonoBehaviour
 
 
         pos.x = actualX + goCollider.size.x / 2;
-
+        pos.z = -0.56f;
         go.transform.position = pos;
 
         Ground goGround = go.GetComponent<Ground>();
@@ -113,8 +120,8 @@ public class Ground : MonoBehaviour
         {
             var random = UnityEngine.Random.Range(0, boxPrefab.Length);
              box = Instantiate(boxPrefab[random].gameObject);
-            GameObject scoreBox = Instantiate(scoreCollider.gameObject);
-            GameObject powerUps = Instantiate(powerUp.gameObject);
+            //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
+            //GameObject powerUps = Instantiate(powerUp.gameObject);
 
             float y = goGround.groundHeight;
             float halfWidth = goCollider.size.x /2 - 1;
@@ -125,8 +132,8 @@ public class Ground : MonoBehaviour
             Vector2 boxPos = new Vector2(x,y);
             Vector2 boxPos2 = new Vector2(x-5,y - 0.5f);
             box.transform.position = boxPos;
-            scoreBox.transform.position = boxPos;
-            powerUps.transform.position = boxPos2;
+            //scoreBox.transform.position = boxPos;
+            //powerUps.transform.position = boxPos2;
             
         }
        

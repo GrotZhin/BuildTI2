@@ -15,15 +15,13 @@ public class Score : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 pos = transform.position;
-        pos.x  -= player.speed.x * Time.fixedDeltaTime;
+       
         if (pos.x < -10)
         {
             Destroy(gameObject);
         }
-    if (Input.GetKeyDown(KeyCode.Escape))
-    {
-        
-    }
+   
+    
 
         transform.position = pos;
     }
