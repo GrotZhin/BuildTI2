@@ -3,12 +3,12 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     Player player;
-   public BoxCollider2D boxCollider2D;
+   public BoxCollider boxCollider;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        boxCollider2D = GetComponent<BoxCollider2D>();  
+        boxCollider = GetComponent<BoxCollider>();  
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
   

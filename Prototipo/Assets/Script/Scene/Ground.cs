@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Ground : MonoBehaviour
@@ -10,6 +11,7 @@ public class Ground : MonoBehaviour
     public float screenLeft;
     BoxCollider collider;
      GameObject box;
+    int count =0;
     public float cameraHalfSize;
     
 
@@ -44,22 +46,24 @@ public class Ground : MonoBehaviour
 
         if (screenLeft >= groundRight)
         {
-            // Destroy(box.gameObject);
+           
             Destroy(gameObject);
+            count--;
             return;
         }
 
-       
 
-        if (!didGenerateGround)
+
+
+        if (groundRight < screenRight && count <=3)
         {
-            if (groundRight < screenRight)
-            {
-                didGenerateGround = true;
-                Debug.Log("Gerar");
-                GenerateGround();
+
+            Debug.Log("Gerar" + didGenerateGround);
+            GenerateGround();
+            count++;
             }
-        }
+        
+        
         transform.position = pos;
     }
 
@@ -93,14 +97,10 @@ public class Ground : MonoBehaviour
             pos.y =7 ;
         }
 
-
-
-        float t1 = t + player.maxHoldJumpTime;
-        float t2 = MathF.Sqrt(2.0f * (maxY - actualY) / -player.gravity);
-        float totalTime = t1 + t2;
-        float maxX = totalTime * player.speed.x;
+        float maxX =0; 
+        maxX += screenRight + 10;
         maxX *= 0.7f;
-        maxX += groundRight;
+
         float minX = screenRight +5;
         float actualX = UnityEngine.Random.Range(minX, maxX);
 
@@ -119,7 +119,8 @@ public class Ground : MonoBehaviour
         for (int i = 0; i < obstacleNum; i++)
         {
             var random = UnityEngine.Random.Range(0, boxPrefab.Length);
-             box = Instantiate(boxPrefab[random].gameObject);
+          
+
             //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
             //GameObject powerUps = Instantiate(powerUp.gameObject);
 
@@ -131,6 +132,10 @@ public class Ground : MonoBehaviour
             
             Vector2 boxPos = new Vector2(x,y);
             Vector2 boxPos2 = new Vector2(x-5,y - 0.5f);
+            
+            box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity,this.gameObject.transform);
+            
+
             box.transform.position = boxPos;
             //scoreBox.transform.position = boxPos;
             //powerUps.transform.position = boxPos2;

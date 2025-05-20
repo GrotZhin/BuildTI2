@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
 
     bool slider = false;
     float sliderTimer;
+    public GameObject sekker;
 
 
     public bool isDead = false;
@@ -50,6 +52,11 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Vector2 pos = transform.position;
+        Vector2 sekkerPos = new Vector3(pos.x,pos.y);
+        if (speed.x <= speed.x * 0.8f)
+        {
+            Instantiate(sekker, sekkerPos, Quaternion.identity);
+        }
         groundDistance = Mathf.Abs(pos.y - groundHeight);
 
         if (slider)
