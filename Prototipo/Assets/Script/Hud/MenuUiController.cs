@@ -11,6 +11,7 @@ using DG.Tweening.Core;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using RWM;
 
 public class MenuUiController : MonoBehaviour
 {
@@ -79,6 +80,7 @@ public class MenuUiController : MonoBehaviour
         settingsPanel.SetActive(false);
         shopPanel.SetActive(false);
 
+
     }
 
 
@@ -98,16 +100,20 @@ public class MenuUiController : MonoBehaviour
     public void Settings()
     {
         settingsPanel.SetActive(true);
+        soundManager.PlaySound(SoundType.SettingsOp);
         SettingsAni();
     }
     public async void Apply()
     {
         settingsPanel.SetActive(false);
+        soundManager.PlaySound(SoundType.SettingsClos);
         await SettingsAniOutro();
     }
     public async void Play()
     {
+        soundManager.PlaySound(SoundType.Startmenu);
         CanvasB.SetActive(true);
+        settingsPanel.SetActive(false);
         await Fadeani();
         SceneManager.LoadScene("GameScene");
 
@@ -115,6 +121,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Wardrobe()
     {
+        soundManager.PlaySound(SoundType.SliddingDoorClos);
         shopIntro.SetActive(true);
         shopOutro.SetActive(false);
         CanvasB.SetActive(true);
@@ -136,6 +143,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void WdbBack()
     {
+        soundManager.PlaySound(SoundType.SliddingDoorClos);
         ShopBackAnioutro();
         shopOutro.SetActive(true);
         shopIntro.SetActive(false);
@@ -155,6 +163,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void WdbChange()
     {
+        soundManager.PlaySound(SoundType.SelectCam);
         WdbIconShake();
         WdbPanelAnioutro();
         WdbchgRan.SetActive(false);
@@ -164,6 +173,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void WdbChange2()
     {
+        soundManager.PlaySound(SoundType.SelectRanna);
         WdbIconShake();
         WdbPanel2Anioutro();
         WdbchgCam.SetActive(false);
@@ -172,6 +182,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Shop()
     {
+        soundManager.PlaySound(SoundType.SliddingDoorShop);
         shopIntro.SetActive(true);
         shopOutro.SetActive(false);
         CanvasB.SetActive(true);
@@ -194,6 +205,7 @@ public class MenuUiController : MonoBehaviour
 
     public async void ShopChange()
     {
+        soundManager.PlaySound(SoundType.SelectCam);
         ShopIconShake();
         ShopPanelAnioutro();
         ShopchgRan.SetActive(false);
@@ -203,6 +215,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void ShopChange2()
     {
+        soundManager.PlaySound(SoundType.SelectRanna);
         ShopIconShake();
         ShopPanel2Anioutro();
         ShopchgCam.SetActive(false);
@@ -211,6 +224,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Back()
     {
+        soundManager.PlaySound(SoundType.SliddingDoorClos);
         ShopBackAnioutro();
         shopOutro.SetActive(true);
         shopIntro.SetActive(false);
