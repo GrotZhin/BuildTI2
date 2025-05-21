@@ -7,6 +7,9 @@ TagManager:
   - collider
   - MainMenuCharAni
   - WardrobeCharAni
+  - Score
+  - Ground
+  - barBg
   layers:
   - Default
   - TransparentFX

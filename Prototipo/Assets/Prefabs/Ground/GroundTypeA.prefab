@@ -214,7 +214,7 @@ MonoBehaviour:
   groundPrefab:
   - {fileID: 5170233558060970180}
   scoreCollider: {fileID: 4530206347544440992, guid: 93f26881cc20b1246bfe941e8963c10a, type: 3}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 2424208026844812647, guid: eb29fa0b1720b4b409333642477c6ee6, type: 3}
 --- !u!65 &6593209806384962393
 BoxCollider:
   m_ObjectHideFlags: 0
