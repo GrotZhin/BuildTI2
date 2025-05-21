@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Ground : MonoBehaviour
@@ -11,7 +12,8 @@ public class Ground : MonoBehaviour
     BoxCollider collider;
      GameObject box;
     public float cameraHalfSize;
-    
+
+
 
 
     bool didGenerateGround = false;
@@ -44,8 +46,9 @@ public class Ground : MonoBehaviour
 
         if (screenLeft >= groundRight)
         {
-            // Destroy(box.gameObject);
+           
             Destroy(gameObject);
+            
             return;
         }
 
@@ -53,13 +56,17 @@ public class Ground : MonoBehaviour
 
         if (!didGenerateGround)
         {
-            if (groundRight < screenRight)
+            Debug.Log("Status" + didGenerateGround);
+            if (groundRight <= screenRight)
             {
                 didGenerateGround = true;
-                Debug.Log("Gerar");
+                Debug.Log("Gerar" + didGenerateGround);
                 GenerateGround();
+                
+               
             }
         }
+        
         transform.position = pos;
     }
 
@@ -77,7 +84,7 @@ public class Ground : MonoBehaviour
         float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
         float maxY = player.transform.position.y + maxJumpHeight * 0.7f;
-        maxY += groundHeight;
+        
 
         float minY = 7;
         float actualY = UnityEngine.Random.Range(minY, maxY);
@@ -93,15 +100,11 @@ public class Ground : MonoBehaviour
             pos.y =7 ;
         }
 
+        float  maxX = screenRight + 10;
+        
 
-
-        float t1 = t + player.maxHoldJumpTime;
-        float t2 = MathF.Sqrt(2.0f * (maxY - actualY) / -player.gravity);
-        float totalTime = t1 + t2;
-        float maxX = totalTime * player.speed.x;
-        maxX *= 0.7f;
-        maxX += groundRight;
-        float minX = screenRight +5;
+        float minX = screenRight + 5;
+       
         float actualX = UnityEngine.Random.Range(minX, maxX);
 
 
@@ -119,9 +122,10 @@ public class Ground : MonoBehaviour
         for (int i = 0; i < obstacleNum; i++)
         {
             var random = UnityEngine.Random.Range(0, boxPrefab.Length);
-             box = Instantiate(boxPrefab[random].gameObject);
+          
+
             //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
-            //GameObject powerUps = Instantiate(powerUp.gameObject);
+            GameObject powerUps = Instantiate(powerUp.gameObject);
 
             float y = goGround.groundHeight;
             float halfWidth = goCollider.size.x /2 - 1;
@@ -129,11 +133,13 @@ public class Ground : MonoBehaviour
             float right = go.transform.position.x + halfWidth;
             float x = UnityEngine.Random.Range(left,right); 
             
-            Vector2 boxPos = new Vector2(x,y);
-            Vector2 boxPos2 = new Vector2(x-5,y - 0.5f);
+            Vector3 boxPos = new Vector3(x,y,-0.56f);
+            float x2 = UnityEngine.Random.Range(left,right); 
+            Vector3 boxPos2 = new Vector3(x2,y,-0.56f);
+            box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
             box.transform.position = boxPos;
             //scoreBox.transform.position = boxPos;
-            //powerUps.transform.position = boxPos2;
+            powerUps.transform.position = boxPos2;
             
         }
        

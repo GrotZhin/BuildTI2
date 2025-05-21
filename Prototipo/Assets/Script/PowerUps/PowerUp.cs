@@ -1,27 +1,57 @@
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUp : MonoBehaviour
 {
     Player player;
-   public BoxCollider2D boxCollider2D;
-   
+    public BoxCollider boxCollider;
+    public Image batery;
+
+    public float cameraHalfSize;
+    public float screenLeft;
+    public float obstacleRight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        boxCollider2D = GetComponent<BoxCollider2D>();  
+        batery.fillAmount = 0;
+        boxCollider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
-  
-    private void FixedUpdate()
+
+    void Update()
     {
-        Vector2 pos = transform.position;
-        pos.x  -= player.speed.x * Time.fixedDeltaTime;
-        if (pos.x < -10)
+        cameraHalfSize = Camera.main.orthographicSize * Camera.main.aspect;
+
+       
+        screenLeft =  Camera.main.transform.position.x - cameraHalfSize;
+
+      
+        obstacleRight = transform.position.x + (boxCollider.size.x / 2);
+
+        if (screenLeft >= obstacleRight)
         {
+           
             Destroy(gameObject);
+            
+            return;
         }
 
+    }
 
-        transform.position = pos;
+
+    void OnTriggerEnter(Collider other)
+    {
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            batery.fillAmount = 1;
+        }
+    }
+    public void Boost()
+    {
+        player.speed.x *= 0.5f;
+        batery.fillAmount = 0;
+
     }
 }

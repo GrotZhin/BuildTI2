@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4101516246228686213
+--- !u!1 &1701228884210495130
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4907069506474400624}
-  - component: {fileID: 4727624371855804570}
-  - component: {fileID: 8947037836149543468}
-  - component: {fileID: 3567849146759721047}
-  - component: {fileID: 7085107929935990603}
+  - component: {fileID: 4903807727332402113}
+  - component: {fileID: 5363865899425649847}
+  - component: {fileID: 8982044261775670612}
+  - component: {fileID: 287534495137023677}
+  - component: {fileID: 6499273208219421507}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: Sekker
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4907069506474400624
+--- !u!4 &4903807727332402113
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4101516246228686213}
+  m_GameObject: {fileID: 1701228884210495130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47, y: 16.95, z: 0}
+  m_LocalPosition: {x: -2.31, y: 17.039, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4727624371855804570
+--- !u!33 &5363865899425649847
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4101516246228686213}
+  m_GameObject: {fileID: 1701228884210495130}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8947037836149543468
+--- !u!23 &8982044261775670612
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4101516246228686213}
+  m_GameObject: {fileID: 1701228884210495130}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b81c839e88ec58f4a88d996338858253, type: 2}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,54 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3567849146759721047
-MonoBehaviour:
+--- !u!65 &287534495137023677
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4101516246228686213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7478300a2ea41149b68129a149d9d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravity: -30
-  speed: {x: 0, y: 0}
-  score: 0
-  maxXSpeed: 50
-  maxAcceleration: 10
-  acceleration: 0.5
-  distance: 0
-  trickPoint: 0
-  jumpSpeed: 4
-  groundHeight: 15
-  isHoldingJump: 0
-  maxHoldJumpTime: 1
-  maxHoldJump: 0.4
-  jumpTimer: 0
-  jumpGroundTreshhold: 0.5
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  scoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  powerUpLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  sekker: {fileID: 1701228884210495130, guid: 320038c12df6f1043bc918dfcb8195a7, type: 3}
-  isDead: 0
---- !u!143 &7085107929935990603
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4101516246228686213}
+  m_GameObject: {fileID: 1701228884210495130}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -144,13 +103,27 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 0
-  m_Radius: 0.77
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6499273208219421507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701228884210495130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27cbdca1256ed0b4482ce5d7de0e94ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: -30
+  speed: {x: 0, y: 0}
+  score: 0
+  maxXSpeed: 100
+  maxAcceleration: 40
+  acceleration: 2

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
 
     bool slider = false;
     float sliderTimer;
+    public GameObject sekker;
 
 
     public bool isDead = false;
@@ -44,12 +46,18 @@ public class Player : MonoBehaviour
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
+        Vector2 pos = transform.position;
+        Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
+
+        Instantiate(sekker, sekkerPos, Quaternion.identity);
+
     }
 
     // Update is called once per frame
     private void Update()
     {
         Vector2 pos = transform.position;
+
         groundDistance = Mathf.Abs(pos.y - groundHeight);
 
         if (slider)
@@ -97,7 +105,7 @@ public class Player : MonoBehaviour
         characterController.height = 0.7f;
 
     }
-   
+
 
     public void ReleaseJump()
     {
@@ -198,11 +206,7 @@ public class Player : MonoBehaviour
         }
 
 
-        PowerUp powerUp = hit.collider.gameObject.GetComponent<PowerUp>();
-        if (powerUp == null)
-        {
-            HitPowerUp(powerUp);
-        }
+
 
         Score scores = hit.collider.gameObject.GetComponent<Score>();
         if (scores == null)
@@ -218,6 +222,16 @@ public class Player : MonoBehaviour
         if (obstacle != null)
         {
             HitObstacle(obstacle);
+        }
+
+        if (other.gameObject.CompareTag("Score"))
+        {
+            score += 10;
+        }
+        PowerUp powerUp = other.gameObject.GetComponent<PowerUp>();
+        if (powerUp != null)
+        {
+            HitPowerUp(powerUp);
         }
     }
 
