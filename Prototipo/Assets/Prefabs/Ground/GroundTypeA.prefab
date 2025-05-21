@@ -213,9 +213,6 @@ MonoBehaviour:
   - {fileID: 8100668937726968077, guid: 193e5b4e185c42b4da5718cca2919d95, type: 3}
   groundPrefab:
   - {fileID: 5170233558060970180}
-  - {fileID: 3550133705452905503, guid: 8be7008ecbf3ca94dad8531fa01dfe0d, type: 3}
-  - {fileID: 5400694968086166569, guid: 6e9d62abc3d178943afad99576d423c3, type: 3}
-  - {fileID: 1146716041589800562, guid: fb6003728146c3648b2b75140b1197f1, type: 3}
   scoreCollider: {fileID: 4530206347544440992, guid: 93f26881cc20b1246bfe941e8963c10a, type: 3}
   powerUp: {fileID: 0}
 --- !u!65 &6593209806384962393

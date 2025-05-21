@@ -32,6 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7971514368542817975}
+  - {fileID: 2108655104918853072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2568761692711095016
@@ -47,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 0}
+  cameraHalfSize: 0
+  screenLeft: 0
+  obstacleRight: 0
 --- !u!65 &-175730904077427824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68,6 +72,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3903956, y: 0.73763853, z: 1}
   m_Center: {x: -0.000000074505806, y: 0.13118073, z: 0}
+--- !u!1 &9072460089648503904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108655104918853072}
+  - component: {fileID: 1258581449084019770}
+  m_Layer: 7
+  m_Name: scoreCollider
+  m_TagString: Score
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108655104918853072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072460089648503904}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.979, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8362380849292441989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1258581449084019770
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072460089648503904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.5096574, z: 1}
+  m_Center: {x: 0, y: 0.2548287, z: 0}
 --- !u!1001 &7577934641610873180
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -19,9 +19,10 @@ public class Sekker : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 playerPos = player.transform.position;
-        Vector3 pos = new Vector3(playerPos.x -5, playerPos.y, playerPos.z);
+        
+        Vector3 pos = new Vector3(playerPos.x - 5, playerPos.y, playerPos.z);
 
-
+        
         speed.x += acceleration * Time.fixedDeltaTime;
         float speedRatio = speed.x / maxXSpeed;
         acceleration = maxAcceleration * (1 - speedRatio);
@@ -30,8 +31,9 @@ public class Sekker : MonoBehaviour
         {
             speed.x = maxXSpeed;
         }
-
-
+        if (player.speed.x <= 0)
+        {
+        }
 
        
         transform.position = pos;
