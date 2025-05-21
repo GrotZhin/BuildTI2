@@ -25,6 +25,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform UpBar;
     [SerializeField] RectTransform DownBar;
+    [SerializeField] RectTransform ShockBtn;
     [SerializeField] RectTransform UpHud;
     [SerializeField] RectTransform DownHud;
     [SerializeField] Image MenuBackground;
@@ -35,14 +36,14 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform resoultsAni;
 
     //DOtween positions
-    [SerializeField] float MenuSizein,MenuSizeout;
-    [SerializeField] float UpTopPosY,UpmiddlePosY;
-    [SerializeField] float DownTopPosY,DownmiddlePosY;
-    [SerializeField] float UpHudTopPosY,UpHudmiddlePosY;
-    [SerializeField] float DownHudTopPosY,DownHudmiddlePosY;
+    [SerializeField] float MenuSizein, MenuSizeout;
+    [SerializeField] float UpTopPosY, UpmiddlePosY;
+    [SerializeField] float DownTopPosY, DownmiddlePosY;
+    [SerializeField] float UpHudTopPosY, UpHudmiddlePosY;
+    [SerializeField] float DownHudTopPosY, DownHudmiddlePosY;
     [SerializeField] float TweenDur;
     [SerializeField] float ReTweenDur;
-  
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -51,7 +52,7 @@ public class GameUiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-       
+
 
 
     }
@@ -62,14 +63,14 @@ public class GameUiController : MonoBehaviour
     {
         int distance = Mathf.FloorToInt(player.distance);
         distanceTxt.text = distance + "m";
-        scoreTxt.text ="TP " + player.score;
+        scoreTxt.text = "TP " + player.score;
 
         if (player.isDead)
         {
             ResoultsAni();
             resultPanel.SetActive(true);
             finalDistanceTxt.text = distance + "m";
-            finalScoreTxt.text ="TP: " + player.score;
+            finalScoreTxt.text = "TP: " + player.score;
         }
 
     }
@@ -81,7 +82,7 @@ public class GameUiController : MonoBehaviour
     {
         await RetryAni();
         SceneManager.LoadScene("GameScene");
-        
+
     }
     public void Pause()
     {
@@ -102,61 +103,73 @@ public class GameUiController : MonoBehaviour
     }
     public void Settings()
     {
-       
+
         settingsPanel.SetActive(true);
         SettingsAni();
-        
+
     }
     public async void Apply()
     {
         settingsPanel.SetActive(false);
-         await SettingsAniOutro();
+        await SettingsAniOutro();
     }
-       //Dotween Stuff
+    //Dotween Stuff
 
-    public void InGameMenuAniIntro(){
-        MenuBackground.DOFade(0.90f,TweenDur).SetUpdate(true);
-        PauseFade.DOFade(1,0).SetUpdate(true);
-        MenuAni.DOScale(MenuSizein,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
-        UpBar.DOAnchorPosY(UpmiddlePosY,0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
-        DownBar.DOAnchorPosY(DownmiddlePosY,0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
-        UpHud.DOAnchorPosY(UpHudmiddlePosY,0.1f).SetEase(Ease.InCubic).SetUpdate(true);
-        DownHud.DOAnchorPosY(DownHudmiddlePosY,0.1f).SetEase(Ease.InCubic).SetUpdate(true);
-
-    }
-    async Task InGameMenuAniOutro(){
-         MenuBackground.DOFade(0,TweenDur).SetUpdate(true);
-         PauseFade.DOFade(0f,0.5f).SetEase(Ease.InOutCubic).SetUpdate(true);
-       await MenuAni.DOScale(MenuSizeout,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
-        await UpBar.DOAnchorPosY(UpTopPosY,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
-         await DownBar.DOAnchorPosY(DownTopPosY,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
-          await UpHud.DOAnchorPosY(UpHudTopPosY,TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
-         await DownHud.DOAnchorPosY(DownHudTopPosY,TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
-    }
-
-    public void SettingsAni(){
-
-        SettingsMenu.DOScale(0.81f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
-        
-    }
-    async Task SettingsAniOutro(){
-
-       await SettingsMenu.DOScale(0.7f,TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
-       
-    }
-
-    public void  ResoultsAni()
+    public void InGameMenuAniIntro()
     {
-        
-        resoultsAni.DOScale(1,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
-        ResultFade.DOFade(1,0.2f).SetEase(Ease.OutFlash);
+        MenuBackground.DOFade(0.90f, TweenDur).SetUpdate(true);
+        PauseFade.DOFade(1, 0).SetUpdate(true);
+        MenuAni.DOScale(MenuSizein, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
+        UpBar.DOAnchorPosY(UpmiddlePosY, 0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
+        DownBar.DOAnchorPosY(DownmiddlePosY, 0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
+        UpHud.DOAnchorPosY(UpHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
+        DownHud.DOAnchorPosY(DownHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
+
+    }
+    async Task InGameMenuAniOutro()
+    {
+        MenuBackground.DOFade(0, TweenDur).SetUpdate(true);
+        PauseFade.DOFade(0f, 0.5f).SetEase(Ease.InOutCubic).SetUpdate(true);
+        await MenuAni.DOScale(MenuSizeout, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await UpBar.DOAnchorPosY(UpTopPosY, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await DownBar.DOAnchorPosY(DownTopPosY, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await UpHud.DOAnchorPosY(UpHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await DownHud.DOAnchorPosY(DownHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
+    }
+
+    public void SettingsAni()
+    {
+
+        SettingsMenu.DOScale(0.81f, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
+
+    }
+    async Task SettingsAniOutro()
+    {
+
+        await SettingsMenu.DOScale(0.7f, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+    public void ResoultsAni()
+    {
+
+        resoultsAni.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+        ResultFade.DOFade(1, 0.2f).SetEase(Ease.OutFlash);
     }
     async Task RetryAni()
     {
 
-        await resoultsAni.DOScale(1.6f,0.5f).SetEase(Ease.OutCubic).SetUpdate(true).AsyncWaitForCompletion();
-        ResultFade.DOFade(0,0.2f).SetEase(Ease.OutFlash);
+        await resoultsAni.DOScale(1.6f, 0.5f).SetEase(Ease.OutCubic).SetUpdate(true).AsyncWaitForCompletion();
+        ResultFade.DOFade(0, 0.2f).SetEase(Ease.OutFlash);
 
+    }
+    public void ShockBtnAni()
+    {
+
+        ShockBtn.DOScale(1.8f, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+        ShockBtn.DOScale(0.7f,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+        ShockBtn.DOScale(1,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+        
     }
     
 }
