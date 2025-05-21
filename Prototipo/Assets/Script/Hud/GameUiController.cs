@@ -62,14 +62,14 @@ public class GameUiController : MonoBehaviour
     {
         int distance = Mathf.FloorToInt(player.distance);
         distanceTxt.text = distance + "m";
-        scoreTxt.text ="Score: " + player.score;
+        scoreTxt.text ="TP " + player.score;
 
         if (player.isDead)
         {
             ResoultsAni();
             resultPanel.SetActive(true);
             finalDistanceTxt.text = distance + "m";
-            finalScoreTxt.text ="Score: " + player.score;
+            finalScoreTxt.text ="TP: " + player.score;
         }
 
     }
