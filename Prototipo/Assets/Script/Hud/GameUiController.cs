@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using RWM;
 
 public class GameUiController : MonoBehaviour
 {
@@ -103,14 +104,16 @@ public class GameUiController : MonoBehaviour
     }
     public void Settings()
     {
-
+       
         settingsPanel.SetActive(true);
+        soundManager.PlaySound(SoundType.SettingsOp);
         SettingsAni();
 
     }
     public async void Apply()
     {
         settingsPanel.SetActive(false);
+        soundManager.PlaySound(SoundType.SettingsClos);
         await SettingsAniOutro();
     }
     //Dotween Stuff
@@ -141,6 +144,7 @@ public class GameUiController : MonoBehaviour
     {
 
         SettingsMenu.DOScale(0.81f, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
+        
 
     }
     async Task SettingsAniOutro()

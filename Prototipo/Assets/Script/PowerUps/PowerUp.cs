@@ -13,15 +13,7 @@ public class PowerUp : MonoBehaviour
     public float cameraHalfSize;
     public float screenLeft;
     public float obstacleRight;
-    [SerializeField] Transform BatteryAni;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    public void Start()
-    {
-        BatteryAni.DOScale(1.5f, 0);
-        BatteryAni.DORotate(new Vector3(0, 360, 360), 2f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
-        BatteryAni.DOMove(new Vector3(0, 0.5f, 0), 2).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
-    }
+    
     private void Awake()
     {
 

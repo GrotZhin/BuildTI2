@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
+        
     }
     public void Slide()
     {
