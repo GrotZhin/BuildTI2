@@ -1,7 +1,7 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -40,6 +40,12 @@ public class Player : MonoBehaviour
     float sliderTimer;
     public GameObject sekker;
 
+    //Animation
+    public GameObject Ranna;
+    public Animator Ranani;
+
+
+
 
     public bool isDead = false;
     public bool cheat = false;
@@ -51,12 +57,26 @@ public class Player : MonoBehaviour
         Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
 
         Instantiate(sekker, sekkerPos, Quaternion.identity);
-
+        Ranani = Ranna.GetComponent<Animator>();
+        Ranani.SetLayerWeight(0, 1);
+        Ranani.SetLayerWeight(1, 0);
+        
     }
+
+
+
+
 
     // Update is called once per frame
     private void Update()
     {
+
+        ChangeLayersWeight();
+        if (characterController.isGrounded)
+        {
+            Ranani.SetBool("JumpTricks", false);
+            Ranani.SetBool("FallBack", true);
+        }
         Vector2 pos = transform.position;
 
         groundDistance = Mathf.Abs(pos.y - groundHeight);
@@ -82,12 +102,16 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
+                Ranani.SetBool("JumpTricks", true);
+                Ranani.SetBool("SlideTrick", false);
+                Ranani.SetBool("FallBack", false);
 
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Slide();
+            Ranani.SetBool("SlideTrick", true);
         }
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
@@ -99,13 +123,13 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 4));
     }
     public void Slide()
     {
         slider = true;
         characterController.height = 0.7f;
-
+        Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 2));
     }
 
 
@@ -181,7 +205,7 @@ public class Player : MonoBehaviour
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
     }
-    
+
     void HitPowerUp(PowerUp powerUp)
     {
         Destroy(powerUp.gameObject);
@@ -239,6 +263,26 @@ public class Player : MonoBehaviour
             cheat = true;
         }
     }
+
+    #region animations
+
+    public void ChangeLayersWeight()
+    {
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+            Ranani.SetLayerWeight(1, 1);
+        }
+        else if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+
+            Ranani.SetLayerWeight(1, 0);
+        }
+
+    }
+    
+    
+    #endregion
 
 
 }

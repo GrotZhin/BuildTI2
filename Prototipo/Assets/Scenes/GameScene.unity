@@ -2282,9 +2282,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3567849146759721047, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+      propertyPath: Ranna
+      value: 
+      objectReference: {fileID: 5926964963893742730}
+    - target: {fileID: 3567849146759721047, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
       propertyPath: cheat
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3567849146759721047, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+      propertyPath: Ranani
+      value: 
+      objectReference: {fileID: 5926964963893742729}
     - target: {fileID: 3567849146759721047, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
       propertyPath: sliderBox
       value: 
@@ -2350,6 +2358,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+--- !u!95 &5926964963893742729 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 645862422275344586, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+  m_PrefabInstance: {fileID: 5926964963893742728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5926964963893742730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2887147026516656544, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+  m_PrefabInstance: {fileID: 5926964963893742728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
