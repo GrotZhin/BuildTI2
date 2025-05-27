@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
 
 
     public bool isDead = false;
+    public bool cheat = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -131,8 +132,6 @@ public class Player : MonoBehaviour
             isDead = true;
             speed.x = 0;
         }
-<<<<<<< Updated upstream
-=======
         else if (pos.y <= 3 && cheat == true)
         {
             speed.y = groundHeight + 10;
@@ -140,7 +139,6 @@ public class Player : MonoBehaviour
 
 
         }
->>>>>>> Stashed changes
         if (isHoldingJump)
         {
             jumpTimer += Time.fixedDeltaTime;
@@ -177,12 +175,8 @@ public class Player : MonoBehaviour
 
         }
 
-<<<<<<< Updated upstream
-        pos.x += speed.x * Time.fixedDeltaTime;
-=======
 
        
->>>>>>> Stashed changes
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
         
     }
@@ -192,16 +186,6 @@ public class Player : MonoBehaviour
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
     }
-<<<<<<< Updated upstream
-    void HitScore(Score obstacle)
-    {
-        obstacle.boxCollider2D.enabled = false;
-        score += 10;
-
-    }
-=======
-
->>>>>>> Stashed changes
     void HitPowerUp(PowerUp powerUp)
     {
         Destroy(powerUp.gameObject);
@@ -229,14 +213,6 @@ public class Player : MonoBehaviour
         }
 
 
-
-
-        Score scores = hit.collider.gameObject.GetComponent<Score>();
-        if (scores == null)
-        {
-            HitScore(scores);
-        }
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -257,15 +233,11 @@ public class Player : MonoBehaviour
             HitPowerUp(powerUp);
         }
     }
-<<<<<<< Updated upstream
-=======
     public void Cheat()
     {
         cheat = true;
 
-
     }
->>>>>>> Stashed changes
 
 
 }
