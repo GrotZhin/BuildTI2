@@ -125,7 +125,7 @@ public class Ground : MonoBehaviour
           
 
             //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
-            GameObject powerUps = Instantiate(powerUp.gameObject);
+            //GameObject powerUps = Instantiate(powerUp.gameObject);
 
             float y = goGround.groundHeight;
             float halfWidth = goCollider.size.x /2 - 1;
@@ -139,7 +139,7 @@ public class Ground : MonoBehaviour
             box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
             box.transform.position = boxPos;
             //scoreBox.transform.position = boxPos;
-            powerUps.transform.position = boxPos2;
+            //powerUps.transform.position = boxPos2;
             
         }
        

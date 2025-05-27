@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             {
                 characterController.height = 2.0f;
                 slider = false;
-
+                sliderTimer = 0;
 
             }
 
@@ -84,9 +84,12 @@ public class Player : MonoBehaviour
 
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (!slider)
         {
-            Slide();
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Slide();
+            }
         }
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
@@ -128,6 +131,16 @@ public class Player : MonoBehaviour
             isDead = true;
             speed.x = 0;
         }
+<<<<<<< Updated upstream
+=======
+        else if (pos.y <= 3 && cheat == true)
+        {
+            speed.y = groundHeight + 10;
+            
+
+
+        }
+>>>>>>> Stashed changes
         if (isHoldingJump)
         {
             jumpTimer += Time.fixedDeltaTime;
@@ -164,8 +177,14 @@ public class Player : MonoBehaviour
 
         }
 
+<<<<<<< Updated upstream
         pos.x += speed.x * Time.fixedDeltaTime;
+=======
+
+       
+>>>>>>> Stashed changes
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
+        
     }
 
     public void HitObstacle(Obstacle obstacle)
@@ -173,12 +192,16 @@ public class Player : MonoBehaviour
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
     }
+<<<<<<< Updated upstream
     void HitScore(Score obstacle)
     {
         obstacle.boxCollider2D.enabled = false;
         score += 10;
 
     }
+=======
+
+>>>>>>> Stashed changes
     void HitPowerUp(PowerUp powerUp)
     {
         Destroy(powerUp.gameObject);
@@ -234,6 +257,15 @@ public class Player : MonoBehaviour
             HitPowerUp(powerUp);
         }
     }
+<<<<<<< Updated upstream
+=======
+    public void Cheat()
+    {
+        cheat = true;
+
+
+    }
+>>>>>>> Stashed changes
 
 
 }
