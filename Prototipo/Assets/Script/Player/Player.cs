@@ -7,6 +7,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using JetBrains.Annotations;
+using RWM;
+using UnityEngine.InputSystem.Controls;
 
 public class Player : MonoBehaviour
 {
@@ -43,7 +46,11 @@ public class Player : MonoBehaviour
     //Animation
     public GameObject Ranna;
     public Animator Ranani;
-
+    public GameObject JumpPP;
+    public GameObject SlidePP;
+    public Transform RannaT;
+    Vector3 PP;
+    public float fbkTimer;
 
 
 
@@ -70,12 +77,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+       PP = new Vector3(transform.position.x,transform.position.y -0.7f,transform.position.z);
 
         ChangeLayersWeight();
         if (characterController.isGrounded)
         {
+
             Ranani.SetBool("JumpTricks", false);
-            Ranani.SetBool("FallBack", true);
+            Ranani.SetBool("FallBack1", true);
+            fbkTimer+= Time.deltaTime;
+            if (fbkTimer >= 2)
+            {
+                Ranani.SetBool("FallBack1", false);
+                fbkTimer = 0;
+            }
+            
         }
         Vector2 pos = transform.position;
 
@@ -105,6 +121,7 @@ public class Player : MonoBehaviour
                 Ranani.SetBool("JumpTricks", true);
                 Ranani.SetBool("SlideTrick", false);
                 Ranani.SetBool("FallBack", false);
+                Instantiate(JumpPP, PP, Quaternion.identity);
 
             }
         }
@@ -112,7 +129,9 @@ public class Player : MonoBehaviour
         {
             Slide();
             Ranani.SetBool("SlideTrick", true);
+            Instantiate(SlidePP, PP, Quaternion.identity, RannaT);
         }
+        
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -123,7 +142,7 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 4));
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 5));
     }
     public void Slide()
     {
@@ -177,7 +196,7 @@ public class Player : MonoBehaviour
                 speed.y += gravity * Time.fixedDeltaTime;
             }
 
-
+            Ranani.SetBool("FallBack1",false);
         }
 
         distance += speed.x * Time.fixedDeltaTime;
