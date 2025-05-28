@@ -142,13 +142,13 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 5));
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0,6));
     }
     public void Slide()
     {
         slider = true;
         characterController.height = 0.7f;
-        Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 2));
+        Ranani.SetInteger("SlideTrickIndex", Random.Range(0,3));
     }
 
 
