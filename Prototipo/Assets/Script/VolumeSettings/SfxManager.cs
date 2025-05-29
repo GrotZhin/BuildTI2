@@ -17,6 +17,10 @@ namespace RWM
         SelectRanna,
         SelectCam,
         Startmenu,
+        Resume,
+        Quit,
+        FallBack,
+        Jump,
         
 
     }

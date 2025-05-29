@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
+                soundManager.PlaySound(SoundType.Jump);
                 Ranani.SetBool("JumpTricks", true);
                 Ranani.SetBool("SlideTrick", false);
                 Ranani.SetBool("FallBack", false);
@@ -195,7 +196,7 @@ public class Player : MonoBehaviour
             {
                 speed.y += gravity * Time.fixedDeltaTime;
             }
-
+            Ranani.SetBool("JumpTricks", true);
             Ranani.SetBool("FallBack1",false);
         }
 
