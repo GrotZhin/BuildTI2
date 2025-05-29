@@ -11,6 +11,7 @@ using JetBrains.Annotations;
 using RWM;
 using UnityEngine.InputSystem.Controls;
 
+
 public class Player : MonoBehaviour
 {
 
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour
     public Transform RannaT;
     Vector3 PP;
     public float fbkTimer;
+    public float SldTimer;
 
 
 
@@ -67,7 +69,7 @@ public class Player : MonoBehaviour
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
-        
+
     }
 
 
@@ -77,7 +79,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-       PP = new Vector3(transform.position.x,transform.position.y -0.7f,transform.position.z);
+        PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
 
         ChangeLayersWeight();
         if (characterController.isGrounded)
@@ -85,13 +87,13 @@ public class Player : MonoBehaviour
 
             Ranani.SetBool("JumpTricks", false);
             Ranani.SetBool("FallBack1", true);
-            fbkTimer+= Time.deltaTime;
+            fbkTimer += Time.deltaTime;
             if (fbkTimer >= 2)
             {
                 Ranani.SetBool("FallBack1", false);
                 fbkTimer = 0;
             }
-            
+
         }
         Vector2 pos = transform.position;
 
@@ -99,14 +101,21 @@ public class Player : MonoBehaviour
 
         if (slider)
         {
+            
             sliderTimer += Time.deltaTime;
-            if (sliderTimer >= 0.8f)
+
+            if (sliderTimer >= 1.3f)
             {
+                
                 characterController.height = 2.0f;
                 slider = false;
-
-
+                Ranani.SetBool("SlideTrick", false);
+                sliderTimer = 0;
+                Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.32f, transform.position.z);
+                PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
             }
+            
+
 
         }
 
@@ -120,19 +129,24 @@ public class Player : MonoBehaviour
                 Jump();
                 soundManager.PlaySound(SoundType.Jump);
                 Ranani.SetBool("JumpTricks", true);
-                Ranani.SetBool("SlideTrick", false);
+             
                 Ranani.SetBool("FallBack", false);
                 Instantiate(JumpPP, PP, Quaternion.identity);
 
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (!slider)
         {
-            Slide();
-            Ranani.SetBool("SlideTrick", true);
-            Instantiate(SlidePP, PP, Quaternion.identity, RannaT);
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Slide();
+                
+                Instantiate(SlidePP, PP, Quaternion.identity, RannaT);
+
+                
+
+            }
         }
-        
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
@@ -143,13 +157,16 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        Ranani.SetInteger("JumpTrickIndex", Random.Range(0,6));
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
     }
     public void Slide()
     {
         slider = true;
+        Ranna.transform.position = new Vector3(transform.position.x,transform.position.y + 0.8f,transform.position.z);
+        PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.2f, characterController.transform.position.z);
         characterController.height = 0.7f;
-        Ranani.SetInteger("SlideTrickIndex", Random.Range(0,3));
+        Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 3));
+        Ranani.SetBool("SlideTrick", true);
     }
 
 
@@ -197,7 +214,7 @@ public class Player : MonoBehaviour
                 speed.y += gravity * Time.fixedDeltaTime;
             }
             Ranani.SetBool("JumpTricks", true);
-            Ranani.SetBool("FallBack1",false);
+            Ranani.SetBool("FallBack1", false);
         }
 
         distance += speed.x * Time.fixedDeltaTime;
@@ -290,7 +307,7 @@ public class Player : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
-            Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+
             Ranani.SetLayerWeight(1, 1);
         }
         else if (SceneManager.GetActiveScene().name == "MainMenu")
@@ -300,8 +317,8 @@ public class Player : MonoBehaviour
         }
 
     }
-    
-    
+
+
     #endregion
 
 

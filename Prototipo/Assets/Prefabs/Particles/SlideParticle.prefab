@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1489358824748052028}
   - component: {fileID: 5810594683649312992}
   - component: {fileID: 8812015497527644819}
-  - component: {fileID: -888305730289206585}
+  - component: {fileID: 6173061514122972030}
   m_Layer: 0
   m_Name: SlideParticle
   m_TagString: Untagged
@@ -115,7 +115,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-888305730289206585
+--- !u!114 &6173061514122972030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5897950472896410676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc429a234fd119647b858f58cf5efba7, type: 3}
+  m_Script: {fileID: 11500000, guid: 783a72cced4ddfe4494673d7b1569006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1.5
+  sldTimer: 0
