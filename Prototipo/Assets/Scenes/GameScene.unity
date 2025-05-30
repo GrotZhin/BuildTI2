@@ -3024,6 +3024,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5897950472896410676, guid: b09cdb32da78ee44b8a7216dc5e4e4b0, type: 3}
     - target: {fileID: 3567849146759721047, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+      propertyPath: gravity
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567849146759721047, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
       propertyPath: maxXSpeed
       value: 40
       objectReference: {fileID: 0}

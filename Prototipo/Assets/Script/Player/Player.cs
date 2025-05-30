@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
                 Jump();
                 soundManager.PlaySound(SoundType.Jump);
                 Ranani.SetBool("JumpTricks", true);
-             
+                Ranani.SetBool("SlideTrick", false);
                 Ranani.SetBool("FallBack", false);
                 Instantiate(JumpPP, PP, Quaternion.identity);
 
@@ -309,11 +309,13 @@ public class Player : MonoBehaviour
         {
 
             Ranani.SetLayerWeight(1, 1);
+            Ranani.SetLayerWeight(0, 0);
         }
         else if (SceneManager.GetActiveScene().name == "MainMenu")
         {
 
             Ranani.SetLayerWeight(1, 0);
+            Ranani.SetLayerWeight(0, 1);
         }
 
     }
