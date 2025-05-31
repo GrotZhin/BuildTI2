@@ -126,15 +126,17 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (pos.y <= 3)
+        if (pos.y <= 3 && !cheat)
 
         {
             isDead = true;
             speed.x = 0;
         }
-        else if (pos.y <= 3 && cheat == true)
+        else if (pos.y <= 3 && cheat)
         {
-            speed.y = groundHeight + 10;
+            speed.y = groundHeight + 20;
+            speed.x = 5;
+          
             
 
 
@@ -175,8 +177,6 @@ public class Player : MonoBehaviour
 
         }
 
-
-       
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
         
     }
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
         if (ground == null && hit.moveDirection == Vector3.right)
         {
             Debug.Log("atingiuX");
-            speed.x = 0;
+            speed.x = 5;
         }
 
 
