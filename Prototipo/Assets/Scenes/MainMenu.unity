@@ -171,6 +171,9 @@ MonoBehaviour:
   RannaT: {fileID: 0}
   fbkTimer: 0
   SldTimer: 0
+  comJ: {fileID: 0}
+  comS: {fileID: 0}
+  ReDad: {fileID: 0}
   isDead: 0
   cheat: 0
 --- !u!95 &8982335 stripped
@@ -1170,6 +1173,9 @@ MonoBehaviour:
   RannaT: {fileID: 0}
   fbkTimer: 0
   SldTimer: 0
+  comJ: {fileID: 0}
+  comS: {fileID: 0}
+  ReDad: {fileID: 0}
   isDead: 0
   cheat: 0
 --- !u!1 &112176211
@@ -7092,7 +7098,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -10,12 +10,12 @@ public class CameraFollow : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<Player>();
     }
- 
-    
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
-       StartTimer-= Time.deltaTime;
+        StartTimer -= Time.deltaTime;
 
         if (StartTimer <= 0)
         {
@@ -28,3 +28,5 @@ public class CameraFollow : MonoBehaviour
         }
     }
 }
+
+

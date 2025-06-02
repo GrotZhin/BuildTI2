@@ -27,8 +27,10 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform UpBar;
     [SerializeField] RectTransform DownBar;
     [SerializeField] RectTransform ShockBtn;
-    [SerializeField] RectTransform UpHud;
-    [SerializeField] RectTransform DownHud;
+    [SerializeField] RectTransform UpLHud;
+    [SerializeField] RectTransform UpRHud;
+    [SerializeField] RectTransform DownLHud;
+    [SerializeField] RectTransform DownRHud;
     [SerializeField] Image MenuBackground;
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] CanvasGroup PauseFade;
@@ -125,8 +127,10 @@ public class GameUiController : MonoBehaviour
         MenuAni.DOScale(MenuSizein, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
         UpBar.DOAnchorPosY(UpmiddlePosY, 0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
         DownBar.DOAnchorPosY(DownmiddlePosY, 0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
-        UpHud.DOAnchorPosY(UpHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
-        DownHud.DOAnchorPosY(DownHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
+        UpLHud.DOAnchorPosY(UpHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
+        UpRHud.DOAnchorPosY(UpHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
+        DownLHud.DOAnchorPosY(DownHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
+        DownRHud.DOAnchorPosY(DownHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
 
     }
     async Task InGameMenuAniOutro()
@@ -136,8 +140,10 @@ public class GameUiController : MonoBehaviour
         await MenuAni.DOScale(MenuSizeout, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
         await UpBar.DOAnchorPosY(UpTopPosY, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
         await DownBar.DOAnchorPosY(DownTopPosY, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
-        await UpHud.DOAnchorPosY(UpHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
-        await DownHud.DOAnchorPosY(DownHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await UpLHud.DOAnchorPosY(UpHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await UpRHud.DOAnchorPosY(UpHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await DownLHud.DOAnchorPosY(DownHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
+        await DownRHud.DOAnchorPosY(DownHudTopPosY, TweenDur).SetEase(Ease.InCubic).SetUpdate(true).AsyncWaitForCompletion();
     }
 
     public void SettingsAni()

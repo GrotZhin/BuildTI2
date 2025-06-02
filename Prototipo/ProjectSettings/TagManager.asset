@@ -10,6 +10,9 @@ TagManager:
   - Score
   - Ground
   - barBg
+  - Comment
+  - 1
+  - SlideScore
   layers:
   - Default
   - TransparentFX

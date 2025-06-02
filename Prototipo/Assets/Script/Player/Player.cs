@@ -49,10 +49,16 @@ public class Player : MonoBehaviour
     public Animator Ranani;
     public GameObject JumpPP;
     public GameObject SlidePP;
+    public GameObject PWPP;
     public Transform RannaT;
     Vector3 PP;
     public float fbkTimer;
     public float SldTimer;
+
+    //reactions
+    public GameObject comJ;
+    public GameObject comS;
+    public Transform ReDad;
 
 
 
@@ -128,10 +134,10 @@ public class Player : MonoBehaviour
             {
                 Jump();
                 soundManager.PlaySound(SoundType.Jump);
-                Ranani.SetBool("JumpTricks", true);
+                
                 Ranani.SetBool("SlideTrick", false);
                 Ranani.SetBool("FallBack", false);
-                Instantiate(JumpPP, PP, Quaternion.identity);
+                
 
             }
         }
@@ -158,15 +164,23 @@ public class Player : MonoBehaviour
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
+        Ranani.SetBool("JumpTricks", true);
+        
+        Instantiate(JumpPP, PP, Quaternion.identity);
+
+        
     }
     public void Slide()
     {
         slider = true;
-        Ranna.transform.position = new Vector3(transform.position.x,transform.position.y + 0.8f,transform.position.z);
+        Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
         PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.2f, characterController.transform.position.z);
         characterController.height = 0.7f;
         Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 3));
         Ranani.SetBool("SlideTrick", true);
+        
+        
+        
     }
 
 
@@ -213,8 +227,9 @@ public class Player : MonoBehaviour
             {
                 speed.y += gravity * Time.fixedDeltaTime;
             }
-            Ranani.SetBool("JumpTricks", true);
+
             Ranani.SetBool("FallBack1", false);
+            Ranani.SetBool("JumpTricks", true);
         }
 
         distance += speed.x * Time.fixedDeltaTime;
@@ -282,11 +297,28 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Score"))
         {
             score += 10;
+
+            int randob = Random.Range(0, 10);
+             if (randob >= 5)
+             {
+            Instantiate(comJ, transform.position, Quaternion.identity, ReDad);
+            }
+        }
+        if (other.gameObject.CompareTag("SlideScore"))
+        {
+            score += 10;
+
+            int randob = Random.Range(0, 10);
+             if (randob >= 5)
+             {
+            Instantiate(comS, transform.position, Quaternion.identity, ReDad);
+            }
         }
         PowerUp powerUp = other.gameObject.GetComponent<PowerUp>();
         if (powerUp != null)
         {
             HitPowerUp(powerUp);
+            Instantiate(PWPP, transform.position, Quaternion.identity,RannaT);
         }
     }
     public void Cheat()
