@@ -125,7 +125,7 @@ PrefabInstance:
       addedObject: {fileID: -9187887655170233460}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 571e32a3c8a04d64c88de5a41bf0cf8f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7550902556543111605}
+      addedObject: {fileID: 7976124476947731593}
   m_SourcePrefab: {fileID: 100100000, guid: 571e32a3c8a04d64c88de5a41bf0cf8f, type: 3}
 --- !u!4 &8356897960980488852 stripped
 Transform:
@@ -158,7 +158,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7637787, y: 0.33350626, z: 0.7158334}
   m_Center: {x: -0.05232954, y: -0.032185152, z: 0}
---- !u!114 &7550902556543111605
+--- !u!114 &7976124476947731593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,10 +167,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8697148828456712238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 793709487a55bc04c9a1b60385e42b73, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e8d4ebc786d01c42ac9c485fc381093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 0}
-  cameraHalfSize: 0
   screenLeft: 0
+  cameraHalfSize: 0
   obstacleRight: 0

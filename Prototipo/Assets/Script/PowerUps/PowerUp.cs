@@ -5,38 +5,14 @@ using UnityEngine.UI;
 public class PowerUp : MonoBehaviour
 {
     Player player;
-    public BoxCollider boxCollider;
     public Image batery;
 
-    public float cameraHalfSize;
-    public float screenLeft;
-    public float obstacleRight;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         batery.fillAmount = 0;
-        boxCollider = GetComponent<BoxCollider>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-
-    void Update()
-    {
-        cameraHalfSize = Camera.main.orthographicSize * Camera.main.aspect;
-
-       
-        screenLeft =  Camera.main.transform.position.x - cameraHalfSize;
-
       
-        obstacleRight = transform.position.x + (boxCollider.size.x / 2);
-
-        if (screenLeft >= obstacleRight)
-        {
-           
-            Destroy(gameObject);
-            
-            return;
-        }
-
     }
 
 

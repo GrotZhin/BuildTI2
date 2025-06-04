@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Accessibility;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -35,29 +35,42 @@ public class Player : MonoBehaviour
     public LayerMask scoreLayerMask;
     public LayerMask powerUpLayerMask;
     float groundDistance;
+    public bool assist = false;
 
     bool slider = false;
     float sliderTimer;
     public GameObject sekker;
-
+    public bool sekkerInstantiate = false;
 
     public bool isDead = false;
     public bool cheat = false;
+    GameObject prefab;
     // Start is called before the first frame update
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
-        Vector2 pos = transform.position;
-        Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
-
-        Instantiate(sekker, sekkerPos, Quaternion.identity);
 
     }
 
     // Update is called once per frame
     private void Update()
     {
+
         Vector2 pos = transform.position;
+
+
+        if (!sekkerInstantiate)
+        {
+            if (speed.x <= 7)
+            {
+                sekkerInstantiate = true;
+                ISekker();
+
+            }
+
+        }
+
+
 
         groundDistance = Mathf.Abs(pos.y - groundHeight);
 
@@ -100,7 +113,7 @@ public class Player : MonoBehaviour
     }
     public void Jump()
     {
-
+        assist = true;
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
     }
     public void Slide()
@@ -136,8 +149,8 @@ public class Player : MonoBehaviour
         {
             speed.y = groundHeight + 20;
             speed.x = 5;
-          
-            
+
+
 
 
         }
@@ -165,11 +178,12 @@ public class Player : MonoBehaviour
 
         if (characterController.isGrounded)
         {
-            Debug.Log(characterController.isGrounded);
+
             speed.x += acceleration * Time.fixedDeltaTime;
             float speedRatio = speed.x / maxXSpeed;
             acceleration = maxAcceleration * (1 - speedRatio);
             maxHoldJumpTime = maxHoldJump * speedRatio;
+
             if (speed.x >= maxXSpeed)
             {
                 speed.x = maxXSpeed;
@@ -178,12 +192,18 @@ public class Player : MonoBehaviour
         }
 
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
-        
+
+    }
+    void ISekker()
+    {
+        Vector2 pos = transform.position;
+        Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
+        prefab = Instantiate(sekker, sekkerPos, Quaternion.identity);
     }
 
     public void HitObstacle(Obstacle obstacle)
     {
-        Destroy(obstacle.gameObject);
+        obstacle.boxCollider.enabled = false;
         speed.x *= 0.8f;
     }
     void HitPowerUp(PowerUp powerUp)
@@ -233,9 +253,10 @@ public class Player : MonoBehaviour
             HitPowerUp(powerUp);
         }
     }
+    [ContextMenu("Cheat")]
     public void Cheat()
     {
-        cheat = true;
+        cheat = !cheat;
 
     }
 

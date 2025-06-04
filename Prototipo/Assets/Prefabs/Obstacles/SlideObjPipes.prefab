@@ -122,32 +122,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f874abfbc716334b8f9fcfb3506a6b6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7155552883608532437}
+      addedObject: {fileID: -3138526037670662716}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f874abfbc716334b8f9fcfb3506a6b6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3138526037670662716}
+      addedObject: {fileID: 6290082986241565096}
   m_SourcePrefab: {fileID: 100100000, guid: 6f874abfbc716334b8f9fcfb3506a6b6, type: 3}
 --- !u!1 &1605243665203988612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6f874abfbc716334b8f9fcfb3506a6b6, type: 3}
   m_PrefabInstance: {fileID: 1911656314633926101}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7155552883608532437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1605243665203988612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 793709487a55bc04c9a1b60385e42b73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxCollider: {fileID: 0}
-  cameraHalfSize: 0
-  screenLeft: 0
-  obstacleRight: 0
 --- !u!65 &-3138526037670662716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -169,6 +153,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.295369, y: 1.008626, z: 1.2331104}
   m_Center: {x: -0.16192806, y: 0.25043803, z: -0.03260687}
+--- !u!114 &6290082986241565096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605243665203988612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8d4ebc786d01c42ac9c485fc381093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 0}
+  screenLeft: 0
+  cameraHalfSize: 0
+  obstacleRight: 0
 --- !u!4 &2093373619842208318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f874abfbc716334b8f9fcfb3506a6b6, type: 3}

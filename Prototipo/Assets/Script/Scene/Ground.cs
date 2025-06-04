@@ -10,16 +10,14 @@ public class Ground : MonoBehaviour
     public float screenRight;
     public float screenLeft;
     BoxCollider collider;
-     GameObject box;
+    GameObject box;
     public float cameraHalfSize;
-
-
 
 
     bool didGenerateGround = false;
 
-    public  GameObject[] boxPrefab;
-    public  GameObject[] groundPrefab;
+    public GameObject[] boxPrefab;
+    public GameObject[] groundPrefab;
     public GameObject scoreCollider;
     public GameObject powerUp;
 
@@ -30,29 +28,28 @@ public class Ground : MonoBehaviour
         groundHeight = transform.position.y + (collider.size.y / 2);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    
+
+
     private void FixedUpdate()
-    { 
+    {
         cameraHalfSize = Camera.main.orthographicSize * Camera.main.aspect;
 
         screenRight = Camera.main.transform.position.x * 2;
-        screenLeft =  Camera.main.transform.position.x - cameraHalfSize;
+        screenLeft = Camera.main.transform.position.x - cameraHalfSize;
 
-      
+
         Vector3 pos = transform.position;
 
         groundRight = transform.position.x + (collider.size.x / 2);
 
         if (screenLeft >= groundRight)
         {
-           
-            Destroy(gameObject);
             
+            Destroy(gameObject);
             return;
         }
 
-       
+
 
         if (!didGenerateGround)
         {
@@ -60,13 +57,11 @@ public class Ground : MonoBehaviour
             if (groundRight <= screenRight)
             {
                 didGenerateGround = true;
-                Debug.Log("Gerar" + didGenerateGround);
+
                 GenerateGround();
-                
-               
             }
         }
-        
+
         transform.position = pos;
     }
 
@@ -74,8 +69,8 @@ public class Ground : MonoBehaviour
     void GenerateGround()
     {
         int rdGround = UnityEngine.Random.Range(0, groundPrefab.Length);
-
         GameObject go = Instantiate(groundPrefab[rdGround]);
+
         BoxCollider goCollider = GetComponent<BoxCollider>();
         Vector3 pos;
 
@@ -84,7 +79,7 @@ public class Ground : MonoBehaviour
         float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
         float maxY = player.transform.position.y + maxJumpHeight * 0.7f;
-        
+
 
         float minY = 7;
         float actualY = UnityEngine.Random.Range(minY, maxY);
@@ -97,14 +92,14 @@ public class Ground : MonoBehaviour
         }
         if (pos.y < 7)
         {
-            pos.y =7 ;
+            pos.y = 7;
         }
 
-        float  maxX = screenRight + 10;
-        
+        float maxX = screenRight + 10;
+
 
         float minX = screenRight + 5;
-       
+
         float actualX = UnityEngine.Random.Range(minX, maxX);
 
 
@@ -117,31 +112,31 @@ public class Ground : MonoBehaviour
 
 
         int obstacleNum = UnityEngine.Random.Range(0, 3);
-        
-        
+
+
         for (int i = 0; i < obstacleNum; i++)
         {
             var random = UnityEngine.Random.Range(0, boxPrefab.Length);
-          
+
 
             //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
             //GameObject powerUps = Instantiate(powerUp.gameObject);
 
             float y = goGround.groundHeight;
-            float halfWidth = goCollider.size.x /2 - 1;
+            float halfWidth = goCollider.size.x / 2 - 1;
             float left = go.transform.position.x - halfWidth;
             float right = go.transform.position.x + halfWidth;
-            float x = UnityEngine.Random.Range(left,right); 
-            
-            Vector3 boxPos = new Vector3(x,y,-0.56f);
-            float x2 = UnityEngine.Random.Range(left,right); 
-            Vector3 boxPos2 = new Vector3(x2,y,-0.56f);
-            box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
-            box.transform.position = boxPos;
+            float x = UnityEngine.Random.Range(left, right);
+
+            Vector3 boxPos = new Vector3(x, y, -0.56f);
+            float x2 = UnityEngine.Random.Range(left, right);
+            Vector3 boxPos2 = new Vector3(x2, y, -0.56f);
+            //box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
+           // box.transform.position = boxPos;
             //scoreBox.transform.position = boxPos;
             //powerUps.transform.position = boxPos2;
-            
+
         }
-       
+
     }
 }
