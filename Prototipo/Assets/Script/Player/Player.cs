@@ -185,12 +185,10 @@ public class Player : MonoBehaviour
         speed.x += speed.x * 0.10f;
     }
 
-
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Vector3 pos = transform.position;
         Ground ground = hit.collider.GetComponent<Ground>();
-
 
         if (ground == null && hit.moveDirection == Vector3.up)
         {
@@ -205,15 +203,11 @@ public class Player : MonoBehaviour
             speed.x = 0;
         }
 
-
-
-
         Score scores = hit.collider.gameObject.GetComponent<Score>();
-        if (scores == null)
+        if (scores != null) 
         {
             HitScore(scores);
         }
-
     }
 
     void OnTriggerEnter(Collider other)

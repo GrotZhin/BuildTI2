@@ -6,6 +6,8 @@ TagManager:
   tags:
   - collider
   - Ground
+  - Score
+  - parallax
   layers:
   - Default
   - TransparentFX
