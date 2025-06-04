@@ -27,6 +27,8 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform UpBar;
     [SerializeField] RectTransform DownBar;
     [SerializeField] RectTransform ShockBtn;
+    [SerializeField] RectTransform UpSrtBar;
+    [SerializeField] RectTransform DownSrtBar;
     [SerializeField] RectTransform UpLHud;
     [SerializeField] RectTransform UpRHud;
     [SerializeField] RectTransform DownLHud;
@@ -37,6 +39,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] CanvasGroup ResultFade;
     [SerializeField] Image CamSnap;
     [SerializeField] RectTransform resoultsAni;
+    public AudioSource Music;
 
     //DOtween positions
     [SerializeField] float MenuSizein, MenuSizeout;
@@ -47,6 +50,8 @@ public class GameUiController : MonoBehaviour
     [SerializeField] float TweenDur;
     [SerializeField] float ReTweenDur;
 
+    public float Intimer;
+
 
     // Start is called before the first frame update
     private void Awake()
@@ -55,7 +60,7 @@ public class GameUiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-
+        
 
 
     }
@@ -64,12 +69,27 @@ public class GameUiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Intimer += Time.deltaTime;
+
+        if (Intimer >= 0.6)
+        {
+            
+            DownSrtBar.DOAnchorPosY(-66, 0.3f).SetUpdate(true);
+            UpRHud.DOAnchorPosY(UpHudTopPosY, 0.2f).SetUpdate(true);
+            DownLHud.DOAnchorPosY(DownHudTopPosY, 0.2f).SetUpdate(true);
+            DownRHud.DOAnchorPosY(DownHudTopPosY, 0.2f).SetUpdate(true);
+
+            
+        }
+
+        
         int distance = Mathf.FloorToInt(player.distance);
         distanceTxt.text = distance + "m";
         scoreTxt.text = "TP " + player.score;
 
         if (player.isDead)
         {
+            Music.volume = 0.2f;
             ResoultsAni();
             resultPanel.SetActive(true);
             finalDistanceTxt.text = distance + "m";
@@ -165,6 +185,7 @@ public class GameUiController : MonoBehaviour
 
         resoultsAni.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
         ResultFade.DOFade(1, 0.2f).SetEase(Ease.OutFlash);
+        
     }
     async Task RetryAni()
     {

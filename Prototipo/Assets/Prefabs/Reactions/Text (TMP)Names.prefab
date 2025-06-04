@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -156,7 +156,7 @@ MonoBehaviour:
   - '@Gruut'
   - '@Spewpa'
   - '@RadFella'
-  - '@EfiCeEli'
+  - '@EfieliCeEli'
   - '@Kanmyi'
   - '@Shoooooooryuken'
   - '@LuguGMD'
@@ -192,6 +192,41 @@ MonoBehaviour:
   - '@FrenzyFellas'
   - '@Gum'
   - '@UltimateTrollFaceUser'
+  - '@Xx_Destroyer_xX'
+  - '@HippoBerry'
+  - '@BlueThiefTiger'
+  - '@MangoJoe'
+  - '@foward.d'
+  - '@reg_meme'
+  - '@RaidenSSJ'
+  - '@V1_UK'
+  - '@DesertGorilla'
+  - '@Chipanzzes_Fan'
+  - '@RecordPlayerSkull'
+  - '@dizz'
+  - '@Soul_NoPlay'
+  - '@Bluepen'
+  - '@Vulture.Joseph'
+  - '@Zuto__mayonnaise'
+  - '@SooGoodGuy'
+  - '@BknBad'
+  - '@NextGenJonathan'
+  - '@Room_42'
+  - '@Saki_StarBreakerOFC'
+  - '@HaruHaru_uwu'
+  - '@#MOFD#'
+  - '@MfD00n'
+  - '@Tadeu_GoldLeg'
+  - '@Flour2000'
+  - '@GemaPFV'
+  - '@VentoMiro'
+  - '@Placed_this(:3)'
+  - '@Alucard<-BW'
+  - '@NoobMaster69'
+  - '@Bazinga'
+  - '@RadioFeet'
+  - '@Goldalica'
+  - '@Filthy_Acts_At_A_Reasonable_Price'
   TMPS: {fileID: 0}
   ReactionsS: []
   TMPG: {fileID: 0}

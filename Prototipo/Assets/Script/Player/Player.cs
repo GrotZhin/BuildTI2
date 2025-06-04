@@ -10,12 +10,15 @@ using UnityEngine.UI;
 using JetBrains.Annotations;
 using RWM;
 using UnityEngine.InputSystem.Controls;
+using DG.Tweening;
 
 
 public class Player : MonoBehaviour
 {
 
     private CharacterController characterController;
+
+    public Camera CAM;
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -71,7 +74,7 @@ public class Player : MonoBehaviour
         Vector2 pos = transform.position;
         Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
 
-        Instantiate(sekker, sekkerPos, Quaternion.identity);
+        // Instantiate(sekker, sekkerPos, Quaternion.identity);
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
@@ -112,13 +115,14 @@ public class Player : MonoBehaviour
 
             if (sliderTimer >= 1.3f)
             {
-                
+
                 characterController.height = 2.0f;
                 slider = false;
                 Ranani.SetBool("SlideTrick", false);
                 sliderTimer = 0;
                 Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.32f, transform.position.z);
                 PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
+                
             }
             
 
@@ -167,6 +171,7 @@ public class Player : MonoBehaviour
         Ranani.SetBool("JumpTricks", true);
         
         Instantiate(JumpPP, PP, Quaternion.identity);
+        
 
         
     }
@@ -178,8 +183,7 @@ public class Player : MonoBehaviour
         characterController.height = 0.7f;
         Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 3));
         Ranani.SetBool("SlideTrick", true);
-        
-        
+        soundManager.PlaySound(SoundType.Slide);
         
     }
 
@@ -256,6 +260,10 @@ public class Player : MonoBehaviour
     {
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
+        soundManager.PlaySound(SoundType.Hit);
+        Ranani.SetTrigger("Hit");
+        CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
+       
     }
 
     void HitPowerUp(PowerUp powerUp)
@@ -299,9 +307,10 @@ public class Player : MonoBehaviour
             score += 10;
 
             int randob = Random.Range(0, 10);
-             if (randob >= 5)
-             {
-            Instantiate(comJ, transform.position, Quaternion.identity, ReDad);
+            if (randob >= 5)
+            {
+                Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
+                soundManager.PlaySound(SoundType.Plamn);
             }
         }
         if (other.gameObject.CompareTag("SlideScore"))
@@ -309,9 +318,10 @@ public class Player : MonoBehaviour
             score += 10;
 
             int randob = Random.Range(0, 10);
-             if (randob >= 5)
-             {
-            Instantiate(comS, transform.position, Quaternion.identity, ReDad);
+            if (randob >= 5)
+            {
+                Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
+                soundManager.PlaySound(SoundType.Plamn);
             }
         }
         PowerUp powerUp = other.gameObject.GetComponent<PowerUp>();
