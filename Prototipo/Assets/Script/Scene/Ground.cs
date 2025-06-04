@@ -21,7 +21,8 @@ public class Ground : MonoBehaviour
     public  GameObject[] boxPrefab;
     public  GameObject[] groundPrefab;
     public GameObject scoreCollider;
-    public GameObject powerUp;
+    [SerializeField]
+    private GameObject powerUp;
 
     private void Awake()
     {
@@ -125,7 +126,7 @@ public class Ground : MonoBehaviour
           
 
             //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
-            GameObject powerUps = Instantiate(powerUp.gameObject);
+            //GameObject powerUps = Instantiate(powerUp.gameObject);
 
             float y = goGround.groundHeight;
             float halfWidth = goCollider.size.x /2 - 1;
@@ -136,10 +137,10 @@ public class Ground : MonoBehaviour
             Vector3 boxPos = new Vector3(x,y,-0.56f);
             float x2 = UnityEngine.Random.Range(left,right); 
             Vector3 boxPos2 = new Vector3(x2,y,-0.56f);
-            box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
-            box.transform.position = boxPos;
+            //box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
+            //box.transform.position = boxPos;
             //scoreBox.transform.position = boxPos;
-            powerUps.transform.position = boxPos2;
+            //powerUps.transform.position = boxPos2;
             
         }
        

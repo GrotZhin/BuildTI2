@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
 
 
     public bool isDead = false;
-    public bool cheat = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -99,7 +98,6 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        
     }
     public void Slide()
     {
@@ -124,17 +122,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (pos.y <= 3 && cheat == false)
+        if (pos.y <= 3)
 
         {
             isDead = true;
             speed.x = 0;
-        }
-        else if (pos.y <= 3 && cheat == true)
-        {
-            speed.y = groundHeight + 10;
-
-
         }
         if (isHoldingJump)
         {
@@ -158,21 +150,21 @@ public class Player : MonoBehaviour
 
         distance += speed.x * Time.fixedDeltaTime;
 
-
-        Debug.Log(characterController.isGrounded);
-        speed.x += acceleration * Time.fixedDeltaTime;
-        float speedRatio = speed.x / maxXSpeed;
-        acceleration = maxAcceleration * (1 - speedRatio);
-        maxHoldJumpTime = maxHoldJump * speedRatio;
-        if (speed.x >= maxXSpeed)
+        if (characterController.isGrounded)
         {
-            speed.x = maxXSpeed;
-
+            Debug.Log(characterController.isGrounded);
+            speed.x += acceleration * Time.fixedDeltaTime;
+            float speedRatio = speed.x / maxXSpeed;
+            acceleration = maxAcceleration * (1 - speedRatio);
+            maxHoldJumpTime = maxHoldJump * speedRatio;
+            if (speed.x >= maxXSpeed)
+            {
+                speed.x = maxXSpeed;
+            }
 
         }
 
-
-
+        pos.x += speed.x * Time.fixedDeltaTime;
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
     }
 
@@ -181,19 +173,22 @@ public class Player : MonoBehaviour
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
     }
-    
+    void HitScore(Score obstacle)
+    {
+        obstacle.boxCollider2D.enabled = false;
+        score += 10;
+
+    }
     void HitPowerUp(PowerUp powerUp)
     {
         Destroy(powerUp.gameObject);
-
+        speed.x += speed.x * 0.10f;
     }
-
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Vector3 pos = transform.position;
         Ground ground = hit.collider.GetComponent<Ground>();
-
 
         if (ground == null && hit.moveDirection == Vector3.up)
         {
@@ -208,6 +203,11 @@ public class Player : MonoBehaviour
             speed.x = 0;
         }
 
+        Score scores = hit.collider.gameObject.GetComponent<Score>();
+        if (scores != null) 
+        {
+            HitScore(scores);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -226,17 +226,6 @@ public class Player : MonoBehaviour
         if (powerUp != null)
         {
             HitPowerUp(powerUp);
-        }
-    }
-    public void Cheat()
-    {
-        if (cheat)
-        {
-            cheat = false;
-        }
-        else if (!cheat)
-        {
-            cheat = true;
         }
     }
 
