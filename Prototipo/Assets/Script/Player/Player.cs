@@ -1,17 +1,24 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using JetBrains.Annotations;
+using RWM;
+using UnityEngine.InputSystem.Controls;
+using DG.Tweening;
+
 
 public class Player : MonoBehaviour
 {
 
     private CharacterController characterController;
+
+    public Camera CAM;
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -40,8 +47,26 @@ public class Player : MonoBehaviour
     float sliderTimer;
     public GameObject sekker;
 
+    //Animation
+    public GameObject Ranna;
+    public Animator Ranani;
+    public GameObject JumpPP;
+    public GameObject SlidePP;
+    public GameObject PWPP;
+    public Transform RannaT;
+    Vector3 PP;
+    public float fbkTimer;
+    public float SldTimer;
+
+    //reactions
+    public GameObject comJ;
+    public GameObject comS;
+    public Transform ReDad;
+
+
 
     public bool isDead = false;
+    public bool cheat = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,27 +74,58 @@ public class Player : MonoBehaviour
         Vector2 pos = transform.position;
         Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
 
-        Instantiate(sekker, sekkerPos, Quaternion.identity);
+        // Instantiate(sekker, sekkerPos, Quaternion.identity);
+        Ranani = Ranna.GetComponent<Animator>();
+        Ranani.SetLayerWeight(0, 1);
+        Ranani.SetLayerWeight(1, 0);
 
     }
+
+
+
+
 
     // Update is called once per frame
     private void Update()
     {
+        PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
+
+        ChangeLayersWeight();
+        if (characterController.isGrounded)
+        {
+
+            Ranani.SetBool("JumpTricks", false);
+            Ranani.SetBool("FallBack1", true);
+            fbkTimer += Time.deltaTime;
+            if (fbkTimer >= 2)
+            {
+                Ranani.SetBool("FallBack1", false);
+                fbkTimer = 0;
+            }
+
+        }
         Vector2 pos = transform.position;
 
         groundDistance = Mathf.Abs(pos.y - groundHeight);
 
         if (slider)
         {
+            
             sliderTimer += Time.deltaTime;
-            if (sliderTimer >= 0.8f)
+
+            if (sliderTimer >= 1.3f)
             {
+
                 characterController.height = 2.0f;
                 slider = false;
-
-
+                Ranani.SetBool("SlideTrick", false);
+                sliderTimer = 0;
+                Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.32f, transform.position.z);
+                PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
+                
             }
+            
+
 
         }
 
@@ -81,12 +137,25 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
+                soundManager.PlaySound(SoundType.Jump);
+                
+                Ranani.SetBool("SlideTrick", false);
+                Ranani.SetBool("FallBack", false);
+                
 
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (!slider)
         {
-            Slide();
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                Slide();
+                
+                Instantiate(SlidePP, PP, Quaternion.identity, RannaT);
+
+                
+
+            }
         }
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
@@ -98,12 +167,24 @@ public class Player : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
+        Ranani.SetBool("JumpTricks", true);
+        
+        Instantiate(JumpPP, PP, Quaternion.identity);
+        
+
+        
     }
     public void Slide()
     {
         slider = true;
+        Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+        PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.2f, characterController.transform.position.z);
         characterController.height = 0.7f;
-
+        Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 3));
+        Ranani.SetBool("SlideTrick", true);
+        soundManager.PlaySound(SoundType.Slide);
+        
     }
 
 
@@ -122,11 +203,17 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (pos.y <= 3)
+        if (pos.y <= 3 && cheat == false)
 
         {
             isDead = true;
             speed.x = 0;
+        }
+        else if (pos.y <= 3 && cheat == true)
+        {
+            speed.y = groundHeight + 10;
+
+
         }
         if (isHoldingJump)
         {
@@ -145,26 +232,27 @@ public class Player : MonoBehaviour
                 speed.y += gravity * Time.fixedDeltaTime;
             }
 
-
+            Ranani.SetBool("FallBack1", false);
+            Ranani.SetBool("JumpTricks", true);
         }
 
         distance += speed.x * Time.fixedDeltaTime;
 
-        if (characterController.isGrounded)
+
+        Debug.Log(characterController.isGrounded);
+        speed.x += acceleration * Time.fixedDeltaTime;
+        float speedRatio = speed.x / maxXSpeed;
+        acceleration = maxAcceleration * (1 - speedRatio);
+        maxHoldJumpTime = maxHoldJump * speedRatio;
+        if (speed.x >= maxXSpeed)
         {
-            Debug.Log(characterController.isGrounded);
-            speed.x += acceleration * Time.fixedDeltaTime;
-            float speedRatio = speed.x / maxXSpeed;
-            acceleration = maxAcceleration * (1 - speedRatio);
-            maxHoldJumpTime = maxHoldJump * speedRatio;
-            if (speed.x >= maxXSpeed)
-            {
-                speed.x = maxXSpeed;
-            }
+            speed.x = maxXSpeed;
+
 
         }
 
-        pos.x += speed.x * Time.fixedDeltaTime;
+
+
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
     }
 
@@ -172,23 +260,24 @@ public class Player : MonoBehaviour
     {
         Destroy(obstacle.gameObject);
         speed.x *= 0.8f;
+        soundManager.PlaySound(SoundType.Hit);
+        Ranani.SetTrigger("Hit");
+        CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
+       
     }
-    void HitScore(Score obstacle)
-    {
-        obstacle.boxCollider2D.enabled = false;
-        score += 10;
 
-    }
     void HitPowerUp(PowerUp powerUp)
     {
         Destroy(powerUp.gameObject);
-        speed.x += speed.x * 0.10f;
+
     }
+
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Vector3 pos = transform.position;
         Ground ground = hit.collider.GetComponent<Ground>();
+
 
         if (ground == null && hit.moveDirection == Vector3.up)
         {
@@ -203,11 +292,6 @@ public class Player : MonoBehaviour
             speed.x = 0;
         }
 
-        Score scores = hit.collider.gameObject.GetComponent<Score>();
-        if (scores != null) 
-        {
-            HitScore(scores);
-        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -221,13 +305,65 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Score"))
         {
             score += 10;
+
+            int randob = Random.Range(0, 10);
+            if (randob >= 5)
+            {
+                Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
+                soundManager.PlaySound(SoundType.Plamn);
+            }
+        }
+        if (other.gameObject.CompareTag("SlideScore"))
+        {
+            score += 10;
+
+            int randob = Random.Range(0, 10);
+            if (randob >= 5)
+            {
+                Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
+                soundManager.PlaySound(SoundType.Plamn);
+            }
         }
         PowerUp powerUp = other.gameObject.GetComponent<PowerUp>();
         if (powerUp != null)
         {
             HitPowerUp(powerUp);
+            Instantiate(PWPP, transform.position, Quaternion.identity,RannaT);
         }
     }
+    public void Cheat()
+    {
+        if (cheat)
+        {
+            cheat = false;
+        }
+        else if (!cheat)
+        {
+            cheat = true;
+        }
+    }
+
+    #region animations
+
+    public void ChangeLayersWeight()
+    {
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+
+            Ranani.SetLayerWeight(1, 1);
+            Ranani.SetLayerWeight(0, 0);
+        }
+        else if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+
+            Ranani.SetLayerWeight(1, 0);
+            Ranani.SetLayerWeight(0, 1);
+        }
+
+    }
+
+
+    #endregion
 
 
 }

@@ -5,9 +5,14 @@ TagManager:
   serializedVersion: 3
   tags:
   - collider
-  - Ground
+  - MainMenuCharAni
+  - WardrobeCharAni
   - Score
-  - parallax
+  - Ground
+  - barBg
+  - Comment
+  - 1
+  - SlideScore
   layers:
   - Default
   - TransparentFX

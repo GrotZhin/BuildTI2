@@ -17,6 +17,13 @@ namespace RWM
         SelectRanna,
         SelectCam,
         Startmenu,
+        Resume,
+        Quit,
+        FallBack,
+        Jump,
+        Plamn,
+        Slide,
+        Hit,
         
 
     }
@@ -54,10 +61,23 @@ namespace RWM
             
 
         }
+        public static void StopSound(SoundType sound, float volume = 1f)
+        {
+            AudioClip[] clips = instance.soundList[(int)sound].Sounds;
+
+            AudioClip randomClip = clips[UnityEngine.Random.Range(0, clips.Length)];
+
+            instance.musicSource.Stop();
+            
+            
+           
+            
+
+        }
 #if UNITY_EDITOR
         private void OnEnable()
         {
-            string [] names = Enum.GetNames(typeof(SoundType));
+            string[] names = Enum.GetNames(typeof(SoundType));
             Array.Resize(ref soundList, names.Length);
             for (int i = 0; i < soundList.Length; i++)
             {
