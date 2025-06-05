@@ -1,52 +1,59 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
-public class TouchHandler : MonoBehaviour
+public class TouchManager : MonoBehaviour
 {
-    private CharacterController characterController;
-    public Player player;
+    private PlayerInput playerInput;
+    private InputAction touchPositionAction;
+    private InputAction touchPressAction;
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
+    private bool isSwiping;
 
-    void Start()
+    private void Awake()
     {
-        characterController= GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
+        touchPressAction = playerInput.actions["TouchPress"];
+        touchPositionAction = playerInput.actions["TouchPosition"];
     }
+
     private void OnEnable()
     {
-       EnhancedTouchSupport.Enable();
-        TouchSimulation.Enable();
-        Touch.onFingerDown += HandleTouchStart;
-        Touch.onFingerUp += HandleTouchEnd;
+        touchPressAction.performed += TouchStarted;
+        touchPressAction.canceled += TouchEnded;
     }
 
     private void OnDisable()
     {
-        Touch.onFingerDown -= HandleTouchStart;
-        Touch.onFingerUp -= HandleTouchEnd;
-
-        EnhancedTouchSupport.Disable();
+        touchPressAction.performed -= TouchStarted;
+        touchPressAction.canceled -= TouchEnded;
     }
 
-    private void HandleTouchStart(Finger finger)
+    private void TouchStarted(InputAction.CallbackContext context)
     {
-        if (player != null)
-        {
-            // Só pula se estiver no chão (igual ao teclado)
-            Vector2 pos = player.transform.position;
-            float groundDistance = Mathf.Abs(pos.y - player.groundHeight);
-
-            if (characterController.isGrounded || groundDistance <= player.jumpGroundTreshhold)
-            {
-                player.Jump();
-            }
-        }
+        startTouchPosition = touchPositionAction.ReadValue<Vector2>();
+        isSwiping = true;
     }
 
-    private void HandleTouchEnd(Finger finger)
+    private void TouchEnded(InputAction.CallbackContext context)
     {
-        if (player != null)
+        endTouchPosition = touchPositionAction.ReadValue<Vector2>();
+        isSwiping = false;
+        DetectSwipe();
+    }
+
+    private void DetectSwipe()
+    {
+        Vector2 swipeDirection = endTouchPosition - startTouchPosition;
+        if (swipeDirection.magnitude > 50) // Ajuste o valor conforme necessário
         {
-            player.ReleaseJump();
+            Debug.Log("Swipe detected: " + swipeDirection.normalized);
+            Vector3 startWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(startTouchPosition.x, startTouchPosition.y, 10));
+            Vector3 endWorldPosition = Camera.main.ScreenToWorldPoint(new Vector3(endTouchPosition.x, endTouchPosition.y, 10));
+            Debug.DrawLine(startWorldPosition, endWorldPosition, Color.red, 2.0f);
+            // Adicione aqui a lógica para o que deve acontecer após o swipe
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
-using Microsoft.Unity.VisualStudio.Editor;
+
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
