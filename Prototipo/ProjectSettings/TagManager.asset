@@ -13,6 +13,7 @@ TagManager:
   - Comment
   - 1
   - SlideScore
+  - arrow
   layers:
   - Default
   - TransparentFX

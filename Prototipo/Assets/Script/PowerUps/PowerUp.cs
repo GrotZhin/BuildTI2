@@ -15,14 +15,9 @@ public class PowerUp : MonoBehaviour
       
     }
 
-
-    void OnTriggerEnter(Collider other)
+    public void BateryFill()
     {
-        Player player = other.GetComponent<Player>();
-        if (player != null)
-        {
-            batery.fillAmount = 1;
-        }
+        batery.fillAmount = 1;
     }
     public void Boost()
     {

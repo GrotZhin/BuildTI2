@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     private CharacterController characterController;
     public Camera CAM;
+    public PowerUp powerUp;
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -37,10 +38,6 @@ public class Player : MonoBehaviour
     public float jumpTimer = 0.0f;
     public float jumpGroundTreshhold = 1;
 
-    public LayerMask groundLayerMask;
-    public LayerMask obstacleLayerMask;
-    public LayerMask scoreLayerMask;
-    public LayerMask powerUpLayerMask;
     float groundDistance;
     public bool assist = false;
 
@@ -68,11 +65,14 @@ public class Player : MonoBehaviour
 
     public bool isDead = false;
     public bool cheat = false;
+    public bool grind = false;
     GameObject prefab;
     // Start is called before the first frame update
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
+        powerUp = GameObject.Find("GM").GetComponent<PowerUp>();
+
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
@@ -274,9 +274,9 @@ public class Player : MonoBehaviour
         Ranani.SetTrigger("Hit");
         CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
     }
-    void HitPowerUp(PowerUp powerUp)
+    void HitPowerUp(Batery batery)
     {
-        Destroy(powerUp.gameObject);
+        Destroy(batery.gameObject);
     }
 
 
@@ -301,7 +301,11 @@ public class Player : MonoBehaviour
 
 
     }
-
+    public void Grind()
+    {
+        grind = true;
+        
+    }
     void OnTriggerEnter(Collider other)
     {
         Obstacle obstacle = other.GetComponent<Obstacle>();
@@ -333,10 +337,11 @@ public class Player : MonoBehaviour
             }
         }
 
-        PowerUp powerUp = other.gameObject.GetComponent<PowerUp>();
-        if (powerUp != null)
+        Batery batery = other.gameObject.GetComponent<Batery>();
+        if (batery != null)
         {
-            HitPowerUp(powerUp);
+            HitPowerUp(batery);
+            powerUp.BateryFill();
             Instantiate(PWPP, transform.position, Quaternion.identity, RannaT);
         }
     }
@@ -346,8 +351,8 @@ public class Player : MonoBehaviour
         cheat = !cheat;
 
     }
-    
-     #region animations
+
+    #region animations
 
     public void ChangeLayersWeight()
     {
