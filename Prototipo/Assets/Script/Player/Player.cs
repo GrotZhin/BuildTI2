@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
     public bool isDead = false;
     public bool cheat = false;
-    public bool grind = false;
+    public bool isGrind = false;
     GameObject prefab;
     // Start is called before the first frame update
     void Start()
@@ -100,19 +100,16 @@ public class Player : MonoBehaviour
 
         }
 
-
         if (!sekkerInstantiate)
         {
             if (speed.x <= 7)
             {
                 sekkerInstantiate = true;
-                //ISekker();
+                ISekker();
 
             }
 
         }
-
-
 
         groundDistance = Mathf.Abs(pos.y - groundHeight);
 
@@ -128,11 +125,10 @@ public class Player : MonoBehaviour
                 Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.32f, transform.position.z);
                 PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
 
-
             }
 
         }
-
+       
         if (characterController.isGrounded || groundDistance <= jumpGroundTreshhold)
         {
 
@@ -239,7 +235,7 @@ public class Player : MonoBehaviour
 
         }
 
-        distance += speed.x * Time.fixedDeltaTime;
+        distance += pos.x * Time.fixedDeltaTime;
 
         if (characterController.isGrounded)
         {
@@ -255,7 +251,7 @@ public class Player : MonoBehaviour
             }
 
         }
-
+   
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
 
     }
@@ -284,13 +280,14 @@ public class Player : MonoBehaviour
     {
         Vector3 pos = transform.position;
         Ground ground = hit.collider.GetComponent<Ground>();
-
+        Grind grind = hit.collider.GetComponent<Grind>();
 
         if (ground == null && hit.moveDirection == Vector3.up)
         {
             groundHeight = ground.groundHeight + 0.35f;
             pos.y = groundHeight;
             speed.y = 0;
+            isGrind = false;
         }
 
         if (ground == null && hit.moveDirection == Vector3.right)
@@ -298,14 +295,18 @@ public class Player : MonoBehaviour
             Debug.Log("atingiuX");
             speed.x = 5;
         }
+        if (grind == null && hit.moveDirection == Vector3.up)
+        {
+            groundHeight = grind.groundHeight + 0.35f;
+            pos.y = groundHeight;
+            speed.y = 0;
+            transform.rotation = grind.transform.rotation;
+            isGrind = true;
+        }
 
 
     }
-    public void Grind()
-    {
-        grind = true;
-        
-    }
+   
     void OnTriggerEnter(Collider other)
     {
         Obstacle obstacle = other.GetComponent<Obstacle>();

@@ -20,6 +20,7 @@ public class Ground : MonoBehaviour
     public GameObject[] groundPrefab;
     public GameObject scoreCollider;
     public GameObject powerUp;
+    float timer = 0;
 
     private void Awake()
     {
@@ -44,9 +45,15 @@ public class Ground : MonoBehaviour
 
         if (screenLeft >= groundRight)
         {
+            timer += Time.deltaTime;
+            if (timer >= 3)
+            {
+                Destroy(gameObject);
+                timer = 0;
+                return;
+                
+            }
             
-            Destroy(gameObject);
-            return;
         }
 
 

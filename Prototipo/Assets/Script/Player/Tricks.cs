@@ -15,26 +15,30 @@ public class Tricks : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       player = GetComponent<Player>();
+        player = GetComponent<Player>();
     }
     void Update()
     {
-        if (player.grind)
+        //if (player.grind)
+        //{
+        timer += Time.deltaTime;
+        if (timer >= 5)
         {
-            timer += Time.deltaTime;
-            if (timer >= 3)
-            {
-                direction = Trick();
-                timer = 0;
-            }
+            direction = Trick();
+            timer = 0;
         }
+        //}
         arrowsRef = GameObject.FindGameObjectWithTag("arrow").GetComponent<Arrows>();
 
         if (direction == 0)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && arrowsRef.transform.position.x > transform.position.x)
             {
-                trickPoint += 20;
+                player.score += 20;
+                arrowsRef.DestroyArrow();
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
                 arrowsRef.DestroyArrow();
             }
         }
@@ -42,7 +46,11 @@ public class Tricks : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.DownArrow) && arrowsRef.transform.position.x > transform.position.x)
             {
-                trickPoint += 20;
+                player.score += 20;
+                arrowsRef.DestroyArrow();
+            }
+            else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
                 arrowsRef.DestroyArrow();
             }
         }
@@ -50,7 +58,11 @@ public class Tricks : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow) && arrowsRef.transform.position.x > transform.position.x)
             {
-                trickPoint += 20;
+                player.score += 20;
+                arrowsRef.DestroyArrow();
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
                 arrowsRef.DestroyArrow();
             }
         }
@@ -58,8 +70,12 @@ public class Tricks : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightArrow) && arrowsRef.transform.position.x > transform.position.x)
             {
-                trickPoint += 20;
-                
+                player.score += 20;
+
+            }
+            else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                arrowsRef.DestroyArrow();
             }
         }
 
