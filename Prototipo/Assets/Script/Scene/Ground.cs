@@ -95,10 +95,10 @@ public class Ground : MonoBehaviour
             pos.y = 7;
         }
 
-        float maxX = screenRight + 10;
+        float maxX = screenRight + 1;
 
 
-        float minX = screenRight + 5;
+        float minX = screenRight + 0.5f;
 
         float actualX = UnityEngine.Random.Range(minX, maxX);
 

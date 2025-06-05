@@ -104,7 +104,7 @@ public class GameUiController : MonoBehaviour
     public async void Retry()
     {
         await RetryAni();
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameSceneReg");
 
     }
     public void Pause()

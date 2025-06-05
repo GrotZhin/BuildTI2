@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SlideObsAc
-  m_Shader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: c0436aa8ccab6134db809674a3f5f2ad, type: 2}
+  m_Shader: {fileID: -6465566751694194690, guid: 6e4e9441ea585a04186003a8ae9f2ce6, type: 3}
+  m_Parent: {fileID: 2100000, guid: 985f853124be77b48a35aefc7e393450, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -33,7 +33,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _QueueControl: 0
     m_Colors:
     - _Color: {r: 0.9132147, g: 0.9406539, b: 0.94716984, a: 1}
   m_BuildTextureStacks: []

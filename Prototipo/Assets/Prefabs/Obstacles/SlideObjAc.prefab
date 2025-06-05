@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 865172461703059384}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.114, z: 0}
+  m_LocalPosition: {x: 0, y: 0.503, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6001854001322114074, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.015
+      value: 0.17500006
       objectReference: {fileID: 0}
     - target: {fileID: -3407786506686809143, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
       propertyPath: m_Name
@@ -131,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5bc9f584271f99142b78292630a0067f, type: 2}
     - target: {fileID: 78375972765565045, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.747
+      value: 1.937
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
       propertyPath: m_Name
@@ -149,9 +149,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: e98b17e46e88fdf4e85fa9da083f8c12, type: 2}
+    - target: {fileID: 5658501965625587318, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658501965625587318, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.19000006
+      objectReference: {fileID: 0}
     - target: {fileID: 7518656631148377671, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518656631148377671, guid: 533131d52689cdb429fe99d39a84386a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

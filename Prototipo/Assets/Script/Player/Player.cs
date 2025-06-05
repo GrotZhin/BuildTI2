@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,11 +7,18 @@ using UnityEngine;
 using UnityEngine.Accessibility;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using RWM;
+using DG.Tweening;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
+
+
 
 public class Player : MonoBehaviour
 {
 
     private CharacterController characterController;
+    public Camera CAM;
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -42,6 +49,23 @@ public class Player : MonoBehaviour
     public GameObject sekker;
     public bool sekkerInstantiate = false;
 
+    //Animation
+    public GameObject Ranna;
+    public Animator Ranani;
+    public GameObject JumpPP;
+    public GameObject SlidePP;
+    public GameObject PWPP;
+    public Transform RannaT;
+    Vector3 PP;
+    public float fbkTimer;
+    public float SldTimer;
+
+    //reactions
+    public GameObject comJ;
+    public GameObject comS;
+    public Transform ReDad;
+
+
     public bool isDead = false;
     public bool cheat = false;
     GameObject prefab;
@@ -49,14 +73,32 @@ public class Player : MonoBehaviour
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
+        Ranani = Ranna.GetComponent<Animator>();
+        Ranani.SetLayerWeight(0, 1);
+        Ranani.SetLayerWeight(1, 0);
 
     }
 
     // Update is called once per frame
     private void Update()
     {
-
+        PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
         Vector2 pos = transform.position;
+
+        ChangeLayersWeight();
+        if (characterController.isGrounded)
+        {
+
+            Ranani.SetBool("JumpTricks", false);
+            Ranani.SetBool("FallBack1", true);
+            fbkTimer += Time.deltaTime;
+            if (fbkTimer >= 2)
+            {
+                Ranani.SetBool("FallBack1", false);
+                fbkTimer = 0;
+            }
+
+        }
 
 
         if (!sekkerInstantiate)
@@ -64,7 +106,7 @@ public class Player : MonoBehaviour
             if (speed.x <= 7)
             {
                 sekkerInstantiate = true;
-                ISekker();
+                //ISekker();
 
             }
 
@@ -77,11 +119,15 @@ public class Player : MonoBehaviour
         if (slider)
         {
             sliderTimer += Time.deltaTime;
-            if (sliderTimer >= 0.8f)
+            if (sliderTimer >= 1.3f)
             {
                 characterController.height = 2.0f;
                 slider = false;
                 sliderTimer = 0;
+                Ranani.SetBool("SlideTrick", false);
+                Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.32f, transform.position.z);
+                PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
+
 
             }
 
@@ -96,6 +142,8 @@ public class Player : MonoBehaviour
             {
                 Jump();
 
+
+
             }
         }
         if (!slider)
@@ -103,6 +151,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Slide();
+
             }
         }
         // Teclado
@@ -115,11 +164,26 @@ public class Player : MonoBehaviour
     {
         assist = true;
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
+        soundManager.PlaySound(SoundType.Jump);
+
+        Ranani.SetBool("SlideTrick", false);
+        Ranani.SetBool("FallBack", false);
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
+        Ranani.SetBool("JumpTricks", true);
+
+        Instantiate(JumpPP, PP, Quaternion.identity);
+
     }
     public void Slide()
     {
         slider = true;
+        Ranna.transform.position = new Vector3(transform.position.x, transform.position.y + 0.8f, transform.position.z);
+        PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.2f, characterController.transform.position.z);
         characterController.height = 0.7f;
+        Instantiate(SlidePP, PP, Quaternion.identity, RannaT);
+        Ranani.SetInteger("SlideTrickIndex", Random.Range(0, 3));
+        Ranani.SetBool("SlideTrick", true);
+        soundManager.PlaySound(SoundType.Slide);
 
     }
 
@@ -170,7 +234,8 @@ public class Player : MonoBehaviour
             {
                 speed.y += gravity * Time.fixedDeltaTime;
             }
-
+            Ranani.SetBool("FallBack1", false);
+            Ranani.SetBool("JumpTricks", true);
 
         }
 
@@ -205,11 +270,13 @@ public class Player : MonoBehaviour
     {
         obstacle.boxCollider.enabled = false;
         speed.x *= 0.8f;
+        soundManager.PlaySound(SoundType.Hit);
+        Ranani.SetTrigger("Hit");
+        CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
     }
     void HitPowerUp(PowerUp powerUp)
     {
         Destroy(powerUp.gameObject);
-        speed.x += speed.x * 0.10f;
     }
 
 
@@ -246,11 +313,31 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Score"))
         {
             score += 10;
+
+            int randob = Random.Range(0, 10);
+            if (randob >= 5)
+            {
+                Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
+                soundManager.PlaySound(SoundType.Plamn);
+            }
         }
+        if (other.gameObject.CompareTag("SlideScore"))
+        {
+            score += 10;
+
+            int randob = Random.Range(0, 10);
+            if (randob >= 5)
+            {
+                Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
+                soundManager.PlaySound(SoundType.Plamn);
+            }
+        }
+
         PowerUp powerUp = other.gameObject.GetComponent<PowerUp>();
         if (powerUp != null)
         {
             HitPowerUp(powerUp);
+            Instantiate(PWPP, transform.position, Quaternion.identity, RannaT);
         }
     }
     [ContextMenu("Cheat")]
@@ -259,6 +346,29 @@ public class Player : MonoBehaviour
         cheat = !cheat;
 
     }
+    
+     #region animations
+
+    public void ChangeLayersWeight()
+    {
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+
+            Ranani.SetLayerWeight(1, 1);
+            Ranani.SetLayerWeight(0, 0);
+        }
+        else if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+
+            Ranani.SetLayerWeight(1, 0);
+            Ranani.SetLayerWeight(0, 1);
+        }
+
+    }
+
+
+    #endregion
+
 
 
 }

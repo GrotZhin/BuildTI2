@@ -1240,20 +1240,20 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Menu Layer
-    m_StateMachine: {fileID: 9157914821167353363}
+    m_Name: Game Layer
+    m_StateMachine: {fileID: 1717700443454260329}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: -1
-    m_DefaultWeight: 0
+    m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Game Layer
-    m_StateMachine: {fileID: 1717700443454260329}
+    m_Name: Menu Layer
+    m_StateMachine: {fileID: 9157914821167353363}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -1547,15 +1547,15 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 9169629272468029975}
-    second:
-    - {fileID: 6749252179719633027}
-    - {fileID: 5085037148232562616}
   - first: {fileID: -8767579896574532573}
     second:
     - {fileID: -1850567530765004954}
     - {fileID: -4604610401567635756}
     - {fileID: -820224610065939994}
+  - first: {fileID: 9169629272468029975}
+    second:
+    - {fileID: 6749252179719633027}
+    - {fileID: 5085037148232562616}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -460, y: 250, z: 0}
   m_EntryPosition: {x: -460, y: 290, z: 0}
