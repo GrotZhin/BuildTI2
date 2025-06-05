@@ -1,0 +1,34 @@
+{
+    "name": "touchAction",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "25f03cbc-d8aa-4a4a-9543-b2b0bc531b09",
+            "actions": [
+                {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "1c32b057-1774-4b2c-b8e3-46872b747f77",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ee8c9023-89f8-4254-be2e-4a40d47b9a63",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
