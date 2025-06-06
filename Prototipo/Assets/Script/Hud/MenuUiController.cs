@@ -382,17 +382,16 @@ public class MenuUiController : MonoBehaviour
 
     public void RannaAniWdb()
     {
-        if (Ranna != null){
             
             Ranani.SetBool("IsCustom", true);
-        }
+        
     }
     public void RannaAniMenu()
     {
-        if (Ranna != null)
-        {
+     
+            
             Ranani.SetBool("IsCustom", false); 
-        }
+    
     }
 }
 

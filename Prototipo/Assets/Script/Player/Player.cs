@@ -90,6 +90,7 @@ public class Player : MonoBehaviour
         {
 
             Ranani.SetBool("JumpTricks", false);
+            
             Ranani.SetBool("FallBack1", true);
             fbkTimer += Time.deltaTime;
             if (fbkTimer >= 2)
@@ -166,6 +167,7 @@ public class Player : MonoBehaviour
         Ranani.SetBool("FallBack", false);
         Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
         Ranani.SetBool("JumpTricks", true);
+        Ranani.SetBool("GrindTrick", false);
 
         Instantiate(JumpPP, PP, Quaternion.identity);
 
@@ -232,6 +234,7 @@ public class Player : MonoBehaviour
             }
             Ranani.SetBool("FallBack1", false);
             Ranani.SetBool("JumpTricks", true);
+            Ranani.SetBool("GrindTrick", false);
 
         }
 
@@ -282,28 +285,30 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-        if (ground == null && hit.moveDirection == Vector3.up)
-        {
-            groundHeight = ground.groundHeight + 0.35f;
-            pos.y = groundHeight;
-            speed.y = 0;
-            isGrind = false;
-        }
+        /* if (ground == null && hit.moveDirection == Vector3.up)
+         {
+             groundHeight = ground.groundHeight + 0.35f;
+             pos.y = groundHeight;
+             speed.y = 0;
+             isGrind = false;
+             Debug.Log(isGrind);
+         }*/
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
             Debug.Log("atingiuX");
             speed.x = 5;
         }
-        if (grind == null && hit.moveDirection == Vector3.up)
-        {
-            groundHeight = grind.groundHeight + 0.35f;
-            pos.y = groundHeight;
-            speed.y = 0;
-            transform.rotation = grind.transform.rotation;
-            isGrind = true;
-        }
-
+        
+       /*if (grind == null && hit.moveDirection == Vector3.up)
+         {
+             groundHeight = grind.groundHeight + 0.35f;
+             pos.y = groundHeight;
+             speed.y = 0;
+             //transform.rotation = grind.transform.rotation;
+             isGrind = true;
+             Debug.Log(isGrind);
+         }*/
 
     }
    
