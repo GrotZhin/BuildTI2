@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+    
         Vector2 pos = transform.position;
 
         if (isDead)
@@ -201,19 +201,18 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (pos.y <= 3 && !cheat)
+        if (pos.y <= 3 && cheat == false)
 
         {
             isDead = true;
             speed.x = 0;
+            Debug.Log("cheat off");
         }
-        else if (pos.y <= 3 && cheat)
+         if (pos.y <= 3 && cheat == true)
         {
+            Debug.Log("cheat on");
             speed.y = groundHeight + 20;
             speed.x = 5;
-
-
-
 
         }
         if (isHoldingJump)
@@ -351,7 +350,7 @@ public class Player : MonoBehaviour
             Instantiate(PWPP, transform.position, Quaternion.identity, RannaT);
         }
     }
-    [ContextMenu("Cheat")]
+    
     public void Cheat()
     {
         cheat = !cheat;

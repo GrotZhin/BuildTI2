@@ -55,6 +55,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7478300a2ea41149b68129a149d9d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CAM: {fileID: 0}
+  powerUp: {fileID: 0}
   gravity: -30
   speed: {x: 0, y: 0}
   score: 0
@@ -70,25 +72,23 @@ MonoBehaviour:
   maxHoldJump: 0.4
   jumpTimer: 0
   jumpGroundTreshhold: 0.5
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  scoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  powerUpLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
+  assist: 0
   sekker: {fileID: 1701228884210495130, guid: 320038c12df6f1043bc918dfcb8195a7, type: 3}
+  sekkerInstantiate: 0
   Ranna: {fileID: 2887147026516656544}
   Ranani: {fileID: 645862422275344586}
-  Menulayer: MenuLayer
-  Gamelayer: GameLayer
+  JumpPP: {fileID: 0}
+  SlidePP: {fileID: 0}
+  PWPP: {fileID: 0}
+  RannaT: {fileID: 0}
+  fbkTimer: 0
+  SldTimer: 0
+  comJ: {fileID: 0}
+  comS: {fileID: 0}
+  ReDad: {fileID: 0}
   isDead: 0
   cheat: 0
+  isGrind: 0
 --- !u!143 &7085107929935990603
 CharacterController:
   m_ObjectHideFlags: 0

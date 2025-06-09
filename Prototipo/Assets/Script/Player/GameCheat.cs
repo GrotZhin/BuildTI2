@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameCheat : MonoBehaviour
 {
-    Player player;
+  /*  Player player;
      Ground ground;
      CharacterController characterController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,5 +24,5 @@ public class GameCheat : MonoBehaviour
             transform.position = refPos;
             return;
         }
-    }
+    }*/
 }

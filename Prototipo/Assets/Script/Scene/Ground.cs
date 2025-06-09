@@ -60,7 +60,6 @@ public class Ground : MonoBehaviour
 
         if (!didGenerateGround)
         {
-            Debug.Log("Status" + didGenerateGround);
             if (groundRight <= screenRight)
             {
                 didGenerateGround = true;
