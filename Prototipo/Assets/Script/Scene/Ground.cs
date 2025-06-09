@@ -84,7 +84,7 @@ public class Ground : MonoBehaviour
         float t = player.jumpSpeed / -player.gravity;
         float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
-        float maxY = player.transform.position.y + maxJumpHeight * 0.7f;
+        float maxY = player.transform.position.y + maxJumpHeight * 10f;
 
 
         float minY = 7;
