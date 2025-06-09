@@ -4,24 +4,24 @@ public class MoverQuandoOutroAtinge : MonoBehaviour
 {
     [Header("Referências")]
     [SerializeField] private GameObject player;           // Quem será monitorado
-    [SerializeField] private GameObject objetoAlvo;       // Quem será movido
+    [SerializeField] private GameObject objectAim;       // Quem será movido
 
     [Header("Configuração de Posição")]
-    [SerializeField] private float novaPosicaoXDoAlvo ;   // Novo X do objetoAlvo
+    [SerializeField] private float newPosition;   // Novo X do objectAim
 
 
     void Update()
     {
-        if (player == null || objetoAlvo == null) return;
+        if (player == null || objectAim == null) return;
 
         float posPlayer = player.transform.position.x;
-        float posBuild = objetoAlvo.transform.position.x;
+        float posBuild = objectAim.transform.position.x;
 
         if (posPlayer >= posBuild + 40f)
         {
-            Vector3 novaPosicao = objetoAlvo.transform.position;
-            novaPosicao.x = posBuild + novaPosicaoXDoAlvo;
-            objetoAlvo.transform.position = novaPosicao;
+            Vector3 novaPosicao = objectAim.transform.position;
+            novaPosicao.x = posBuild + newPosition;
+            objectAim.transform.position = novaPosicao;
         }
     }
 }
