@@ -19,6 +19,7 @@ public class Tricks : MonoBehaviour
     }
     void Update()
     {
+
         timer += Time.deltaTime;
         if (timer >= 5)
         {
@@ -26,7 +27,9 @@ public class Tricks : MonoBehaviour
             timer = 0;
         }
         
-        arrowsRef = GameObject.FindGameObjectWithTag("arrow").GetComponent<Arrows>();
+              arrowsRef = GameObject.FindGameObjectWithTag("arrow").GetComponent<Arrows>();
+        
+      
 
         if (direction == 0)
         {

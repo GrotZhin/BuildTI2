@@ -6,8 +6,8 @@
             "id": "25f03cbc-d8aa-4a4a-9543-b2b0bc531b09",
             "actions": [
                 {
-                    "name": "TouchPress",
-                    "type": "Value",
+                    "name": "HandleTouch",
+                    "type": "Button",
                     "id": "1c32b057-1774-4b2c-b8e3-46872b747f77",
                     "expectedControlType": "",
                     "processors": "",
@@ -32,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TouchPress",
+                    "action": "HandleTouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -17,7 +17,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    private CharacterController characterController;
+    public CharacterController characterController;
     public Camera CAM;
     public PowerUp powerUp;
     public float gravity;
@@ -280,14 +280,14 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-        /* if (ground == null && hit.moveDirection == Vector3.up)
+         if (ground == null && hit.moveDirection == Vector3.up)
          {
              groundHeight = ground.groundHeight + 0.35f;
              pos.y = groundHeight;
              speed.y = 0;
              isGrind = false;
              Debug.Log(isGrind);
-         }*/
+         }
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
@@ -295,7 +295,7 @@ public class Player : MonoBehaviour
             speed.x = 5;
         }
         
-       /*if (grind == null && hit.moveDirection == Vector3.up)
+       if (grind == null && hit.moveDirection == Vector3.up)
          {
              groundHeight = grind.groundHeight + 0.35f;
              pos.y = groundHeight;
@@ -303,7 +303,7 @@ public class Player : MonoBehaviour
              //transform.rotation = grind.transform.rotation;
              isGrind = true;
              Debug.Log(isGrind);
-         }*/
+         }
 
     }
    
@@ -346,13 +346,8 @@ public class Player : MonoBehaviour
             Instantiate(PWPP, transform.position, Quaternion.identity, RannaT);
         }
     }
-    
-    public void Cheat()
-    {
-        cheat = !cheat;
 
-    }
-
+ 
     #region animations
 
     public void ChangeLayersWeight()
