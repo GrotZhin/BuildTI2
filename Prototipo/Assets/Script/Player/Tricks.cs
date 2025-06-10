@@ -19,15 +19,13 @@ public class Tricks : MonoBehaviour
     }
     void Update()
     {
-        //if (player.grind)
-        //{
         timer += Time.deltaTime;
         if (timer >= 5)
         {
             direction = Trick();
             timer = 0;
         }
-        //}
+        
         arrowsRef = GameObject.FindGameObjectWithTag("arrow").GetComponent<Arrows>();
 
         if (direction == 0)

@@ -2,7 +2,7 @@ using static shopData;
 using UnityEngine;
 using System.IO;
 
-public class LoadSystem : MonoBehaviour
+public class shopLoadSystem : MonoBehaviour
 {
     public ShopData LoadShopData()
     {

@@ -977,6 +977,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 843672165285594556, guid: 5b5df72fb6d7ea24cba701b10dec2212, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1695849729183183635, guid: 5b5df72fb6d7ea24cba701b10dec2212, type: 3}
       propertyPath: m_LocalPosition.x
       value: 55.9
@@ -2517,7 +2521,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 1
   orthographic size: 4
@@ -4240,6 +4244,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 843672165285594556, guid: 5b5df72fb6d7ea24cba701b10dec2212, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1695849729183183635, guid: 5b5df72fb6d7ea24cba701b10dec2212, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.25
