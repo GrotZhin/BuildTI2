@@ -2,13 +2,22 @@
     "name": "touchAction",
     "maps": [
         {
-            "name": "Touch",
+            "name": "TouchPress",
             "id": "25f03cbc-d8aa-4a4a-9543-b2b0bc531b09",
             "actions": [
                 {
-                    "name": "Jump",
+                    "name": "TouchPress",
                     "type": "Value",
                     "id": "1c32b057-1774-4b2c-b8e3-46872b747f77",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchPosition",
+                    "type": "Value",
+                    "id": "92cb7b2a-5b78-4f52-91d1-c00f91e7f747",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -23,7 +32,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "TouchPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0081124-3ee1-442b-85d2-b909e3c7d627",
+                    "path": "<Touchscreen>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

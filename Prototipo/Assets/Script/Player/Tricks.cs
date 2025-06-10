@@ -78,7 +78,6 @@ public class Tricks : MonoBehaviour
                 arrowsRef.DestroyArrow();
             }
         }
-
     }
 
     // Update is called once per frame

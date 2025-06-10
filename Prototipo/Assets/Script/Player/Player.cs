@@ -138,9 +138,6 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
-
-
-
             }
         }
         if (!slider)
@@ -148,7 +145,6 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Slide();
-
             }
         }
         // Teclado
