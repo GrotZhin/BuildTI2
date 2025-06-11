@@ -42,11 +42,5 @@ public class ReactionTextsAni : MonoBehaviour
     {
         await Text.DOAnchorPosX(Back, 1).AsyncWaitForCompletion();
     }
-    
-
-
-
-    
-
 
 }

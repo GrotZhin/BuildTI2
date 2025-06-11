@@ -20,7 +20,7 @@ public class CamCompAni : MonoBehaviour
     
     public void ChangeLayersWeight()
     {
-        if (SceneManager.GetActiveScene().name == "GameSceneReg")
+        if (SceneManager.GetActiveScene().name == "GameScene")
         {
 
             Canani.SetLayerWeight(1, 1);

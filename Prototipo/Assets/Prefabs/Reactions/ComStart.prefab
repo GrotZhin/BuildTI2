@@ -438,6 +438,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text (TMP)Names
       objectReference: {fileID: 0}
+    - target: {fileID: 6728453882221623878, guid: aabb29a596dc5bb48976d22e23da3473, type: 3}
+      propertyPath: ReactionsJ.Array.size
+      value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728453882221623878, guid: aabb29a596dc5bb48976d22e23da3473, type: 3}
+      propertyPath: 'ReactionsJ.Array.data[76]'
+      value: '@Lexios'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728453882221623878, guid: aabb29a596dc5bb48976d22e23da3473, type: 3}
+      propertyPath: 'ReactionsJ.Array.data[77]'
+      value: '@Filthy_Acts_At_A_Reasonable_Price'
+      objectReference: {fileID: 0}
     - target: {fileID: 7791352158828079291, guid: aabb29a596dc5bb48976d22e23da3473, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

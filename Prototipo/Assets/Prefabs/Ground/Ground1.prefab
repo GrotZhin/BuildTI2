@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &133695811982033937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8958100419445181309}
+  m_Layer: 0
+  m_Name: coli
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8958100419445181309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133695811982033937}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4692167, y: 0.20270137, z: -12.736985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2405144075942958864}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1902924018311492512
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4930542994470649472}
+  - component: {fileID: 4337692159516981520}
   m_Layer: 0
   m_Name: Ground1
   m_TagString: Untagged
@@ -32,6 +64,27 @@ Transform:
   - {fileID: 2405144075942958864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4337692159516981520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902924018311492512}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 31.5345, y: 15.054531, z: 1}
+  m_Center: {x: 1.0509281, y: -4.530054, z: 0}
 --- !u!1 &3904835364930613372
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +212,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: aebc7a9013fe29b4e88f22bee8064bc6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6161316367398794354}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: aebc7a9013fe29b4e88f22bee8064bc6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8958100419445181309}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aebc7a9013fe29b4e88f22bee8064bc6, type: 3}
       insertIndex: -1
@@ -199,8 +255,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 33.628456, y: 15.06761, z: 1.9697844}
-  m_Center: {x: 2.025155, y: -4.5049896, z: 0.7807329}
+  m_Size: {x: 31.521784, y: 15.06761, z: 1.9697844}
+  m_Center: {x: 0.9718218, y: -4.5049896, z: 0.7807329}
 --- !u!114 &8836355291297148701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +276,7 @@ MonoBehaviour:
   boxPrefab: []
   ref1: {fileID: 3904835364930613372}
   ref2: {fileID: 8800077151404923360}
-  collider: {fileID: 0}
+  collider: {fileID: 7902562242716893607}
 --- !u!114 &1915455840739689582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,16 +294,15 @@ MonoBehaviour:
   screenRight: 0
   screenLeft: 0
   cameraHalfSize: 0
-  boxPrefab:
-  - {fileID: 1454588052972788701, guid: d882e39509afe614dadec42277c1b646, type: 3}
-  - {fileID: 5775124026349730515, guid: 9a7b3b59fbc0e4e4d84fe8074315785f, type: 3}
-  - {fileID: 5775124026349730515, guid: 84f6cbdfe17c44241af27a749c92fd09, type: 3}
-  - {fileID: 5775124026349730515, guid: ca999b4a3e8491147b1c46a905cdf6db, type: 3}
-  - {fileID: 6038671583508131553, guid: 2efafce968c5be046a72633060a62a20, type: 3}
-  - {fileID: 6038671583508131553, guid: 2efafce968c5be046a72633060a62a20, type: 3}
+  boxPrefab: []
   groundPrefab:
-  - {fileID: 1902924018311492512}
   - {fileID: 1902924018311492512, guid: 774e547bcbaaba24fb07014c97df6b56, type: 3}
   - {fileID: 1902924018311492512, guid: 81895efff25758747971c607a93256fe, type: 3}
+  - {fileID: 1902924018311492512, guid: 72318dd6ca7dc55488a02cd93dcd85f3, type: 3}
+  - {fileID: 1902924018311492512, guid: 0550241524b53dc41a43484c1b6c4a92, type: 3}
+  - {fileID: 1902924018311492512, guid: 6f72b5acda336d54b9892955ce1292f8, type: 3}
+  - {fileID: 1902924018311492512, guid: de7d7e344cb88ef4d983253916864529, type: 3}
+  - {fileID: 1902924018311492512, guid: 7e7b3888dca2d8b4fad8bae963ced135, type: 3}
+  - {fileID: 1902924018311492512, guid: 74d49b6319b72224a96930803c030107, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
