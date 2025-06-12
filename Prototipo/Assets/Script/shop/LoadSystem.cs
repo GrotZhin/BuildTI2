@@ -2,16 +2,16 @@ using static shopData;
 using UnityEngine;
 using System.IO;
 
-public class shopLoadSystem : MonoBehaviour
+public class LoadSystem : MonoBehaviour
 {
-    public ShopData LoadShopData()
+    public void LoadData()
     {
         string path = Application.persistentDataPath + "/shopData.json";
 
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            ShopData data = JsonUtility.FromJson<ShopData>(json);
+            Data data = JsonUtility.FromJson<ShopData>(json);
             return data;
         }
         else

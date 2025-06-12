@@ -1077,6 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7478300a2ea41149b68129a149d9d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
   CAM: {fileID: 0}
   powerUp: {fileID: 0}
   gravity: 0
@@ -1292,6 +1293,97 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!1 &123009121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 123009126}
+  - component: {fileID: 123009125}
+  - component: {fileID: 123009124}
+  - component: {fileID: 123009123}
+  - component: {fileID: 123009122}
+  m_Layer: 0
+  m_Name: skinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &123009122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123009121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5e7fdc123b89ff4e9709a002533475a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &123009123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123009121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72e9114c9d31024d80b741aa7cc74d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &123009124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123009121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 635e5af5e3ce9104989607216b84cc98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &123009125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123009121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b94fbb8d5ac9546a651a9abed1a524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinEquipada:
+    nome: default
+    hatMaterial: {fileID: 2100000, guid: 59b301ce5b1999945b2f6b702e3aee42, type: 2}
+    bodyMaterial: {fileID: 2100000, guid: 3fa05264a6b756e40b08f95b1eb640e0, type: 2}
+    hatMesh: {fileID: 857239700118591053, guid: c9d3054c8c2e1654cac4e81dee62fb46, type: 3}
+    bodyMesh: {fileID: 2959467708922500008, guid: c9d3054c8c2e1654cac4e81dee62fb46, type: 3}
+    preco: 0
+    comprada: 1
+--- !u!4 &123009126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123009121}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 767.3039, y: 561.6178, z: -925.1224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &139251884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2590,6 +2682,7 @@ GameObject:
   - component: {fileID: 237016723}
   - component: {fileID: 237016722}
   - component: {fileID: 237016721}
+  - component: {fileID: 237016725}
   m_Layer: 5
   m_Name: CostumeContent
   m_TagString: Untagged
@@ -2699,6 +2792,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237016719}
   m_CullTransparentMesh: 1
+--- !u!114 &237016725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237016719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4593b488fce3e3c478130b376aadb977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins:
+  - nome: Teste
+    hatMaterial: {fileID: 2100000, guid: 90e2665e8fa6cd040aaea252954bfa7c, type: 2}
+    bodyMaterial: {fileID: 2100000, guid: 90e2665e8fa6cd040aaea252954bfa7c, type: 2}
+    hatMesh: {fileID: 857239700118591053, guid: c9d3054c8c2e1654cac4e81dee62fb46, type: 3}
+    bodyMesh: {fileID: 2959467708922500008, guid: 3a5e275629041fa44baf343e3086f490, type: 3}
+    preco: 200
+    comprada: 0
+  indexAtual: 1
+  botaoComprar: {fileID: 0}
+  botaoEquipar: {fileID: 0}
+  precoTexto: {fileID: 0}
 --- !u!1 &238121836
 GameObject:
   m_ObjectHideFlags: 0
@@ -8528,6 +8645,7 @@ GameObject:
   - component: {fileID: 1117163672}
   - component: {fileID: 1117163671}
   - component: {fileID: 1117163670}
+  - component: {fileID: 1117163674}
   m_Layer: 5
   m_Name: HatContent
   m_TagString: Untagged
@@ -8637,6 +8755,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117163668}
   m_CullTransparentMesh: 1
+--- !u!114 &1117163674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117163668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4593b488fce3e3c478130b376aadb977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins: []
+  indexAtual: 0
+  botaoComprar: {fileID: 0}
+  botaoEquipar: {fileID: 0}
+  precoTexto: {fileID: 0}
 --- !u!1 &1120551492
 GameObject:
   m_ObjectHideFlags: 0
@@ -13976,3 +14111,4 @@ SceneRoots:
   - {fileID: 1278089630}
   - {fileID: 597287177}
   - {fileID: 238121840}
+  - {fileID: 123009126}

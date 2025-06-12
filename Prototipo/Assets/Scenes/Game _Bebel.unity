@@ -366,11 +366,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 30
-  limiteDireita: 19.2
-  limiteEsquerda: -38.2
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &70576361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1630,6 +1629,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09d4e7a6c0ee3224da44c379ca78f811, type: 3}
+--- !u!1 &538816824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 538816826}
+  - component: {fileID: 538816825}
+  m_Layer: 0
+  m_Name: skinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &538816825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538816824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b94fbb8d5ac9546a651a9abed1a524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinEquipada:
+    nome: Default
+    hatMaterial: {fileID: 2100000, guid: 59b301ce5b1999945b2f6b702e3aee42, type: 2}
+    bodyMaterial: {fileID: 2100000, guid: 3fa05264a6b756e40b08f95b1eb640e0, type: 2}
+    hatMesh: {fileID: 857239700118591053, guid: 3a5e275629041fa44baf343e3086f490, type: 3}
+    bodyMesh: {fileID: 2959467708922500008, guid: 3a5e275629041fa44baf343e3086f490, type: 3}
+    preco: 0
+    comprada: 1
+--- !u!4 &538816826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 538816824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 602.9517, y: 168.42313, z: 159.52951}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &565248164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2821,11 +2872,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 30
-  limiteDireita: 19.2
-  limiteEsquerda: -38.2
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &849260852
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3517,6 +3567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cfb38233f7870458954de9fffab315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartTimer: 0.5
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,11 +3658,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 30
-  limiteDireita: 0
-  limiteEsquerda: 0
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &965486310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4346,11 +4396,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 9
-  limiteDireita: 19.2
-  limiteEsquerda: -38.4
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &1211821181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5019,11 +5068,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 30
-  limiteDireita: 19.2
-  limiteEsquerda: -38.2
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &1444372451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5374,11 +5422,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 30
-  limiteDireita: 0
-  limiteEsquerda: 0
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &1620722486
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6379,14 +6426,20 @@ MonoBehaviour:
   MenuAni: {fileID: 650480830}
   UpBar: {fileID: 2007857712}
   DownBar: {fileID: 565248165}
-  UpHud: {fileID: 821133907}
-  DownHud: {fileID: 696727494}
+  ShockBtn: {fileID: 0}
+  UpSrtBar: {fileID: 0}
+  DownSrtBar: {fileID: 0}
+  UpLHud: {fileID: 0}
+  UpRHud: {fileID: 0}
+  DownLHud: {fileID: 0}
+  DownRHud: {fileID: 0}
   MenuBackground: {fileID: 1676944651}
   SettingsMenu: {fileID: 2131894788}
   PauseFade: {fileID: 568143566}
   ResultFade: {fileID: 568143566}
   CamSnap: {fileID: 0}
   resoultsAni: {fileID: 568143565}
+  Music: {fileID: 0}
   MenuSizein: 1
   MenuSizeout: 0.9
   UpTopPosY: 410
@@ -6399,6 +6452,7 @@ MonoBehaviour:
   DownHudmiddlePosY: -350
   TweenDur: 0.08
   ReTweenDur: 0.08
+  Intimer: 0
 --- !u!114 &1861696338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7683,11 +7737,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   depth: 30
-  limiteDireita: 0
-  limiteEsquerda: 0
   cameraHalfSize: 0
   screenLeft: 0
   screenRight: 0
+  sprite: []
 --- !u!212 &2082495000
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8860,3 +8913,4 @@ SceneRoots:
   - {fileID: 1300496610}
   - {fileID: 488937488}
   - {fileID: 830809355}
+  - {fileID: 538816826}
