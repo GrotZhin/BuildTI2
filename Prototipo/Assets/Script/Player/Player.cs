@@ -68,13 +68,14 @@ public class Player : MonoBehaviour
     public bool isGrind = false;
     GameObject prefab;
     InputManager inputManager;
+    Vector3 inicialPosition;
     // Start is called before the first frame update
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
         powerUp = GameObject.Find("GM").GetComponent<PowerUp>();
         inputManager = GameObject.Find("TouchManager").GetComponent<InputManager>();
-
+        inicialPosition = transform.position;
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
@@ -238,8 +239,8 @@ public class Player : MonoBehaviour
             Ranani.SetBool("GrindTrick", false);
 
         }
-
-        distance += pos.x * Time.fixedDeltaTime;
+       
+        distance = Vector3.Distance(inicialPosition, transform.position);
 
         if (characterController.isGrounded)
         {
