@@ -25,7 +25,7 @@ namespace RWM
             {
                 songsLoop[i].Pause();
             }
-            
+
         }
 
         // Update is called once per frame
@@ -46,12 +46,28 @@ namespace RWM
                 songsLoop[i].UnPause();
             }
         }
-        
+
         public void Stop()
         {
-           
-                song.Pause();
-            
+
+            song.Pause();
+
         }
+        
+         public static IEnumerator FadeAudio(AudioSource audioSource, float targetVolume, float duration)
+    {
+        float startVolume = audioSource.volume;
+        float startTime = Time.time;
+
+        while (Time.time < startTime + duration)
+        {
+            float elapsedTime = Time.time - startTime;
+            float t = elapsedTime / duration;
+            audioSource.volume = Mathf.Lerp(startVolume, targetVolume, t);
+            yield return null; 
+        }
+
+        audioSource.volume = targetVolume;
+    }
     }
 }

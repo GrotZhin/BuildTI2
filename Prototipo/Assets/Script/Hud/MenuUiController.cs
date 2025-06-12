@@ -37,6 +37,8 @@ public class MenuUiController : MonoBehaviour
     public Animator Ranani;
     public GameObject CanvasB;
 
+    public AudioSource MenuSoundTrack;
+    public AudioSource shopSoundTrack;
    
 
     //Dotween animations
@@ -73,6 +75,7 @@ public class MenuUiController : MonoBehaviour
     {
         Ranani = Ranna.GetComponent<Animator>();
         CanvasB.SetActive(false);
+        MenuSoundTrack.volume = 1;
     }
     private void Awake()
     {
@@ -199,6 +202,8 @@ public class MenuUiController : MonoBehaviour
         ShopchgRan.SetActive(true);
         shopPanel.SetActive(true);
         settingsPanel.SetActive(false);
+        StartCoroutine (SongControl.FadeAudio(shopSoundTrack, 1f, 2f));
+        StartCoroutine (SongControl.FadeAudio(MenuSoundTrack, 0f, 1f));
         await ShopPanelAniintro();
         
     }
@@ -236,6 +241,8 @@ public class MenuUiController : MonoBehaviour
         ShopkShopGO.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
+        StartCoroutine (SongControl.FadeAudio(shopSoundTrack, 0f, 1f));
+        StartCoroutine (SongControl.FadeAudio(MenuSoundTrack, 1f, 1f));
         shopPanel.SetActive(false);
     }
 

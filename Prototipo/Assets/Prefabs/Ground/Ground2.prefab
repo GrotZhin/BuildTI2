@@ -229,6 +229,9 @@ MonoBehaviour:
   - {fileID: 1902924018311492512, guid: de7d7e344cb88ef4d983253916864529, type: 3}
   - {fileID: 1902924018311492512, guid: 7e7b3888dca2d8b4fad8bae963ced135, type: 3}
   - {fileID: 1902924018311492512, guid: 74d49b6319b72224a96930803c030107, type: 3}
+  - {fileID: 1902924018311492512, guid: 280e33f5e0ed9244fa48d0f72898e00e, type: 3}
+  - {fileID: 1902924018311492512, guid: 364000611e030f64b9977be9a4c7594f, type: 3}
+  - {fileID: 1902924018311492512, guid: 4342a4e9cfd42874fb72bfb33ef8c3eb, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
 --- !u!114 &5230722125602325662
