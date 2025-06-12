@@ -89,7 +89,7 @@ public class Sekker : MonoBehaviour
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
-            Debug.Log("atingiuX");
+           
             speed.x = 5;
         }
 

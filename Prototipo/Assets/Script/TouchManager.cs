@@ -26,8 +26,7 @@ public class TouchHandler : MonoBehaviour
     private void HandleTouchStart(Finger finger)
     {
         if (player != null)
-        {
-            // Só pula se estiver no chão (igual ao teclado)
+        {            
             Vector2 pos = player.transform.position;
             float groundDistance = Mathf.Abs(pos.y - player.groundHeight);
 
@@ -42,7 +41,7 @@ public class TouchHandler : MonoBehaviour
     {
         if (player != null)
         {
-            player.ReleaseJump();
+            //player.ReleaseJump();
         }
     }
 }

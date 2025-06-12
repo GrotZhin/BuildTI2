@@ -67,11 +67,13 @@ public class Player : MonoBehaviour
     public bool cheat = false;
     public bool isGrind = false;
     GameObject prefab;
+    InputManager inputManager;
     // Start is called before the first frame update
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
         powerUp = GameObject.Find("GM").GetComponent<PowerUp>();
+        inputManager = GameObject.Find("TouchManager").GetComponent<InputManager>();
 
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
@@ -79,9 +81,12 @@ public class Player : MonoBehaviour
 
     }
 
+    
     // Update is called once per frame
     private void Update()
     {
+
+        
         PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
         Vector2 pos = transform.position;
 
@@ -90,7 +95,7 @@ public class Player : MonoBehaviour
         {
 
             Ranani.SetBool("JumpTricks", false);
-            
+
             Ranani.SetBool("FallBack1", true);
             fbkTimer += Time.deltaTime;
             if (fbkTimer >= 2)
@@ -106,13 +111,13 @@ public class Player : MonoBehaviour
             if (speed.x <= 7)
             {
                 sekkerInstantiate = true;
-                ISekker();
+                //ISekker();
 
             }
 
         }
 
-        groundDistance = Mathf.Abs(pos.y - groundHeight);
+      
 
         if (slider)
         {
@@ -129,8 +134,8 @@ public class Player : MonoBehaviour
             }
 
         }
-       
-        if (characterController.isGrounded || groundDistance <= jumpGroundTreshhold)
+
+        if (characterController.isGrounded)
         {
 
 
@@ -150,12 +155,13 @@ public class Player : MonoBehaviour
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            ReleaseJump();
+          //  ReleaseJump();
         }
     }
     public void Jump()
     {
         assist = true;
+        Debug.Log("character" + characterController.isGrounded) ;
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         soundManager.PlaySound(SoundType.Jump);
 
@@ -291,7 +297,7 @@ public class Player : MonoBehaviour
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
-            Debug.Log("atingiuX");
+           
             speed.x = 5;
         }
         

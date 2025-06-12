@@ -2,44 +2,44 @@
     "name": "touchAction",
     "maps": [
         {
-            "name": "TouchPress",
-            "id": "25f03cbc-d8aa-4a4a-9543-b2b0bc531b09",
+            "name": "Touch",
+            "id": "1190df74-d804-445e-954e-5ecf8ce1523d",
             "actions": [
                 {
-                    "name": "HandleTouch",
-                    "type": "Button",
-                    "id": "1c32b057-1774-4b2c-b8e3-46872b747f77",
-                    "expectedControlType": "",
+                    "name": "TouchPosition",
+                    "type": "Value",
+                    "id": "21f459f3-4647-434b-9f21-0778999f8c4a",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "TouchPosition",
-                    "type": "Value",
-                    "id": "92cb7b2a-5b78-4f52-91d1-c00f91e7f747",
+                    "name": "TouchPress",
+                    "type": "Button",
+                    "id": "a4167cda-3fb6-4f6d-b152-7c5571397d1e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "ee8c9023-89f8-4254-be2e-4a40d47b9a63",
+                    "id": "41641f14-454e-49f8-8784-1f97e60d3934",
                     "path": "<Touchscreen>/Press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HandleTouch",
+                    "action": "TouchPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d0081124-3ee1-442b-85d2-b909e3c7d627",
-                    "path": "<Touchscreen>/delta/y",
+                    "id": "a3737522-3b09-4574-9a23-5eb6a4b18bf6",
+                    "path": "<Touchscreen>/primaryTouch/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

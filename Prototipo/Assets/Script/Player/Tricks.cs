@@ -19,12 +19,13 @@ public class Tricks : MonoBehaviour
     }
     void Update()
     {
-
-        timer += Time.deltaTime;
-        if (timer >= 5)
-        {
-            direction = Trick();
-            timer = 0;
+        if (!player.isDead) {
+            timer += Time.deltaTime;
+            if (timer >= 5)
+            {
+                direction = Trick();
+                timer = 0;
+            }
         }
         
               arrowsRef = GameObject.FindGameObjectWithTag("arrow").GetComponent<Arrows>();
@@ -35,6 +36,7 @@ public class Tricks : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && arrowsRef.transform.position.x > transform.position.x)
             {
+                
                 player.score += 20;
                 arrowsRef.DestroyArrow();
             }
@@ -80,10 +82,38 @@ public class Tricks : MonoBehaviour
             }
         }
     }
+    public void Directions()
+    { 
+         if (direction == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) && arrowsRef.transform.position.x > transform.position.x)
+            {
+                player.score += 20;
+                arrowsRef.DestroyArrow();
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                arrowsRef.DestroyArrow();
+            }
+        }
+    }
 
     // Update is called once per frame
-
-    int Trick()
+    public void TrickCerto(int index)
+    {
+        if (direction == index)
+        {
+            player.score += 20;
+            arrowsRef.DestroyArrow();
+        }
+        else
+        {
+            arrowsRef.DestroyArrow();
+            return;
+        }
+        
+    }
+    public int Trick()
     {
         Vector3 pos = transform.position;
         Vector3 arrowPos = new Vector3(pos.x + 5, pos.y, pos.z);
