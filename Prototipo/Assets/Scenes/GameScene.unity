@@ -4057,6 +4057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground1
       objectReference: {fileID: 0}
+    - target: {fileID: 1902924018311492512, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4930542994470649472, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.78
@@ -4153,6 +4157,10 @@ PrefabInstance:
     - target: {fileID: 4421353978439016594, guid: 35d947faf9d8d2244b536e272ab6570c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280038310272583727, guid: 35d947faf9d8d2244b536e272ab6570c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.71
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
