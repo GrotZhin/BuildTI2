@@ -233,6 +233,7 @@ MonoBehaviour:
   - {fileID: 1902924018311492512, guid: 6f72b5acda336d54b9892955ce1292f8, type: 3}
   - {fileID: 1902924018311492512, guid: de7d7e344cb88ef4d983253916864529, type: 3}
   - {fileID: 1902924018311492512, guid: 7e7b3888dca2d8b4fad8bae963ced135, type: 3}
+  - {fileID: 1902924018311492512, guid: 9e663b19920207e46916643b3b182248, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
 --- !u!65 &5840106766664536562

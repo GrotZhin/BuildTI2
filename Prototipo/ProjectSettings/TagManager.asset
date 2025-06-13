@@ -15,6 +15,7 @@ TagManager:
   - SlideScore
   - arrow
   - grindObject
+  - Glass
   layers:
   - Default
   - TransparentFX

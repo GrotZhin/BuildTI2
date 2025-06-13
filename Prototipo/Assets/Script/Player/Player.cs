@@ -319,6 +319,11 @@ public class Player : MonoBehaviour
             HitObstacle(obstacle);
         }
 
+        if (other.gameObject.CompareTag("Glass"))
+        {
+            CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
+        }
+
         if (other.gameObject.CompareTag("Score"))
         {
             score += 10;
