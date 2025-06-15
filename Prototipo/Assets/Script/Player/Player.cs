@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     public GameObject comS;
     public Transform ReDad;
 
-
+    public CharacterController captpos;
     public bool isDead = false;
     public bool cheat = false;
     public bool isGrind = false;
@@ -310,7 +310,7 @@ public class Player : MonoBehaviour
          }*/
 
     }
-   
+
     void OnTriggerEnter(Collider other)
     {
         Obstacle obstacle = other.GetComponent<Obstacle>();
@@ -353,6 +353,15 @@ public class Player : MonoBehaviour
             HitPowerUp(batery);
             powerUp.BateryFill();
             Instantiate(PWPP, transform.position, Quaternion.identity, RannaT);
+        }
+
+        if (other.gameObject.CompareTag("Seeker"))
+        {
+            PP = new Vector3(prefab.transform.position.x+1.8f,prefab.transform.position.y+0.3f, prefab.transform.position.z);
+            isDead = true;
+            CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
+            Ranani.SetTrigger("SeekerGrab");
+            Ranna.transform.position = PP;
         }
     }
     

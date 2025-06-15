@@ -24,6 +24,8 @@ namespace RWM
         Plamn,
         Slide,
         Hit,
+        Glass,
+        Shock,
         
 
     }

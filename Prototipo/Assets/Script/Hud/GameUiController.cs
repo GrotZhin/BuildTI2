@@ -37,9 +37,12 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] CanvasGroup PauseFade;
     [SerializeField] CanvasGroup ResultFade;
+    [SerializeField] CanvasGroup ResultFadescreen;
     [SerializeField] Image CamSnap;
     [SerializeField] RectTransform resoultsAni;
     public AudioSource Music;
+    public AudioSource Music2;
+    public float dietimer;
 
     //DOtween positions
     [SerializeField] float MenuSizein, MenuSizeout;
@@ -89,11 +92,25 @@ public class GameUiController : MonoBehaviour
 
         if (player.isDead)
         {
-            Music.volume = 0.2f;
-            ResoultsAni();
-            resultPanel.SetActive(true);
-            finalDistanceTxt.text = distance + "m";
-            finalScoreTxt.text = "TP: " + player.score;
+            dietimer += Time.deltaTime;
+            
+            if (dietimer >= 1.0)
+            {
+                if (Music.volume > 0)
+            {
+                Music.volume = 0.2f;
+            }
+            else
+            if (Music2.volume > 0)
+            {
+             Music2.volume = 0.2f;
+             }
+                
+                ResoultsAni();
+                resultPanel.SetActive(true);
+                finalDistanceTxt.text = distance + "m";
+                finalScoreTxt.text = "TP: " + player.score;
+            }
         }
 
     }
@@ -188,6 +205,7 @@ public class GameUiController : MonoBehaviour
 
         resoultsAni.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
         ResultFade.DOFade(1, 0.2f).SetEase(Ease.OutFlash);
+        ResultFadescreen.DOFade(0, 0.6f).SetEase(Ease.OutFlash);
         
     }
     async Task RetryAni()

@@ -1,20 +1,38 @@
+using RWM;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CamCompAni : MonoBehaviour
 {
+    public Player player;
     public GameObject Cam;
     public Animator Canani;
+
+    public float dietimer;
+    public float sktimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Canani = Cam.GetComponent<Animator>();
+
+        ChangeLayersWeight();
     }
 
     // Update is called once per frame
     void Update()
     {
-        ChangeLayersWeight();
+
+
+        if (player.isDead == true)
+        {
+                
+                Canani.SetBool("ShockB", true);
+                
+
+            
+            
+        }
+        
 
     }
     

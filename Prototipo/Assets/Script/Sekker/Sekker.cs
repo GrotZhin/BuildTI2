@@ -5,6 +5,8 @@ public class Sekker : MonoBehaviour
 {
     Player player;
     Ground ground;
+    public GameObject Stalker;
+    public Animator seekani;
     public float gravity;
     public Vector2 speed;
     public int score = 0;
@@ -20,6 +22,7 @@ public class Sekker : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        seekani = Stalker.GetComponent<Animator>();
 
     }
     void Update()
@@ -102,6 +105,12 @@ public class Sekker : MonoBehaviour
         if (obstacle != null)
         {
             //HitObstacle(obstacle);
+        }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            
+            seekani.SetTrigger("Capture");
         }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using RWM;
 
 public class glassbreakPP : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class glassbreakPP : MonoBehaviour
             
             Instantiate(pp, transform.position, Quaternion.identity);
             Destroy(glass);
-            
+            soundManager.PlaySound(SoundType.Glass);
         }
     }
 }

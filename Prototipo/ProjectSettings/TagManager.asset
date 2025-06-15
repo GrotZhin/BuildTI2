@@ -16,6 +16,7 @@ TagManager:
   - arrow
   - grindObject
   - Glass
+  - Seeker
   layers:
   - Default
   - TransparentFX
