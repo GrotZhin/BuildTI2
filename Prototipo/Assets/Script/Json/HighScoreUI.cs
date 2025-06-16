@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HighScoreUI : MonoBehaviour
 {
     [SerializeField] GameObject panel;
+    [SerializeField] GameObject panelName;
     [SerializeField] GameObject HighScoreElement;
     [SerializeField] Transform elementWrapper;
     List<GameObject> uiElements = new List<GameObject>();
@@ -28,6 +29,11 @@ public class HighScoreUI : MonoBehaviour
     {
         panel.SetActive(true);
     }
+    public void ShowPanelName()
+    { 
+        panelName.SetActive(true);
+    }
+
     public void HidePanel()
     {
         panel.SetActive(false);

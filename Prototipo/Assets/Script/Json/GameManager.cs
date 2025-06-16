@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public PlayerData[] lista;
     Player player;
     [SerializeField] string playerName;
+    [SerializeField] GameObject panelName;
+    
     [SerializeField] TMP_InputField inputField;
 
     void Start()
@@ -35,5 +37,7 @@ public class GameManager : MonoBehaviour
     {
         playerName = inputField.text;
         inputField.text = "";
+        panelName.SetActive(false);
+
     }
 }

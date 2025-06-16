@@ -42,27 +42,30 @@ public class Conquistas : MonoBehaviour
     {
         Distance500M = true;
 
-        Instantiate(icons[0]);
+        icons[0].SetActive(true);
         Destroy(icons[0], 5);
     }
 
     public void Distance1000MUnlock()
     {
         Distance1000M = true;
-        Instantiate(icons[1]);
+
+        icons[1].SetActive(true);
         Destroy(icons[1], 5);
     }
 
     public void Distance5000MUnlock()
     {
         Distance5000M = true;
-        Instantiate(icons[2]);
+
+        icons[2].SetActive(true);
         Destroy(icons[2], 5);
     }
     public void FirstHit()
     {
         firstHit = true;
-        Instantiate(icons[3]);
+
+        icons[3].SetActive(true);
         Destroy(icons[3], 5);
 
     }
@@ -70,20 +73,20 @@ public class Conquistas : MonoBehaviour
     public void FirstDeath()
     {
         firstDeath = true;
-        Instantiate(icons[4]);
+        icons[4].SetActive(true);
         Destroy(icons[4], 5);
 
     }
     public void TenDeaths()
     {
         tenDeaths = true;
-        Instantiate(icons[5]);
+        icons[5].SetActive(true);
         Destroy(icons[5], 5);
     }
     public void HundredDeaths()
     {
         hundredDeaths = true;
-        Instantiate(icons[6]);
+        icons[6].SetActive(true);
         Destroy(icons[6], 5);
     }
 
