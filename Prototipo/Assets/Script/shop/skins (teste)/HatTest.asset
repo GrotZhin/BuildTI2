@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b37cac259621b24c8725dd556fb52c3, type: 3}
+  m_Name: HatTest
+  m_EditorClassIdentifier: 
+  hatName: DummyHat
+  hatMaterial: {fileID: 2100000, guid: 3d178d37eb9e0504d9426a63199e2ce2, type: 2}
+  hatMesh: {fileID: 857239700118591053, guid: c9d3054c8c2e1654cac4e81dee62fb46, type: 3}
+  price: 100
+  hatPreviewSprite: {fileID: 21300000, guid: f7ddb1f8170a7654c8881a1409320cc4, type: 3}
