@@ -37,9 +37,12 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform SettingsMenu;
     [SerializeField] CanvasGroup PauseFade;
     [SerializeField] CanvasGroup ResultFade;
+    [SerializeField] CanvasGroup ResultFadescreen;
     [SerializeField] Image CamSnap;
     [SerializeField] RectTransform resoultsAni;
     public AudioSource Music;
+    public AudioSource Music2;
+    public float dietimer;
 
     //DOtween positions
     [SerializeField] float MenuSizein, MenuSizeout;
@@ -89,11 +92,25 @@ public class GameUiController : MonoBehaviour
 
         if (player.isDead)
         {
-            Music.volume = 0.2f;
-            ResoultsAni();
-            resultPanel.SetActive(true);
-            finalDistanceTxt.text = distance + "m";
-            finalScoreTxt.text = "TP: " + player.score;
+            dietimer += Time.deltaTime;
+            
+            if (dietimer >= 1.0)
+            {
+                if (Music.volume > 0)
+            {
+                Music.volume = 0.2f;
+            }
+            else
+            if (Music2.volume > 0)
+            {
+             Music2.volume = 0.2f;
+             }
+                
+                ResoultsAni();
+                resultPanel.SetActive(true);
+                finalDistanceTxt.text = distance + "m";
+                finalScoreTxt.text = "TP: " + player.score;
+            }
         }
 
     }
@@ -109,12 +126,16 @@ public class GameUiController : MonoBehaviour
     }
     public void Pause()
     {
+        Music.volume = 0.2f;
         Time.timeScale = 0;
         pausePanel.SetActive(true);
+        PauseFade.DOFade(1, 0.2f).SetUpdate(true);
         InGameMenuAniIntro();
     }
     public async void Resume()
     {
+        
+        Music.volume = 1f;
         await InGameMenuAniOutro();
         Time.timeScale = 1;
         pausePanel.SetActive(false);
@@ -143,7 +164,6 @@ public class GameUiController : MonoBehaviour
     public void InGameMenuAniIntro()
     {
         MenuBackground.DOFade(0.90f, TweenDur).SetUpdate(true);
-        PauseFade.DOFade(1, 0).SetUpdate(true);
         MenuAni.DOScale(MenuSizein, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
         UpBar.DOAnchorPosY(UpmiddlePosY, 0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
         DownBar.DOAnchorPosY(DownmiddlePosY, 0.1f).SetEase(Ease.InOutCubic).SetUpdate(true);
@@ -153,10 +173,10 @@ public class GameUiController : MonoBehaviour
         DownRHud.DOAnchorPosY(DownHudmiddlePosY, 0.1f).SetEase(Ease.InCubic).SetUpdate(true);
 
     }
-    async Task InGameMenuAniOutro()
+    public async Task InGameMenuAniOutro()
     {
-        MenuBackground.DOFade(0, TweenDur).SetUpdate(true);
-        PauseFade.DOFade(0f, 0.5f).SetEase(Ease.InOutCubic).SetUpdate(true);
+        PauseFade.DOFade(0f, 0.4f).SetUpdate(true);
+        MenuBackground.DOFade(0, 0.5f).SetUpdate(true);
         await MenuAni.DOScale(MenuSizeout, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
         await UpBar.DOAnchorPosY(UpTopPosY, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
         await DownBar.DOAnchorPosY(DownTopPosY, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
@@ -185,6 +205,7 @@ public class GameUiController : MonoBehaviour
 
         resoultsAni.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
         ResultFade.DOFade(1, 0.2f).SetEase(Ease.OutFlash);
+        ResultFadescreen.DOFade(0, 0.6f).SetEase(Ease.OutFlash);
         
     }
     async Task RetryAni()
