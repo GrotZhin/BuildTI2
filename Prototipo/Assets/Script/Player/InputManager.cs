@@ -82,7 +82,7 @@ public class InputManager : MonoBehaviour
         Vector2 swipeDirection = endTouchPosition - startTouchPosition;
         if (swipeDirection.magnitude > 50)
         {
-            Debug.Log(swipeDirection.normalized);
+            
             SwipeDirectionX(swipeDirection, 0.9f);
             SwipeDirectionY(swipeDirection, 0.9f);
 

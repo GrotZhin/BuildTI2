@@ -25,7 +25,7 @@ public class RandomTextDisplay : MonoBehaviour
 
         int randobS = Random.Range(0, ReactionsS.Length);
 
-        TMPS.text = ReactionsS[randobS];
+//        TMPS.text = ReactionsS[randobS];
 
         int randobG = Random.Range(0, ReactionsG.Length);
 

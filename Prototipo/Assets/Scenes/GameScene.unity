@@ -1522,6 +1522,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09d4e7a6c0ee3224da44c379ca78f811, type: 3}
+--- !u!1 &559803525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 559803526}
+  m_Layer: 0
+  m_Name: RefConquista
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &559803526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559803525}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 723, y: 239, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5986546975033524613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &579702914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1827848943723370857, guid: 0f1249c54b27803429d5ab5f9481a2d0, type: 3}
@@ -3531,12 +3562,14 @@ GameObject:
   - component: {fileID: 1405455458}
   - component: {fileID: 1405455459}
   - component: {fileID: 1405455460}
+  - component: {fileID: 1405455462}
+  - component: {fileID: 1405455461}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1405455458
 Transform:
@@ -3578,6 +3611,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdaa2b6f8fa5c0449cd2e4642b2d3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1405455461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405455457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048e6e1e144d25e41848f0306d749788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveSystem: {fileID: 0}
+  highScore: {fileID: 1405455462}
+  conquistas: {fileID: 2068196522}
+  Manager: {fileID: 2068196523}
+  loadSystem: {fileID: 0}
+  lista: []
+  playerName: Vex
+  inputField: {fileID: 0}
+--- !u!114 &1405455462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405455457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c680901bac82b4aaf12f98290c2733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCount: 5
+  filename: highscore.json
 --- !u!1 &1458068849 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1827848943723370857, guid: 0f1249c54b27803429d5ab5f9481a2d0, type: 3}
@@ -4169,6 +4236,74 @@ MonoBehaviour:
   player: {fileID: 2022244791}
   objetoAlvo: {fileID: 2039146733}
   novaPosicaoXDoAlvo: 320
+--- !u!1 &2068196521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2068196524}
+  - component: {fileID: 2068196523}
+  - component: {fileID: 2068196522}
+  m_Layer: 0
+  m_Name: ConquistasManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2068196522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068196521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05e9f7c1bcb18d419996fee19d02353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icons: []
+  refPosition: {fileID: 559803526}
+  Distance500M: 0
+  Distance1000M: 0
+  Distance5000M: 0
+  firstHit: 0
+  firstDeath: 0
+  tenDeaths: 0
+  hundredDeaths: 0
+  deathCount: 0
+--- !u!114 &2068196523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068196521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59bdcb322bd93644af5cb467c408158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeathCount: 0
+--- !u!4 &2068196524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068196521}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2081128995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4875,11 +5010,19 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1542167547422375920, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6677784359763920141, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 559803526}
     - targetCorrespondingSourceObject: {fileID: 5079639919418888858, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
       insertIndex: -1
       addedObject: {fileID: 27145376}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
+--- !u!224 &5986546975033524613 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6677784359763920141, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
+  m_PrefabInstance: {fileID: 5986546975033524612}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8056413037325657928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4967,3 +5110,4 @@ SceneRoots:
   - {fileID: 2620285053461908238}
   - {fileID: 458351271}
   - {fileID: 634223197}
+  - {fileID: 2068196524}
