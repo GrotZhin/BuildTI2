@@ -14,10 +14,11 @@ using UnityEngine.SceneManagement;
 
 
 
+
 public class Player : MonoBehaviour
 {
 
-    private CharacterController characterController;
+    public CharacterController characterController;
     public Camera CAM;
     public PowerUp powerUp;
     public float gravity;
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour
     public float jumpTimer = 0.0f;
     public float jumpGroundTreshhold = 1;
 
-    float groundDistance;
+    
     public bool assist = false;
 
     bool slider = false;
@@ -67,22 +68,37 @@ public class Player : MonoBehaviour
     public bool isDead = false;
     public bool cheat = false;
     public bool isGrind = false;
+    public bool ouch = false;
     GameObject prefab;
+    InputManager inputManager;
+    GameManager gameManager;
+ 
+    
+    Vector3 inicialPosition;
+    [SerializeField] HighScore highScore;
+
     // Start is called before the first frame update
     void Start()
     {
         characterController = this.GetComponent<CharacterController>();
         powerUp = GameObject.Find("GM").GetComponent<PowerUp>();
-
+        gameManager = GameObject.Find("GM").GetComponent<GameManager>();
+        inputManager = GameObject.Find("TouchManager").GetComponent<InputManager>();
+        inicialPosition = transform.position;
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
-
+     
+       
+        
     }
 
+    
     // Update is called once per frame
     private void Update()
     {
+
+        
         PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
         Vector2 pos = transform.position;
 
@@ -91,7 +107,7 @@ public class Player : MonoBehaviour
         {
 
             Ranani.SetBool("JumpTricks", false);
-            
+
             Ranani.SetBool("FallBack1", true);
             fbkTimer += Time.deltaTime;
             if (fbkTimer >= 2)
@@ -107,13 +123,13 @@ public class Player : MonoBehaviour
             if (speed.x <= 7)
             {
                 sekkerInstantiate = true;
-                ISekker();
+                //ISekker();
 
             }
 
         }
 
-        groundDistance = Mathf.Abs(pos.y - groundHeight);
+      
 
         if (slider)
         {
@@ -130,8 +146,8 @@ public class Player : MonoBehaviour
             }
 
         }
-       
-        if (characterController.isGrounded || groundDistance <= jumpGroundTreshhold)
+
+        if (characterController.isGrounded)
         {
 
 
@@ -139,9 +155,6 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
-
-
-
             }
         }
         if (!slider)
@@ -149,18 +162,18 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 Slide();
-
             }
         }
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            ReleaseJump();
+          //  ReleaseJump();
         }
     }
     public void Jump()
     {
         assist = true;
+        Debug.Log("character" + characterController.isGrounded) ;
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         soundManager.PlaySound(SoundType.Jump);
 
@@ -200,6 +213,7 @@ public class Player : MonoBehaviour
         if (isDead)
         {
             return;
+
         }
 
         if (pos.y <= 3 && cheat == false)
@@ -207,11 +221,13 @@ public class Player : MonoBehaviour
         {
             isDead = true;
             speed.x = 0;
-            Debug.Log("cheat off");
+            gameManager.EndGame();
+            return;
+            
         }
          if (pos.y <= 3 && cheat == true)
         {
-            Debug.Log("cheat on");
+            
             speed.y = groundHeight + 20;
             speed.x = 5;
 
@@ -237,8 +253,8 @@ public class Player : MonoBehaviour
             Ranani.SetBool("GrindTrick", false);
 
         }
-
-        distance += pos.x * Time.fixedDeltaTime;
+       
+        distance = Vector3.Distance(inicialPosition, transform.position);
 
         if (characterController.isGrounded)
         {
@@ -268,6 +284,7 @@ public class Player : MonoBehaviour
     public void HitObstacle(Obstacle obstacle)
     {
         obstacle.boxCollider.enabled = false;
+        ouch = true;
         speed.x *= 0.8f;
         soundManager.PlaySound(SoundType.Hit);
         Ranani.SetTrigger("Hit");
@@ -285,22 +302,23 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-        /* if (ground == null && hit.moveDirection == Vector3.up)
+         if (ground == null && hit.moveDirection == Vector3.up)
          {
              groundHeight = ground.groundHeight + 0.35f;
+              Debug.Log("aaaaaaaaaaaaaaa");
              pos.y = groundHeight;
              speed.y = 0;
              isGrind = false;
-             Debug.Log(isGrind);
-         }*/
+            
+         }
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
-            Debug.Log("atingiuX");
+           
             speed.x = 5;
         }
         
-       /*if (grind == null && hit.moveDirection == Vector3.up)
+       if (grind == null && hit.moveDirection == Vector3.up)
          {
              groundHeight = grind.groundHeight + 0.35f;
              pos.y = groundHeight;
@@ -308,7 +326,7 @@ public class Player : MonoBehaviour
              //transform.rotation = grind.transform.rotation;
              isGrind = true;
              Debug.Log(isGrind);
-         }*/
+         }
 
     }
 
@@ -364,13 +382,8 @@ public class Player : MonoBehaviour
             Ranani.Play("seekergrab");
         }
     }
-    
-    public void Cheat()
-    {
-        cheat = !cheat;
 
-    }
-
+ 
     #region animations
 
     public void ChangeLayersWeight()

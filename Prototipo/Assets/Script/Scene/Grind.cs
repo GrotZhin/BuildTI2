@@ -8,7 +8,7 @@ public class Grind : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        collider.GetComponent<BoxCollider>();
+        collider = GetComponent<BoxCollider>();
         groundHeight = transform.position.y + (collider.size.y / 2);
         
     }

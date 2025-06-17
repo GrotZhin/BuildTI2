@@ -15,6 +15,7 @@ using RWM;
 
 public class MenuUiController : MonoBehaviour
 {
+    [SerializeField] Conquistas conquistas;
     public GameObject MainCam;
     public GameObject WardrobeCam;
     public GameObject MirrorCam;
@@ -118,8 +119,9 @@ public class MenuUiController : MonoBehaviour
         CanvasB.SetActive(true);
         settingsPanel.SetActive(false);
         await Fadeani();
+        
         SceneManager.LoadScene("GameScene");
-
+        
 
     }
     public async void Wardrobe()
