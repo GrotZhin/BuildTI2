@@ -94,7 +94,7 @@ public class GameUiController : MonoBehaviour
         {
             dietimer += Time.deltaTime;
             
-            if (dietimer >= 1.0)
+            if (dietimer >= 0.8)
             {
                 if (Music.volume > 0)
             {

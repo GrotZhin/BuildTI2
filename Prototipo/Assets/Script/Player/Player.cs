@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     bool slider = false;
     float sliderTimer;
     public GameObject sekker;
+    public GameObject Ransekker;
     public bool sekkerInstantiate = false;
 
     //Animation
@@ -357,11 +358,10 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Seeker"))
         {
-            PP = new Vector3(prefab.transform.position.x+1.8f,prefab.transform.position.y+0.3f, prefab.transform.position.z);
+            Ransekker.SetActive(true);
             isDead = true;
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
-            Ranani.SetTrigger("SeekerGrab");
-            Ranna.transform.position = PP;
+            Ranani.Play("seekergrab");
         }
     }
     

@@ -109,7 +109,7 @@ public class Sekker : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            
+            Destroy(this.gameObject);
             seekani.SetTrigger("Capture");
         }
     }
