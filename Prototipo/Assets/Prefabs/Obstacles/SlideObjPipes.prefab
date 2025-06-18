@@ -169,6 +169,7 @@ MonoBehaviour:
   screenLeft: 0
   cameraHalfSize: 0
   obstacleRight: 0
+  scorecld: {fileID: 1605243665203988612}
 --- !u!4 &2093373619842208318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f874abfbc716334b8f9fcfb3506a6b6, type: 3}

@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.1428219, z: 1}
-  m_Center: {x: 0, y: 0.071410954, z: 0}
+  m_Size: {x: 0.7802741, y: 1.1428219, z: 1}
+  m_Center: {x: 0.10986295, y: 0.071410954, z: 0}
 --- !u!1001 &2472968817675751463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,8 +269,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.5878831, z: 1}
-  m_Center: {x: 0, y: 1.5151219, z: 0}
+  m_Size: {x: 1.263671, y: 0.587883, z: 1}
+  m_Center: {x: 0.027465641, y: 1.5151219, z: 0}
 --- !u!114 &-3152160727086664304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +287,7 @@ MonoBehaviour:
   screenLeft: 0
   cameraHalfSize: 0
   obstacleRight: 0
+  scorecld: {fileID: 7877820417329048383}
 --- !u!4 &8872245018617813943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 533131d52689cdb429fe99d39a84386a, type: 3}

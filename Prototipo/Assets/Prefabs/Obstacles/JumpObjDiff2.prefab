@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7100358, y: 0.71003574, z: 1}
-  m_Center: {x: -0.0019860417, y: 0.14498213, z: 0}
+  m_Size: {x: 0.8543062, y: 0.71003574, z: 1}
+  m_Center: {x: 0.012440801, y: 0.14498213, z: 0}
 --- !u!114 &2898606102697373136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   screenLeft: 0
   cameraHalfSize: 0
   obstacleRight: 0
+  scorecld: {fileID: 6609682108578899226}
 --- !u!1 &6609682108578899226
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +100,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.979, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.23, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8362380849292441989}
@@ -123,8 +124,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.353983, z: 1}
-  m_Center: {x: 0, y: 0.6769916, z: 0}
+  m_Size: {x: 1, y: 3.3927336, z: 1}
+  m_Center: {x: 0, y: 1.1963668, z: 0}
 --- !u!1001 &8606981948880529459
 PrefabInstance:
   m_ObjectHideFlags: 0

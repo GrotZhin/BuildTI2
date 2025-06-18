@@ -63,6 +63,8 @@ public class Player : MonoBehaviour
     public GameObject comJ;
     public GameObject comS;
     public Transform ReDad;
+    public GameObject end1;
+    public GameObject end2;
 
     public CharacterController captpos;
     public bool isDead = false;
@@ -70,6 +72,7 @@ public class Player : MonoBehaviour
     public bool isGrind = false;
     public bool ouch = false;
     GameObject prefab;
+
     InputManager inputManager;
     GameManager gameManager;
  
@@ -221,6 +224,7 @@ public class Player : MonoBehaviour
         {
             isDead = true;
             speed.x = 0;
+            end2.SetActive(true);
             gameManager.EndGame();
             return;
             
@@ -346,7 +350,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Score"))
         {
             score += 10;
-
+            powerUp.BaterylilFill();
             
                 Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
                 soundManager.PlaySound(SoundType.Plamn);
@@ -355,7 +359,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("SlideScore"))
         {
             score += 10;
-
+            powerUp.BaterylilFill();
             
                 Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
                 soundManager.PlaySound(SoundType.Plamn);
@@ -373,6 +377,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Seeker"))
         {
             Ransekker.SetActive(true);
+            end1.SetActive(true);
             isDead = true;
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
