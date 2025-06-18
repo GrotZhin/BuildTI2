@@ -14,7 +14,8 @@ public class GenerateObstacle : MonoBehaviour
     public GameObject[] boxPrefab;
     public GameObject ref1;
     public GameObject ref2;
-    public BoxCollider collider;
+    public BoxCollider col;
+    public Transform laele;
     float groundHeight;
     bool generateObstacle = false;
 
@@ -22,7 +23,7 @@ public class GenerateObstacle : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        collider = GetComponent<BoxCollider>();
+        col = GetComponent<BoxCollider>();
       
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         go = GameObject.FindGameObjectWithTag("Ground").GetComponent<Ground>();
@@ -31,7 +32,7 @@ public class GenerateObstacle : MonoBehaviour
 
     void Update()
     {
-        groundHeight = transform.position.y + (collider.size.y / 2);
+        groundHeight = laele.transform.position.y + col.size.y / 2;
         cameraHalfSize = Camera.main.orthographicSize * Camera.main.aspect;
         screenLeft = Camera.main.transform.position.x - cameraHalfSize;
         var y = groundHeight;

@@ -347,23 +347,19 @@ public class Player : MonoBehaviour
         {
             score += 10;
 
-            int randob = Random.Range(0, 10);
-            if (randob >= 5)
-            {
+            
                 Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
                 soundManager.PlaySound(SoundType.Plamn);
-            }
+            
         }
         if (other.gameObject.CompareTag("SlideScore"))
         {
             score += 10;
 
-            int randob = Random.Range(0, 10);
-            if (randob >= 5)
-            {
+            
                 Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
                 soundManager.PlaySound(SoundType.Plamn);
-            }
+            
         }
 
         Batery batery = other.gameObject.GetComponent<Batery>();

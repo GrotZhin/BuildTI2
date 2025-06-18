@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour
             {
                 Vector3 pos = transform.position;
                 Vector2 playerPos = player.transform.position;
-                pos.x = playerPos.x+2;
+                pos.x = playerPos.x+3;
                 pos.y = playerPos.y;
 
                 transform.position = pos;

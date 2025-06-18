@@ -130,4 +130,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793709487a55bc04c9a1b60385e42b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider2D: {fileID: 881427740470200729}
+  cameraHalfSize: 0
+  screenLeft: 0
+  obstacleRight: 0
+  box: {fileID: 0}
+  boxPrefab: []
+  ref1: {fileID: 0}
+  ref2: {fileID: 0}
+  col: {fileID: 0}
+  laele: {fileID: 0}

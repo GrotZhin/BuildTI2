@@ -27,6 +27,7 @@ public class MenuUiController : MonoBehaviour
     public GameObject shopOutro;
     public GameObject RannaShopGO;
     public GameObject ShopkShopGO;
+    public GameObject HS;
 
     public GameObject ShopchgRan;
     public GameObject ShopchgCam;
@@ -118,6 +119,7 @@ public class MenuUiController : MonoBehaviour
         soundManager.PlaySound(SoundType.Startmenu);
         CanvasB.SetActive(true);
         settingsPanel.SetActive(false);
+        HS.SetActive(false);
         await Fadeani();
         
         SceneManager.LoadScene("GameScene");
@@ -134,6 +136,7 @@ public class MenuUiController : MonoBehaviour
         RannaAniWdb();
         await ShopAniintro();
         settingsPanel.SetActive(false);
+        HS.SetActive(false);
         CanvasB.SetActive(false);
         NosincFade0ut();
         ShopAnioutro();
@@ -204,6 +207,7 @@ public class MenuUiController : MonoBehaviour
         ShopchgRan.SetActive(true);
         shopPanel.SetActive(true);
         settingsPanel.SetActive(false);
+        HS.SetActive(false);
         StartCoroutine (SongControl.FadeAudio(shopSoundTrack, 1f, 2f));
         StartCoroutine (SongControl.FadeAudio(MenuSoundTrack, 0f, 1f));
         await ShopPanelAniintro();

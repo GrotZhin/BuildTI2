@@ -10,6 +10,7 @@ public class Ground : MonoBehaviour
     public float screenRight;
     public float screenLeft;
     BoxCollider collider;
+    public Transform laele;
     GameObject box;
     public float cameraHalfSize;
 
@@ -26,7 +27,7 @@ public class Ground : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         collider = GetComponent<BoxCollider>();
-        groundHeight = transform.position.y + (collider.size.y / 2);
+        groundHeight = laele.transform.position.y;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -84,21 +85,21 @@ public class Ground : MonoBehaviour
         float t = player.jumpSpeed / -player.gravity;
         float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
         float maxJumpHeight = h1 + h2;
-        float maxY = player.transform.position.y + maxJumpHeight * 10f;
+        float maxY = player.transform.position.y + maxJumpHeight * 8f;
 
 
         float minY = 7;
         float actualY = UnityEngine.Random.Range(minY, maxY);
 
 
-        pos.y = actualY - goCollider.size.y / 2;
-        if (pos.y > 11)
+        pos.y = actualY - goCollider.size.y / 2 ;
+        if (pos.y > 8)
         {
-            pos.y = 11;
+            pos.y = 8;
         }
-        if (pos.y < 7)
+        if (pos.y < 6)
         {
-            pos.y = 7;
+            pos.y = 6;
         }
 
         float maxX = screenRight + 1;
