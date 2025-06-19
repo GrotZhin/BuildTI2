@@ -7,6 +7,8 @@ public class Obstacle : MonoBehaviour
     public float cameraHalfSize;
     public float obstacleRight;
 
+    public GameObject scorecld;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +27,13 @@ public class Obstacle : MonoBehaviour
 
             Destroy(gameObject);
             return;
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            scorecld.SetActive(false);
         }
     }
 }

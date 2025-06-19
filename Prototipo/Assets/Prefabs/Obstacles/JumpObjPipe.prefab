@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.8309318, z: 1}
-  m_Center: {x: 0, y: 0.4154659, z: 0}
+  m_Size: {x: 0.6669742, y: 3.3352876, z: 1}
+  m_Center: {x: 0.06315987, y: 1.1676438, z: 0}
 --- !u!1001 &6849062569545716656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d3bc92f2cccc4842a0203fbd1e91e91, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.216
+      value: -0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d3bc92f2cccc4842a0203fbd1e91e91, type: 3}
       propertyPath: m_LocalPosition.z
@@ -151,8 +151,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6619781, y: 0.6713687, z: 0.53850377}
-  m_Center: {x: 0.14570087, y: 0.13744682, z: -0.000000029802322}
+  m_Size: {x: 1.1213233, y: 0.84362316, z: 0.53850377}
+  m_Center: {x: -0.08397174, y: 0.22357404, z: -0.000000029802322}
 --- !u!114 &8302901014353983868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   screenLeft: 0
   cameraHalfSize: 0
   obstacleRight: 0
+  scorecld: {fileID: 6137504238329461604}
 --- !u!4 &6378921587358250075 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1d3bc92f2cccc4842a0203fbd1e91e91, type: 3}

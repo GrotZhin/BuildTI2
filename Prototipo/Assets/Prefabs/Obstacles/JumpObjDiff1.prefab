@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1054441666993354266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.979, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.75699997, z: 0}
+  m_LocalScale: {x: 0.4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8362380849292441989}
@@ -125,6 +125,7 @@ MonoBehaviour:
   screenLeft: 0
   cameraHalfSize: 0
   obstacleRight: 0
+  scorecld: {fileID: 1054441666993354266}
 --- !u!1001 &8369198244952724646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -139,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc7ca088b8b925743b6516e8a055e6b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.219
+      value: -0.003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cc7ca088b8b925743b6516e8a055e6b5, type: 3}
       propertyPath: m_LocalPosition.z

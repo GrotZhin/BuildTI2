@@ -16,6 +16,7 @@ public class Sekker : MonoBehaviour
     public float acceleration = 10;
     public float jumpSpeed = 20;
     public float groundHeight;
+    public float fbkTimer;
     private CharacterController characterController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -28,7 +29,7 @@ public class Sekker : MonoBehaviour
     void Update()
     {
         ground = GameObject.FindGameObjectWithTag("Ground").GetComponent<Ground>();
-         if (player.assist)
+        if (player.assist)
         {
             time += Time.fixedDeltaTime;
             if (time >= 0.5)
@@ -38,10 +39,12 @@ public class Sekker : MonoBehaviour
                 time = 0;
             }
         }
+
+        
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+        void FixedUpdate()
     {
         
         Vector2 pos = transform.position;
@@ -50,11 +53,13 @@ public class Sekker : MonoBehaviour
         {
             player.sekkerInstantiate = false;
             Destroy(gameObject);
-        }    
+        }
 
         if (!characterController.isGrounded)
         {
             speed.y += gravity * Time.fixedDeltaTime;
+            seekani.SetBool("jump", true);
+            seekani.SetBool("fallback", false);
         }
 
         if (characterController.isGrounded)
@@ -63,6 +68,9 @@ public class Sekker : MonoBehaviour
             float speedRatio = speed.x / maxXSpeed;
             acceleration = maxAcceleration * (1 - speedRatio);
 
+            seekani.SetBool("jump", false);
+            seekani.SetBool("fallback", true);
+            
 
         }
         
@@ -74,6 +82,7 @@ public class Sekker : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
+        
     }
 
 
@@ -109,7 +118,7 @@ public class Sekker : MonoBehaviour
 
         if (other.gameObject.CompareTag("Player"))
         {
-            
+            Destroy(this.gameObject);
             seekani.SetTrigger("Capture");
         }
     }

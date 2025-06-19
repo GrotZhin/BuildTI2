@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.643, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.29, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8356897960980488852}
@@ -47,12 +47,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.8229158, z: 1}
+  m_Center: {x: 0, y: 0.4114579, z: 0}
 --- !u!1001 &8391071517186770303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 571e32a3c8a04d64c88de5a41bf0cf8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.202
+      value: -0.016
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 571e32a3c8a04d64c88de5a41bf0cf8f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -156,8 +156,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7637787, y: 0.33350626, z: 0.7158334}
-  m_Center: {x: -0.05232954, y: -0.032185152, z: 0}
+  m_Size: {x: 0.7637787, y: 0.7030281, z: 0.7158334}
+  m_Center: {x: -0.05232954, y: 0.15257597, z: 0}
 --- !u!114 &7976124476947731593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,3 +174,4 @@ MonoBehaviour:
   screenLeft: 0
   cameraHalfSize: 0
   obstacleRight: 0
+  scorecld: {fileID: 8598897846551223492}

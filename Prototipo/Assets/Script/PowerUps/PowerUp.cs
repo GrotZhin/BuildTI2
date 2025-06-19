@@ -19,6 +19,11 @@ public class PowerUp : MonoBehaviour
     {
         batery.fillAmount = 1;
     }
+
+    public void BaterylilFill()
+    {
+        batery.fillAmount += 0.1f;
+    }
     public void Boost()
     {
         player.speed.x *= 0.5f;
