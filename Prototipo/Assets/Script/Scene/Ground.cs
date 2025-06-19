@@ -10,7 +10,7 @@ public class Ground : MonoBehaviour
     public float screenRight;
     public float screenLeft;
     BoxCollider collider;
-    GameObject box;
+  
     public float cameraHalfSize;
 
 

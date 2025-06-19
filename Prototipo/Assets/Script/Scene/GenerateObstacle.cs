@@ -14,7 +14,7 @@ public class GenerateObstacle : MonoBehaviour
     public GameObject[] boxPrefab;
     public GameObject ref1;
     public GameObject ref2;
-    public BoxCollider collider;
+    BoxCollider collider;
     float groundHeight;
     bool generateObstacle = false;
 

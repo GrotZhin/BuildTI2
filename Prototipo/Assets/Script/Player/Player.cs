@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     public float jumpTimer = 0.0f;
     public float jumpGroundTreshhold = 1;
 
-    
+
     public bool assist = false;
 
     bool slider = false;
@@ -71,8 +71,8 @@ public class Player : MonoBehaviour
     GameObject prefab;
     InputManager inputManager;
     GameManager gameManager;
- 
-    
+
+
     Vector3 inicialPosition;
     [SerializeField] HighScore highScore;
 
@@ -87,17 +87,17 @@ public class Player : MonoBehaviour
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
-     
-       
-        
+
+
+
     }
 
-    
+
     // Update is called once per frame
     private void Update()
     {
 
-        
+
         PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
         Vector2 pos = transform.position;
 
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
 
         }
 
-      
+
 
         if (slider)
         {
@@ -166,13 +166,13 @@ public class Player : MonoBehaviour
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
-          //  ReleaseJump();
+            //  ReleaseJump();
         }
     }
     public void Jump()
     {
         assist = true;
-        Debug.Log("character" + characterController.isGrounded) ;
+        Debug.Log("character" + characterController.isGrounded);
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         soundManager.PlaySound(SoundType.Jump);
 
@@ -206,7 +206,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-    
+
         Vector2 pos = transform.position;
 
         if (isDead)
@@ -222,11 +222,11 @@ public class Player : MonoBehaviour
             speed.x = 0;
             gameManager.EndGame();
             return;
-            
+
         }
-         if (pos.y <= 3 && cheat == true)
+        if (pos.y <= 3 && cheat == true)
         {
-            
+
             speed.y = groundHeight + 20;
             speed.x = 5;
 
@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
             Ranani.SetBool("GrindTrick", false);
 
         }
-       
+
         distance = Vector3.Distance(inicialPosition, transform.position);
 
         if (characterController.isGrounded)
@@ -269,7 +269,7 @@ public class Player : MonoBehaviour
             }
 
         }
-   
+
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
 
     }
@@ -301,37 +301,51 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-         if (ground == null && hit.moveDirection == Vector3.up)
-         {
-             groundHeight = ground.groundHeight + 0.35f;
-              Debug.Log("aaaaaaaaaaaaaaa");
-             pos.y = groundHeight;
-             speed.y = 0;
-             isGrind = false;
-            
-         }
+        if (ground == null && hit.moveDirection == Vector3.up)
+        {
+            groundHeight = ground.groundHeight + 0.35f;
+            Debug.Log("aaaaaaaaaaaaaaa");
+            pos.y = groundHeight;
+            speed.y = 0;
+            isGrind = false;
+
+        }
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
-           
+
             speed.x = 5;
         }
-        
-       if (grind == null && hit.moveDirection == Vector3.up)
-         {
-             groundHeight = grind.groundHeight + 0.35f;
-             pos.y = groundHeight;
-             speed.y = 0;
-             //transform.rotation = grind.transform.rotation;
-             isGrind = true;
-             Debug.Log(isGrind);
-         }
+
+        if (grind == null)
+        {
+            groundHeight = grind.groundHeight + 0.35f;
+            pos.y = groundHeight;
+            speed.y = 0;
+            //transform.rotation = grind.transform.rotation;
+            isGrind = true;
+            Debug.Log(isGrind);
+        }
 
     }
 
+    
+    
     void OnTriggerEnter(Collider other)
     {
+        Vector3 pos = transform.position;
+        Grind grind = other.GetComponent<Grind>();
         Obstacle obstacle = other.GetComponent<Obstacle>();
+        if (grind != null)
+        {
+            groundHeight = grind.groundHeight + 0.35f;
+            pos.y = groundHeight;
+            speed.y = 0;
+            //transform.rotation = grind.transform.rotation;
+            isGrind = true;
+            Debug.Log(isGrind);
+        }
+        
         if (obstacle != null)
         {
             HitObstacle(obstacle);
@@ -375,7 +389,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Seeker"))
         {
-            PP = new Vector3(prefab.transform.position.x+1.8f,prefab.transform.position.y+0.3f, prefab.transform.position.z);
+            PP = new Vector3(prefab.transform.position.x + 1.8f, prefab.transform.position.y + 0.3f, prefab.transform.position.z);
             isDead = true;
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.SetTrigger("SeekerGrab");
@@ -383,7 +397,7 @@ public class Player : MonoBehaviour
         }
     }
 
- 
+
     #region animations
 
     public void ChangeLayersWeight()
