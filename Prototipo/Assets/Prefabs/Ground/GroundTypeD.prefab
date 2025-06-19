@@ -2120,6 +2120,7 @@ MonoBehaviour:
   groundRight: 0
   screenRight: 0
   screenLeft: 0
+  laele: {fileID: 0}
   cameraHalfSize: 0
   boxPrefab:
   - {fileID: 5775124026349730515, guid: 69ccd9b692dbaf84a85dc94cb2d59865, type: 3}
