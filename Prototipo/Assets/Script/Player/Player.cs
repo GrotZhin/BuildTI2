@@ -65,12 +65,14 @@ public class Player : MonoBehaviour
     public Transform ReDad;
     public GameObject end1;
     public GameObject end2;
+    public GameObject end3;
 
     public CharacterController captpos;
     public bool isDead = false;
     public bool cheat = false;
     public bool isGrind = false;
     public bool ouch = false;
+    public bool deadbyfall = false;
     GameObject prefab;
 
     InputManager inputManager;
@@ -96,12 +98,11 @@ public class Player : MonoBehaviour
         
     }
 
-    
+
     // Update is called once per frame
     private void Update()
     {
 
-        
         PP = new Vector3(characterController.transform.position.x, characterController.transform.position.y - 0.7f, characterController.transform.position.z);
         Vector2 pos = transform.position;
 
@@ -132,7 +133,7 @@ public class Player : MonoBehaviour
 
         }
 
-      
+
 
         if (slider)
         {
@@ -170,7 +171,12 @@ public class Player : MonoBehaviour
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
-          //  ReleaseJump();
+            //  ReleaseJump();
+        }
+
+        if (isDead)
+        {
+        characterController.Move(new Vector2(speed.x = 0, speed.y=-10) * Time.deltaTime);
         }
     }
     public void Jump()
@@ -215,20 +221,24 @@ public class Player : MonoBehaviour
 
         if (isDead)
         {
+            
+            
             return;
-
+           
         }
 
+        
         if (pos.y <= 3 && cheat == false)
 
-        {
-            isDead = true;
-            speed.x = 0;
-            end2.SetActive(true);
-            gameManager.EndGame();
-            return;
-            
-        }
+            {
+                deadbyfall = true;
+                isDead = true;
+                speed.x = 0;
+                end2.SetActive(true);
+                gameManager.EndGame();
+                return;
+
+            }
          if (pos.y <= 3 && cheat == true)
         {
             
@@ -351,19 +361,19 @@ public class Player : MonoBehaviour
         {
             score += 10;
             powerUp.BaterylilFill();
-            
-                Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
-                soundManager.PlaySound(SoundType.Plamn);
-            
+
+            Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
+            soundManager.PlaySound(SoundType.Plamn);
+
         }
         if (other.gameObject.CompareTag("SlideScore"))
         {
             score += 10;
             powerUp.BaterylilFill();
-            
-                Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
-                soundManager.PlaySound(SoundType.Plamn);
-            
+
+            Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);
+            soundManager.PlaySound(SoundType.Plamn);
+
         }
 
         Batery batery = other.gameObject.GetComponent<Batery>();
@@ -381,6 +391,30 @@ public class Player : MonoBehaviour
             isDead = true;
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
+        }
+
+        if (other.gameObject.CompareTag("wall"))
+        {
+            Vector2 pos = transform.position;
+            soundManager.PlaySound(SoundType.Hit);
+            isDead = true;
+            if (deadbyfall)
+
+            {
+                end3.SetActive(false);
+                end2.SetActive(true);
+                end1.SetActive(false);
+            }
+            else
+            {
+                end3.SetActive(true);
+                end2.SetActive(false);
+                end1.SetActive(false);
+            }
+            CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
+            Ranani.Play("WallHitAni");
+
+            
         }
     }
 

@@ -84,6 +84,7 @@ public class MenuUiController : MonoBehaviour
 
         settingsPanel.SetActive(false);
         shopPanel.SetActive(false);
+        CanvasB.SetActive(false);
 
 
     }

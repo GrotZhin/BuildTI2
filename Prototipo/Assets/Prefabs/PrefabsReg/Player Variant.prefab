@@ -1,5 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &793627392331897089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8200415207958389864}
+  - component: {fileID: 7895638164993347948}
+  m_Layer: 0
+  m_Name: rigidbody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8200415207958389864
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793627392331897089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.0038481436, y: -0, z: -0, w: 0.9999926}
+  m_LocalPosition: {x: 1287.4508, y: 739.03076, z: 19.424412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6247276910808387882}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &7895638164993347948
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793627392331897089}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1345345899097033306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1110,6 +1169,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4907069506474400624, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 578508380540422891}
+    - targetCorrespondingSourceObject: {fileID: 4907069506474400624, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8200415207958389864}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2887147026516656544, guid: 37fd3a30c4eb176469fdc926ae7428a3, type: 3}
       insertIndex: -1
