@@ -26,6 +26,7 @@ namespace RWM
         Hit,
         Glass,
         Shock,
+        grindswitch,
         
 
     }

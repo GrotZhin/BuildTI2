@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18814cbe141cc244a5e28479ac8a77f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a18814cbe141cc244a5e28479ac8a77f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrindBar1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a18814cbe141cc244a5e28479ac8a77f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a18814cbe141cc244a5e28479ac8a77f, type: 3}
+      propertyPath: m_TagString
+      value: Grind
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -91,8 +99,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7.800329, y: 0.10927811, z: 0.09463742}
-  m_Center: {x: 0, y: 0, z: -0.000000055879354}
+  m_Size: {x: 7.800329, y: 0.10927811, z: 3.9570017}
+  m_Center: {x: 0, y: 0, z: -0.082829714}
 --- !u!114 &7517041954232718
 MonoBehaviour:
   m_ObjectHideFlags: 0

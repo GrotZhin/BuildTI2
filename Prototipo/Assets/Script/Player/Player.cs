@@ -11,6 +11,7 @@ using RWM;
 using DG.Tweening;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 
 
@@ -54,6 +55,8 @@ public class Player : MonoBehaviour
     public Animator Ranani;
     public GameObject JumpPP;
     public GameObject SlidePP;
+    public GameObject GrindPP;
+    public GameObject GrindSFX;
     public GameObject PWPP;
     public Transform RannaT;
     Vector3 PP;
@@ -173,13 +176,27 @@ public class Player : MonoBehaviour
         // Teclado
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            //  ReleaseJump();
+            ReleaseJump();
         }
 
         if (isDead)
         {
-        characterController.Move(new Vector2(speed.x = 0, speed.y=-10) * Time.deltaTime);
+            characterController.Move(new Vector2(speed.x = 0, speed.y = -10) * Time.deltaTime);
         }
+
+        if (isGrind)
+        {
+            GrindPP.SetActive(true);
+            GrindSFX.SetActive(true);
+            
+        }
+        if (!isGrind)
+        {
+            GrindPP.SetActive(false);
+            GrindSFX.SetActive(false);
+        }
+        
+        
     }
     public void Jump()
     {
@@ -264,6 +281,7 @@ public class Player : MonoBehaviour
             {
                 speed.y += gravity * Time.fixedDeltaTime;
             }
+            isGrind = false;
             Ranani.SetBool("FallBack1", false);
             Ranani.SetBool("JumpTricks", true);
             Ranani.SetBool("GrindTrick", false);
@@ -318,27 +336,35 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-         if (hit.collider.CompareTag("Ground"))
-         {
-             groundHeight = ground.groundHeight + 0.35f;
+        if (hit.collider.CompareTag("Ground"))
+        {
+            groundHeight = ground.groundHeight + 0.35f;
             Debug.Log("dasuydagsudgasdgakuy");
-             pos.y = groundHeight;
-             transform.rotation = rotationBase;
-             speed.y = 0;
-             isGrind = false;
+            pos.y = groundHeight;
+            transform.rotation = rotationBase;
+
+            isGrind = false;
             
-         }
-        
-       if (hit.collider.CompareTag("Grind"))
-         {
+            Ranani.SetBool("GrindTrick", false);
+
+        }
+
+        if (hit.collider.CompareTag("Grind"))
+        {
             Debug.Log("aaaaaaaaaaasssssssssaaaa");
-             groundHeight = grind.groundHeight + 0.35f;
-             pos.y = groundHeight;
-             speed.y = 0;
-             transform.rotation = grind.transform.rotation;
-             isGrind = true;
-             Debug.Log(isGrind);
-         }
+            groundHeight = grind.groundHeight + 0.35f;
+            pos.y = groundHeight;
+            speed.y = 0;
+            transform.rotation = grind.transform.rotation;
+            isGrind = true;
+            Debug.Log(isGrind);
+            
+            Ranani.SetInteger("GrindTrickIndex", Random.Range(0, 5));
+            Ranani.SetBool("GrindTrick", true);
+
+        }
+
+        
 
     }
 
