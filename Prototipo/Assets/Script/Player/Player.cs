@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public float maxHoldJump = 0.4f;
     public float jumpTimer = 0.0f;
     public float jumpGroundTreshhold = 1;
+    Quaternion rotationBase;
 
     
     public bool assist = false;
@@ -85,6 +86,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rotationBase = transform.rotation;
         characterController = this.GetComponent<CharacterController>();
         powerUp = GameObject.Find("GM").GetComponent<PowerUp>();
         gameManager = GameObject.Find("GM").GetComponent<GameManager>();
@@ -316,28 +318,24 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-         if (ground == null && hit.moveDirection == Vector3.up)
+         if (hit.collider.CompareTag("Ground"))
          {
              groundHeight = ground.groundHeight + 0.35f;
-              Debug.Log("aaaaaaaaaaaaaaa");
+            Debug.Log("dasuydagsudgasdgakuy");
              pos.y = groundHeight;
+             transform.rotation = rotationBase;
              speed.y = 0;
              isGrind = false;
             
          }
-
-        if (ground == null && hit.moveDirection == Vector3.right)
-        {
-           
-            speed.x = 5;
-        }
         
-       if (grind == null && hit.moveDirection == Vector3.up)
+       if (hit.collider.CompareTag("Grind"))
          {
+            Debug.Log("aaaaaaaaaaasssssssssaaaa");
              groundHeight = grind.groundHeight + 0.35f;
              pos.y = groundHeight;
              speed.y = 0;
-             //transform.rotation = grind.transform.rotation;
+             transform.rotation = grind.transform.rotation;
              isGrind = true;
              Debug.Log(isGrind);
          }
