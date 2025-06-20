@@ -11,6 +11,7 @@ public class Tricks : MonoBehaviour
     GameObject arrow;
     Arrows arrowsRef;
     int direction;
+    bool onScreen = false;
     float timer = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,81 +20,17 @@ public class Tricks : MonoBehaviour
     }
     void Update()
     {
-        if (!player.isDead) {
-            timer += Time.deltaTime;
-            if (timer >= 5)
-            {
-                direction = Trick();
-                timer = 0;
-            }
-        }
-        
-              arrowsRef = GameObject.FindGameObjectWithTag("arrow").GetComponent<Arrows>();
-        
-      
-
-        if (direction == 0)
+        if (player.isGrind)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && arrowsRef.transform.position.x > transform.position.x)
+            if (!onScreen)
             {
-                
-                player.score += 20;
-                arrowsRef.DestroyArrow();
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                arrowsRef.DestroyArrow();
-            }
-        }
-        if (direction == 1)
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow) && arrowsRef.transform.position.x > transform.position.x)
-            {
-                player.score += 20;
-                arrowsRef.DestroyArrow();
-            }
-            else if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                arrowsRef.DestroyArrow();
-            }
-        }
-        if (direction == 2)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && arrowsRef.transform.position.x > transform.position.x)
-            {
-                player.score += 20;
-                arrowsRef.DestroyArrow();
-            }
-            else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                arrowsRef.DestroyArrow();
-            }
-        }
-        if (direction == 3)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow) && arrowsRef.transform.position.x > transform.position.x)
-            {
-                player.score += 20;
-
-            }
-            else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                arrowsRef.DestroyArrow();
-            }
-        }
-    }
-    public void Directions()
-    { 
-         if (direction == 0)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && arrowsRef.transform.position.x > transform.position.x)
-            {
-                player.score += 20;
-                arrowsRef.DestroyArrow();
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                arrowsRef.DestroyArrow();
+                timer += Time.deltaTime;
+                if (timer >= 1.5f)
+                {
+                    direction = Trick();
+                    onScreen = true;
+                    timer = 0;
+                }
             }
         }
     }
@@ -101,25 +38,32 @@ public class Tricks : MonoBehaviour
     // Update is called once per frame
     public void TrickCerto(int index)
     {
-        if (direction == index)
+        if (arrows[direction].activeSelf == true)
         {
-            player.score += 20;
-            arrowsRef.DestroyArrow();
+            if (direction == index)
+            {
+                player.score += 20;
+                arrows[direction].SetActive(false);
+                onScreen = false;
+            }
+
+
+
+            else
+            {
+                arrows[direction].SetActive(false);
+                onScreen = false;
+                return;
+            }
         }
-        else
-        {
-            arrowsRef.DestroyArrow();
-            return;
-        }
-        
     }
     public int Trick()
     {
-        Vector3 pos = transform.position;
-        Vector3 arrowPos = new Vector3(pos.x + 5, pos.y, pos.z);
-        int direction = UnityEngine.Random.Range(0, 3);
 
-        arrow = Instantiate(arrows[direction], arrowPos, quaternion.identity);
+        int direction = UnityEngine.Random.Range(0, 3);
+        arrows[direction].SetActive(true);
+        Debug.Log("chamou");
         return direction;
     }
+
 }

@@ -314,7 +314,7 @@ public class Player : MonoBehaviour
             Debug.Log("dasuydagsudgasdgakuy");
              pos.y = groundHeight;
              transform.rotation = rotationBase;
-             speed.y = 0;
+             
              isGrind = false;
             
          }
