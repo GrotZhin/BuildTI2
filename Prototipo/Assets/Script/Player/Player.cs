@@ -188,6 +188,7 @@ public class Player : MonoBehaviour
         {
             GrindPP.SetActive(true);
             GrindSFX.SetActive(true);
+            Ranani.SetBool("SlideTrick", false);
             
         }
         if (!isGrind)
@@ -342,6 +343,7 @@ public class Player : MonoBehaviour
             Debug.Log("dasuydagsudgasdgakuy");
             pos.y = groundHeight;
             transform.rotation = rotationBase;
+            GrindPP.transform.rotation = rotationBase;
 
             isGrind = false;
             
@@ -356,6 +358,7 @@ public class Player : MonoBehaviour
             pos.y = groundHeight;
             speed.y = 0;
             transform.rotation = grind.transform.rotation;
+            GrindPP.transform.rotation = grind.transform.rotation;
             isGrind = true;
             Debug.Log(isGrind);
             

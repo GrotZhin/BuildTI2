@@ -27,6 +27,7 @@ namespace RWM
         Glass,
         Shock,
         grindswitch,
+        fuckyea,
         
 
     }

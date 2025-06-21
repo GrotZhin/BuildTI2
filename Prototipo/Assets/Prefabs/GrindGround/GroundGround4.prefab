@@ -1462,9 +1462,6 @@ PrefabInstance:
       addedObject: {fileID: 5155464830834950091}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e313331ed7f497341a00742b3d006d31, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 464324104379029587}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e313331ed7f497341a00742b3d006d31, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3628708089501650729}
   m_SourcePrefab: {fileID: 100100000, guid: e313331ed7f497341a00742b3d006d31, type: 3}
 --- !u!1 &8425174722107550123 stripped
@@ -1503,39 +1500,11 @@ MonoBehaviour:
   - {fileID: 1902924018311492512, guid: 280e33f5e0ed9244fa48d0f72898e00e, type: 3}
   - {fileID: 1902924018311492512, guid: 364000611e030f64b9977be9a4c7594f, type: 3}
   - {fileID: 1902924018311492512, guid: 4342a4e9cfd42874fb72bfb33ef8c3eb, type: 3}
+  - {fileID: 1902924018311492512, guid: c982b0b1fd966784682069472b26eb64, type: 3}
+  - {fileID: 1902924018311492512, guid: af3935a866eccf4428e0d7d0991f14c3, type: 3}
+  - {fileID: 1902924018311492512, guid: 687e468cf49ce164eb2f3db3ec8cd3e8, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
---- !u!114 &464324104379029587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8425174722107550123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 793709487a55bc04c9a1b60385e42b73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraHalfSize: 0
-  screenLeft: 0
-  obstacleRight: 0
-  box: {fileID: 0}
-  boxPrefab:
-  - {fileID: 1454588052972788701, guid: d882e39509afe614dadec42277c1b646, type: 3}
-  - {fileID: 5775124026349730515, guid: 9a7b3b59fbc0e4e4d84fe8074315785f, type: 3}
-  - {fileID: 5775124026349730515, guid: 84f6cbdfe17c44241af27a749c92fd09, type: 3}
-  - {fileID: 5775124026349730515, guid: ca999b4a3e8491147b1c46a905cdf6db, type: 3}
-  - {fileID: 6038671583508131553, guid: 2efafce968c5be046a72633060a62a20, type: 3}
-  - {fileID: 8697148828456712238, guid: 0b93122c9869cd945a77692ebc9bf44c, type: 3}
-  - {fileID: 8100668937726968077, guid: 69b715ea440814d498743aea98f247fd, type: 3}
-  - {fileID: 8100668937726968077, guid: ea4f300d60d90dd4ab599342edd64439, type: 3}
-  - {fileID: 1605243665203988612, guid: 3f70ffa0183066947bbac9021c60e701, type: 3}
-  - {fileID: 8100668937726968077, guid: 193e5b4e185c42b4da5718cca2919d95, type: 3}
-  ref1: {fileID: 3904835364930613372}
-  ref2: {fileID: 8800077151404923360}
-  col: {fileID: 0}
-  laele: {fileID: 8557371227152761485}
 --- !u!65 &3628708089501650729
 BoxCollider:
   m_ObjectHideFlags: 0

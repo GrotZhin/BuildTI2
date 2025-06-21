@@ -17,6 +17,7 @@ public class Grindpp : MonoBehaviour
         if (Player.isGrind)
         {
             GetComponent<VisualEffect>().Play();
+            
         }
         if (Player.isGrind == false)
         {

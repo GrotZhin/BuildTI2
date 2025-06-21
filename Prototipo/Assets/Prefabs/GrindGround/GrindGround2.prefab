@@ -834,9 +834,6 @@ PrefabInstance:
       addedObject: {fileID: 1754718041049986826}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d73ca62ba18c68d4db80e4c129689593, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3137037742134468847}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d73ca62ba18c68d4db80e4c129689593, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7129034803944204434}
   m_SourcePrefab: {fileID: 100100000, guid: d73ca62ba18c68d4db80e4c129689593, type: 3}
 --- !u!1 &2627409258855563891 stripped
@@ -876,29 +873,11 @@ MonoBehaviour:
   - {fileID: 1902924018311492512, guid: 280e33f5e0ed9244fa48d0f72898e00e, type: 3}
   - {fileID: 1902924018311492512, guid: 364000611e030f64b9977be9a4c7594f, type: 3}
   - {fileID: 1902924018311492512, guid: 4342a4e9cfd42874fb72bfb33ef8c3eb, type: 3}
+  - {fileID: 1902924018311492512, guid: 687e468cf49ce164eb2f3db3ec8cd3e8, type: 3}
+  - {fileID: 1902924018311492512, guid: 2beccc210cf04f247b04c9e8089b2ec2, type: 3}
+  - {fileID: 1902924018311492512, guid: c982b0b1fd966784682069472b26eb64, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
---- !u!114 &3137037742134468847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2627409258855563891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 793709487a55bc04c9a1b60385e42b73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraHalfSize: 0
-  screenLeft: 0
-  obstacleRight: 0
-  box: {fileID: 0}
-  boxPrefab: []
-  ref1: {fileID: 7268959289610285021}
-  ref2: {fileID: 806452108061458583}
-  col: {fileID: 0}
-  laele: {fileID: 3256244500348149272}
 --- !u!65 &7129034803944204434
 BoxCollider:
   m_ObjectHideFlags: 0

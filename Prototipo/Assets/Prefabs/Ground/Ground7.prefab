@@ -84,7 +84,7 @@ Transform:
   m_GameObject: {fileID: 2089477738267280928}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.45, y: -0.97, z: 0}
+  m_LocalPosition: {x: 0.45, y: -1.37, z: 0}
   m_LocalScale: {x: 30.89, y: 14.83, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -506,6 +506,9 @@ MonoBehaviour:
   - {fileID: 1902924018311492512, guid: 280e33f5e0ed9244fa48d0f72898e00e, type: 3}
   - {fileID: 1902924018311492512, guid: 364000611e030f64b9977be9a4c7594f, type: 3}
   - {fileID: 1902924018311492512, guid: 4342a4e9cfd42874fb72bfb33ef8c3eb, type: 3}
+  - {fileID: 1902924018311492512, guid: 687e468cf49ce164eb2f3db3ec8cd3e8, type: 3}
+  - {fileID: 1902924018311492512, guid: 2beccc210cf04f247b04c9e8089b2ec2, type: 3}
+  - {fileID: 1902924018311492512, guid: c982b0b1fd966784682069472b26eb64, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
 --- !u!114 &464324104379029587
