@@ -124,15 +124,15 @@ public class Tricks : MonoBehaviour
 
     public async Task ArrowAnioutro()
     {
-        await ArrowG.DOFade(0f, 0.5f).SetUpdate(true).AsyncWaitForCompletion();
+         ArrowG.DOFade(0f, 0.5f).SetUpdate(true);
+        await ArrowAni.DOScale(1.5f, ReTweenDur).SetEase(Ease.OutCubic).SetUpdate(true).AsyncWaitForCompletion();
 
     }
 
     public async Task ArrowAnioutroWng()
     {
+        ArrowG.DOFade(0f, 0.8f).SetUpdate(true);
         await ArrowAni.DOShakePosition(1f, 10, 40, 10).AsyncWaitForCompletion();
-        await ArrowG.DOFade(0f, 0.5f).SetUpdate(true).AsyncWaitForCompletion();
-        
         
     }
 

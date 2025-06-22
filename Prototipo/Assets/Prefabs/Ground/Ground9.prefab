@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4930542994470649472}
+  m_Father: {fileID: 6762037153191292181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &494185089421062960
 BoxCollider:
@@ -82,7 +82,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7609528918758312189}
   - {fileID: 6762037153191292181}
   - {fileID: 7768650397264374674}
   - {fileID: 2176044038122878498}
@@ -429,6 +428,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: dbbdcbb48173a0e429812120f91605ca, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7609528918758312189}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: dbbdcbb48173a0e429812120f91605ca, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2642605879876201276}
