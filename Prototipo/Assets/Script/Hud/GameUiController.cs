@@ -56,6 +56,8 @@ public class GameUiController : MonoBehaviour
     [SerializeField] float TweenDur;
     [SerializeField] float ReTweenDur;
 
+    public Animator Canani;
+
     public float Intimer;
 
 
@@ -63,7 +65,7 @@ public class GameUiController : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        sekker = GameObject.Find("Sekker").GetComponent<Sekker>();
+
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
@@ -233,11 +235,19 @@ public class GameUiController : MonoBehaviour
 
     public void ShockBtnt()
     {
+        if (batery.fillAmount == 1)
+        {
+            Canani.SetTrigger("Shock");
+            if (player.isSekkerInstantiate)
+            {
+                sekker = GameObject.FindGameObjectWithTag("Seeker").GetComponent<Sekker>();
+                batery.fillAmount -= 1;
+                sekker.StopMove();
 
-        batery.fillAmount -= 1;
-        sekker.Shocked = true;
-        
+            }
+         
 
+        }
     }
 
     public async Task ShockBtnintro()

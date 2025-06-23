@@ -11,6 +11,8 @@ public class Sekker : MonoBehaviour
     public Vector2 speed;
     public int score = 0;
     public float time;
+    float timerStop;
+    public bool stopMove;
     public float maxXSpeed = 100;
     public float maxAcceleration = 10;
     public float acceleration = 10;
@@ -42,11 +44,7 @@ public class Sekker : MonoBehaviour
             }
         }
 
-        if (Shocked)
-        {
-            speed.x = 0;
-            acceleration = -100;
-        }
+        
         
 
 
@@ -61,6 +59,7 @@ public class Sekker : MonoBehaviour
         if (pos.y <= 3)
         {
             player.sekkerInstantiate = false;
+             player.isSekkerInstantiate = false;
             Destroy(gameObject);
         }
 
@@ -71,7 +70,19 @@ public class Sekker : MonoBehaviour
             seekani.SetBool("fallback", false);
         }
 
-        if (characterController.isGrounded)
+        if (stopMove)
+        {
+            seekani.SetTrigger("Shocked");
+            timerStop += Time.deltaTime;
+            if (timerStop >= 10)
+            {
+
+                stopMove = false;
+                timerStop = 0;
+           }
+        }
+
+        if (characterController.isGrounded && stopMove == false)
         {
             speed.x += acceleration * Time.fixedDeltaTime;
             float speedRatio = speed.x / maxXSpeed;
@@ -83,9 +94,20 @@ public class Sekker : MonoBehaviour
 
         }
 
+        
+
 
 
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
+    }
+
+    public void StopMove()
+    {
+        Debug.Log("Shocked");
+        speed.x = -1;
+        speed.y = 0;
+        stopMove = true;
+        
     }
     public void Jump()
     {
@@ -101,18 +123,7 @@ public class Sekker : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
 
 
-        if (ground == null && hit.moveDirection == Vector3.up)
-        {
-            groundHeight = ground.groundHeight + 0.35f;
-            pos.y = groundHeight;
-            speed.y = 0;
-        }
-
-        if (ground == null && hit.moveDirection == Vector3.right)
-        {
-
-            speed.x = 5;
-        }
+      
 
 
     }
@@ -131,6 +142,4 @@ public class Sekker : MonoBehaviour
             seekani.SetTrigger("Capture");
         }
     }
-
-   
 }
