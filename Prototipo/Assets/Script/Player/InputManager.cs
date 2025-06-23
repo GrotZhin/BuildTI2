@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour
             {
                 player.Jump();
             }
-            if (player.characterController.isGrounded && postition.x > 0 && postition.x < 1000 && postition.y < 500 && postition.y > 0)
+            if (player.characterController.isGrounded && postition.x > 0 && postition.x < 1000 && postition.y < 500 && postition.y > 0 && player.isGrind == false)
             {
                 player.Slide();
             }
