@@ -40,6 +40,8 @@ public class GameUiController : MonoBehaviour
     [SerializeField] CanvasGroup ResultFadescreen;
     [SerializeField] Image CamSnap;
     [SerializeField] RectTransform resoultsAni;
+
+    public Image batery;
     public AudioSource Music;
     public AudioSource Music2;
     public float dietimer;
@@ -63,7 +65,7 @@ public class GameUiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-        
+
 
 
     }
@@ -73,19 +75,20 @@ public class GameUiController : MonoBehaviour
     void Update()
     {
         Intimer += Time.deltaTime;
+        ShockBtnintro();
 
         if (Intimer >= 0.6)
         {
-            
+
             DownSrtBar.DOAnchorPosY(-66, 0.3f).SetUpdate(true);
             UpRHud.DOAnchorPosY(UpHudTopPosY, 0.2f).SetUpdate(true);
             DownLHud.DOAnchorPosY(DownHudTopPosY, 0.2f).SetUpdate(true);
             DownRHud.DOAnchorPosY(DownHudTopPosY, 0.2f).SetUpdate(true);
 
-            
+
         }
 
-        
+
         int distance = Mathf.FloorToInt(player.distance);
         distanceTxt.text = distance + "m";
         scoreTxt.text = "TP " + player.score;
@@ -93,25 +96,27 @@ public class GameUiController : MonoBehaviour
         if (player.isDead)
         {
             dietimer += Time.deltaTime;
-            
+
             if (dietimer >= 0.8)
             {
                 if (Music.volume > 0)
-            {
-                Music.volume = 0.2f;
-            }
-            else
+                {
+                    Music.volume = 0.2f;
+                }
+                else
             if (Music2.volume > 0)
-            {
-             Music2.volume = 0.2f;
-             }
-                
+                {
+                    Music2.volume = 0.2f;
+                }
+
                 ResoultsAni();
                 resultPanel.SetActive(true);
                 finalDistanceTxt.text = distance + "m";
                 finalScoreTxt.text = "TP: " + player.score;
             }
         }
+
+        
 
     }
     public void Exit()
@@ -134,7 +139,7 @@ public class GameUiController : MonoBehaviour
     }
     public async void Resume()
     {
-        
+
         Music.volume = 1f;
         await InGameMenuAniOutro();
         Time.timeScale = 1;
@@ -147,7 +152,7 @@ public class GameUiController : MonoBehaviour
     }
     public void Settings()
     {
-       
+
         settingsPanel.SetActive(true);
         soundManager.PlaySound(SoundType.SettingsOp);
         SettingsAni();
@@ -190,7 +195,7 @@ public class GameUiController : MonoBehaviour
     {
 
         SettingsMenu.DOScale(0.81f, TweenDur).SetEase(Ease.InOutCubic).SetUpdate(true);
-        
+
 
     }
     async Task SettingsAniOutro()
@@ -206,7 +211,7 @@ public class GameUiController : MonoBehaviour
         resoultsAni.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
         ResultFade.DOFade(1, 0.2f).SetEase(Ease.OutFlash);
         ResultFadescreen.DOFade(0, 0.6f).SetEase(Ease.OutFlash);
-        
+
     }
     async Task RetryAni()
     {
@@ -215,13 +220,37 @@ public class GameUiController : MonoBehaviour
         ResultFade.DOFade(0, 0.2f).SetEase(Ease.OutFlash);
 
     }
-    public void ShockBtnAni()
+    public async Task ShockBtnAni()
     {
 
-        ShockBtn.DOScale(1.8f, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
-        ShockBtn.DOScale(0.7f,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
-        ShockBtn.DOScale(1,ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
+        await ShockBtn.DOScale(1.8f, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await ShockBtn.DOScale(0.7f, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await ShockBtn.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+
+    }
+
+    public void ShockBtnt()
+    {
         
+        batery.fillAmount -= 1;
+
+    }
+
+    public async Task ShockBtnintro()
+    {
+
+        if (batery.fillAmount == 1)
+        {
+            
+            ShockBtn.DOAnchorPosX(760, 0.5f).SetEase(Ease.OutCubic).SetUpdate(true);
+
+        }
+        else
+        {
+           
+            await ShockBtnAni();
+            ShockBtn.DOAnchorPosX(1155, 1).SetEase(Ease.OutCubic).SetUpdate(true);
+        }
     }
     
 }
