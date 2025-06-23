@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
     public bool isGrind = false;
     public bool ouch = false;
     public bool deadbyfall = false;
+    public bool isSekkerInstantiate = false;
     GameObject prefab;
 
     InputManager inputManager;
@@ -132,7 +133,7 @@ public class Player : MonoBehaviour
             if (speed.x <= 7)
             {
                 sekkerInstantiate = true;
-                //ISekker();
+                ISekker();
 
             }
 
@@ -314,6 +315,7 @@ public class Player : MonoBehaviour
         Vector2 pos = transform.position;
         Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
         prefab = Instantiate(sekker, sekkerPos, Quaternion.identity);
+        isSekkerInstantiate = true;
     }
 
     public void HitObstacle(Obstacle obstacle)
