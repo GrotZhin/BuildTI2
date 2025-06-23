@@ -18,6 +18,8 @@ public class Sekker : MonoBehaviour
     public float groundHeight;
     public float fbkTimer;
     private CharacterController characterController;
+
+    public bool Shocked = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -40,13 +42,20 @@ public class Sekker : MonoBehaviour
             }
         }
 
+        if (Shocked)
+        {
+            speed.x = 0;
+            acceleration = -100;
+        }
         
+
+
     }
 
     // Update is called once per frame
-        void FixedUpdate()
+    void FixedUpdate()
     {
-        
+
         Vector2 pos = transform.position;
 
         if (pos.y <= 3)
@@ -70,11 +79,11 @@ public class Sekker : MonoBehaviour
 
             seekani.SetBool("jump", false);
             seekani.SetBool("fallback", true);
-            
+
 
         }
-        
-       
+
+
 
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
     }
@@ -82,7 +91,7 @@ public class Sekker : MonoBehaviour
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        
+
     }
 
 
@@ -101,7 +110,7 @@ public class Sekker : MonoBehaviour
 
         if (ground == null && hit.moveDirection == Vector3.right)
         {
-           
+
             speed.x = 5;
         }
 
@@ -122,4 +131,6 @@ public class Sekker : MonoBehaviour
             seekani.SetTrigger("Capture");
         }
     }
+
+   
 }

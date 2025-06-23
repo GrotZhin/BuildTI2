@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
             if (speed.x <= 7)
             {
                 sekkerInstantiate = true;
-                //ISekker();
+                ISekker();
 
             }
 
@@ -354,9 +354,7 @@ public class Player : MonoBehaviour
         if (hit.collider.CompareTag("Grind"))
         {
             Debug.Log("aaaaaaaaaaasssssssssaaaa");
-            groundHeight = grind.groundHeight + 0.35f;
-            pos.y = groundHeight;
-            speed.y = 0;
+            
             transform.rotation = grind.transform.rotation;
             GrindPP.transform.rotation = grind.transform.rotation;
             isGrind = true;

@@ -8,7 +8,11 @@ public class OstSwitch : MonoBehaviour
 
 
 
-    public float timer1;
+    public float timer ;
+
+    protected float t2 = 115;
+    protected float t1= 128;
+    public float tend ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,22 +24,24 @@ public class OstSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer = t1;
+        timer -= Time.deltaTime;
 
-        timer1 += Time.deltaTime;
 
-
-        if (timer1 >= 118)
+        if (timer <= tend)
         {
             if (Ost2.volume <= 0)
             {
                 loop1();
+                timer = t2;
             }
             else
             if (Ost1.volume <= 0)
             {
                 loop2();
+                timer = t1;
             }
-            timer1 = 0;
+            timer = 0;
         }
 
         

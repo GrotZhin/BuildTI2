@@ -14,6 +14,7 @@ using RWM;
 public class GameUiController : MonoBehaviour
 {
     Player player;
+    Sekker sekker;
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;
@@ -62,6 +63,7 @@ public class GameUiController : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+        sekker = GameObject.Find("Sekker").GetComponent<Sekker>();
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
@@ -231,8 +233,10 @@ public class GameUiController : MonoBehaviour
 
     public void ShockBtnt()
     {
-        
+
         batery.fillAmount -= 1;
+        sekker.Shocked = true;
+        
 
     }
 
