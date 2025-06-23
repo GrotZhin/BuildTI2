@@ -11,6 +11,8 @@ public class Sekker : MonoBehaviour
     public Vector2 speed;
     public int score = 0;
     public float time;
+    float timerStop;
+    bool stopMove;
     public float maxXSpeed = 100;
     public float maxAcceleration = 10;
     public float acceleration = 10;
@@ -52,6 +54,7 @@ public class Sekker : MonoBehaviour
         if (pos.y <= 3)
         {
             player.sekkerInstantiate = false;
+            player.isSekkerInstantiate = false;
             Destroy(gameObject);
         }
 
@@ -61,8 +64,18 @@ public class Sekker : MonoBehaviour
             seekani.SetBool("jump", true);
             seekani.SetBool("fallback", false);
         }
+        if (stopMove)
+        {
+            timerStop += Time.deltaTime;
+            if (timerStop >= 10)
+            {
 
-        if (characterController.isGrounded)
+                stopMove = false;
+                timerStop = 0;
+           }
+        }
+
+        if (characterController.isGrounded && stopMove == false)
         {
             speed.x += acceleration * Time.fixedDeltaTime;
             float speedRatio = speed.x / maxXSpeed;
@@ -70,7 +83,7 @@ public class Sekker : MonoBehaviour
 
             seekani.SetBool("jump", false);
             seekani.SetBool("fallback", true);
-            
+
 
         }
         
@@ -84,6 +97,14 @@ public class Sekker : MonoBehaviour
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         
     }
+    public void StopMove()
+    {
+        Debug.Log("chamou");
+        speed.x = 0;
+        speed.y = 0;
+        stopMove = true;
+        
+    }
 
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -92,18 +113,6 @@ public class Sekker : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
 
 
-        if (ground == null && hit.moveDirection == Vector3.up)
-        {
-            groundHeight = ground.groundHeight + 0.35f;
-            pos.y = groundHeight;
-            speed.y = 0;
-        }
-
-        if (ground == null && hit.moveDirection == Vector3.right)
-        {
-           
-            speed.x = 5;
-        }
 
 
     }

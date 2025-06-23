@@ -10,10 +10,12 @@ using UnityEngine.SocialPlatforms.Impl;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 using RWM;
+using Unity.VisualScripting;
 
 public class GameUiController : MonoBehaviour
 {
     Player player;
+   [SerializeField] Sekker sekker;
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;
@@ -65,7 +67,10 @@ public class GameUiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-
+       
+        
+            
+        
 
 
     }
@@ -231,8 +236,19 @@ public class GameUiController : MonoBehaviour
 
     public void ShockBtnt()
     {
-        
-        batery.fillAmount -= 1;
+        if (batery.fillAmount == 1)
+        {
+            if (player.isSekkerInstantiate)
+            {
+                sekker = GameObject.FindGameObjectWithTag("Seeker").GetComponent<Sekker>();
+                batery.fillAmount -= 1;
+                sekker.StopMove();
+                
+            }
+         
+
+        }
+       
 
     }
 
