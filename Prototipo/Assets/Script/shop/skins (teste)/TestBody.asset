@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 204dba35219b7074485f2b4630cd6bb2, type: 3}
-  m_Name: BodyDefault
+  m_Script: {fileID: 11500000, guid: 81af835e9b5318a4c9c5a352877804e7, type: 3}
+  m_Name: TestBody
   m_EditorClassIdentifier: 
-  bodyName: HatDefout
-  bodyMaterial: {fileID: 2100000, guid: 3fa05264a6b756e40b08f95b1eb640e0, type: 2}
+  bodyName: DummyBody
+  bodyMaterial: {fileID: 2100000, guid: 48d080747f58b0647b4acec99f9b6742, type: 2}
   bodyMesh: {fileID: 2959467708922500008, guid: 76fbcc957a3fbad4d9cc2e9bcadb24dd, type: 3}
-  price: 0
-  bodyPreviewSprite: {fileID: 21300000, guid: 47cf6ad7cc1714e46b824c08360d2b91, type: 3}
+  price: 50
+  bodyPreviewSprite: {fileID: 21300000, guid: 124ef81712b7c024384509811058b297, type: 3}

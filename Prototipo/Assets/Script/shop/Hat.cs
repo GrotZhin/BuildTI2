@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewHat", menuName = "Shop/Hat")]
@@ -8,4 +9,5 @@ public class Hat : ScriptableObject
     public Mesh hatMesh;
     public int price;
     public Sprite hatPreviewSprite;
+    private bool pruchased = false;
 }

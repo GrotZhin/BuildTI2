@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b37cac259621b24c8725dd556fb52c3, type: 3}
-  m_Name: HatDefoult
+  m_Script: {fileID: 11500000, guid: 79497b84cd0e3d947affd3b0c547af5c, type: 3}
+  m_Name: defaulthat
   m_EditorClassIdentifier: 
-  hatName: HatDefaut
+  hatName: default
   hatMaterial: {fileID: 2100000, guid: 59b301ce5b1999945b2f6b702e3aee42, type: 2}
-  hatMesh: {fileID: 857239700118591053, guid: c9d3054c8c2e1654cac4e81dee62fb46, type: 3}
-  price: 0
+  hatMesh: {fileID: 857239700118591053, guid: 3a5e275629041fa44baf343e3086f490, type: 3}
+  price: 100
   hatPreviewSprite: {fileID: 21300000, guid: 47cf6ad7cc1714e46b824c08360d2b91, type: 3}
