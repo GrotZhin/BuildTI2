@@ -38,8 +38,7 @@ public class ShopManager : MonoBehaviour
     private List<WardrobeItemUI> bodyWardrobeItems = new();
     private List<WardrobeItemUI> cameraWardrobeItems = new();
     
-    
-    
+    [SerializeField] LoadSystem loadSystem;
     
     
     
@@ -50,13 +49,18 @@ public class ShopManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void init(PlayerData playerData)
+    {
+        shopData.trickPoints = playerData.trickpoints;
+    }
+
     void LoadShop()
     {
         shopData = SaveShop.LoadData();
         if (shopData == null)
         {
             shopData = new ShopData();
-            shopData.trickPoints = 1000;
+            init(loadSystem.LoadPlayerData());
 
             foreach (var hat in hats)
                 shopData.ownedHats.Add(new HatData { hatName = hat.hatName, purchased = false });
