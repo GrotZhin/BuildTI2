@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79497b84cd0e3d947affd3b0c547af5c, type: 3}
+  m_Name: Bennie
+  m_EditorClassIdentifier: 
+  hatName: Bennie
+  hatMaterial: {fileID: 2100000, guid: 093fa8f721c7a594f8589346ec13fd74, type: 2}
+  hatMesh: {fileID: 6792846907896447195, guid: fae081d8f487faa4ba2ba9354b6fda10, type: 3}
+  price: 100
+  hatPreviewSprite: {fileID: 21300000, guid: 276db965332fd484fb03ad099c6a4a8b, type: 3}

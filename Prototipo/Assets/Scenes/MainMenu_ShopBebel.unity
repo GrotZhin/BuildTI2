@@ -12252,14 +12252,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hats:
   - {fileID: 11400000, guid: bf28173f588a3e64bbd6b2e29978611a, type: 2}
-  - {fileID: 11400000, guid: 37a29e989daaf2c4885bbd52501992d1, type: 2}
+  - {fileID: 11400000, guid: 07836374a06c0ef4693c6bf6b7f4b57f, type: 2}
+  - {fileID: 11400000, guid: ad335733b09edc94c8a3286c13e3ee03, type: 2}
+  - {fileID: 11400000, guid: 2e3ecf57775e84d4e9fc789b6f5d62d9, type: 2}
+  - {fileID: 11400000, guid: cb467f0830010fe4fbf69fbe940aaf2e, type: 2}
+  - {fileID: 11400000, guid: 3dcc8b2d65dad634082af9b1582eda7e, type: 2}
+  - {fileID: 11400000, guid: 50db93070e8b8cb4c943f40a90f11f57, type: 2}
+  - {fileID: 11400000, guid: 747c4be931ec6914a8ec51bd6cb35abd, type: 2}
+  - {fileID: 11400000, guid: 3dc49afb5b0de0b42bbcf88d4d3de09c, type: 2}
+  - {fileID: 11400000, guid: 36a37be0e10c203438c3a5d301563d5f, type: 2}
   bodies:
   - {fileID: 11400000, guid: 4504f734c6a3a1b49b9bcbc21db00aa1, type: 2}
-  - {fileID: 11400000, guid: f895e2e85cdc0c4479442064b04408fd, type: 2}
-  - {fileID: 11400000, guid: 0f7c7e42b338ecc47b44b6380effc8de, type: 2}
+  - {fileID: 11400000, guid: 835372dfada2f324088529e1ffe44360, type: 2}
+  - {fileID: 11400000, guid: 80676bc717533eb46927cdff58f4ed4b, type: 2}
+  - {fileID: 11400000, guid: c898713a4b8e04b4f88eb25daedbb64e, type: 2}
+  - {fileID: 11400000, guid: f8aa3ae67cae8f04794c34dd70e266cb, type: 2}
+  - {fileID: 11400000, guid: c10f57cf0cf6ae44d8d6a2814e249825, type: 2}
+  - {fileID: 11400000, guid: b546e627caf23e4408c3063025578901, type: 2}
+  - {fileID: 11400000, guid: 90a2a6ea43803254c93d777e22d21d24, type: 2}
+  - {fileID: 11400000, guid: 4190148c4a975bd41a30ff8171e9d389, type: 2}
+  - {fileID: 11400000, guid: fe239d478144d3c4c849cbdc37111dab, type: 2}
+  - {fileID: 11400000, guid: a1d2bcd844605854ab0b4b39a3c90fa3, type: 2}
+  - {fileID: 11400000, guid: a7f44657228db72428cb2d46fbfb3317, type: 2}
   cameraSkins:
   - {fileID: 11400000, guid: 38846015e07626a40af40d3683b3ed75, type: 2}
-  - {fileID: 11400000, guid: dc0b563e204d5514e88c9b0d4c77ffd5, type: 2}
+  - {fileID: 11400000, guid: f2da869dbac2531408237c9645a38cfa, type: 2}
+  - {fileID: 11400000, guid: 633cd899b35c0ed439bda3b100405d5d, type: 2}
+  - {fileID: 11400000, guid: 6cfb9cb03d7be71499d0683855ea1874, type: 2}
+  - {fileID: 11400000, guid: 7ca44c10536059e4b92fc89405061358, type: 2}
+  - {fileID: 11400000, guid: 624ab9abbe52f5645bb748f4c87965f8, type: 2}
   shopItemPrefabHat: {fileID: 1298683697936809028, guid: 7b4e02b59095ee548a05333d9226d961, type: 3}
   shopItemPrefabBodie: {fileID: 2468920697779552604, guid: 7994b0687c1613d4abb6efcb8998bd21, type: 3}
   shopItemPrefabCamera: {fileID: 7427142086804406813, guid: a1fdd58f4e2c19c4996cff83f44a3afc, type: 3}
