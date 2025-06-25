@@ -15,7 +15,7 @@ using Unity.VisualScripting;
 public class GameUiController : MonoBehaviour
 {
     Player player;
-   [SerializeField] Sekker sekker;
+    [SerializeField] Sekker sekker;
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;
@@ -49,7 +49,7 @@ public class GameUiController : MonoBehaviour
     public AudioSource Music;
     public AudioSource Music2;
     public float dietimer;
-
+    public bool hypeOn = false;
     //DOtween positions
     [SerializeField] float MenuSizein, MenuSizeout;
     [SerializeField] float UpTopPosY, UpmiddlePosY;
@@ -69,10 +69,10 @@ public class GameUiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-       
-        
-            
-        
+
+
+
+
 
 
     }
@@ -121,12 +121,20 @@ public class GameUiController : MonoBehaviour
                 finalDistanceTxt.text = distance + "m";
                 finalTPTxt.text = "TP: " + player.score;
                 int finalScore = distance * player.score;
-                finalScoreTxt.text ="FinalScore: " + finalScore;
+                finalScoreTxt.text = "FinalScore: " + finalScore;
 
             }
         }
+        if (hypeBar.fillAmount == 1)
+        {
+            Mathf.Lerp(hypeBar.fillAmount = 1f, hypeBar.fillAmount = 0f, 3);
+            hypeOn = true;
+        }
+        else
+        {
+            hypeOn = false;
+        }
 
-        
 
     }
     public void Exit()
@@ -240,13 +248,31 @@ public class GameUiController : MonoBehaviour
     }
     public void Hype()
     {
-        hypeBar.fillAmount += 0.2f;
+        if (hypeOn == false)
+        {
+            hypeBar.fillAmount += 0.2f;
+        }
+
     }
     public void LostHype()
-    { 
-        hypeBar.fillAmount -= 0.2f;
+    {
+        if (hypeOn == false)
+        {
+            hypeBar.fillAmount -= 0.2f;
+        }
     }
 
+    public int Multiplicador()
+    {
+        int multiplier = 1;
+        if (hypeBar.fillAmount == 1)
+        {
+
+            hypeOn = true;
+            return multiplier *= 2;
+        }
+        return multiplier;
+    }
     public void ShockBtnt()
     {
         if (batery.fillAmount == 1)
@@ -270,16 +296,16 @@ public class GameUiController : MonoBehaviour
 
         if (batery.fillAmount == 1)
         {
-            
+
             ShockBtn.DOAnchorPosX(760, 0.5f).SetEase(Ease.OutCubic).SetUpdate(true);
 
         }
         else
         {
-           
+
             await ShockBtnAni();
             ShockBtn.DOAnchorPosX(1155, 1).SetEase(Ease.OutCubic).SetUpdate(true);
         }
     }
-    
+
 }

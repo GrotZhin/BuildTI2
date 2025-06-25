@@ -2189,6 +2189,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1604366989}
     - target: {fileID: 2533322150253574669, guid: c72c4258cada45340940e6c953657439, type: 3}
+      propertyPath: jumpSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533322150253574669, guid: c72c4258cada45340940e6c953657439, type: 3}
       propertyPath: maxXSpeed
       value: 30
       objectReference: {fileID: 0}
@@ -3164,7 +3168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 532979454074997410, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 108
+      value: 107.99988
       objectReference: {fileID: 0}
     - target: {fileID: 532979454074997410, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3318,6 +3322,10 @@ PrefabInstance:
       propertyPath: sekker
       value: 
       objectReference: {fileID: 6499273208219421507, guid: 320038c12df6f1043bc918dfcb8195a7, type: 3}
+    - target: {fileID: 6369200741033126827, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
+      propertyPath: hypeBar
+      value: 
+      objectReference: {fileID: 1651428429}
     - target: {fileID: 6369200741033126827, guid: 8b8a88d46e6223441b8553b240879928, type: 3}
       propertyPath: shockpp
       value: 
