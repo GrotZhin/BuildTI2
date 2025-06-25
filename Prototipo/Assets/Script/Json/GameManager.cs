@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public SaveSystem saveSystem;
+    [SerializeField] GameUiController uiController;
     [SerializeField] HighScore highScore;
     [SerializeField] Conquistas conquistas;
     [SerializeField] ConquistasManager Manager;
@@ -17,17 +18,22 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] TMP_InputField inputField;
 
+    public void Init(PlayerData playerData)
+    { 
+        playerName = playerData.playerName;
+    }
     void Start()
 
     {
-        
+        Init(loadSystem.LoadPlayerData());
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        
+       
 
     }
     public void EndGame()
     {
-        highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score));
+        Debug.Log("EndGame");
+        highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score,player.trickPoint,player.distance));
         conquistas.DeathCount += 1;
         conquistas.SaveConquistas();
         
@@ -36,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void Name()
     {
         playerName = inputField.text;
+        saveSystem.SavePlayerData(playerName);
         inputField.text = "";
         panelName.SetActive(false);
 

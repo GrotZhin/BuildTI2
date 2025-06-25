@@ -56,6 +56,8 @@ public class HighScoreUI : MonoBehaviour
                 var texts = uiElements[i].GetComponentsInChildren<TextMeshProUGUI>();
                 texts[0].text = playerData.playerName;
                 texts[1].text = playerData.score.ToString();
+                int distance = Mathf.FloorToInt(playerData.distance);;
+                texts[2].text = distance.ToString();
             }
         }
      }

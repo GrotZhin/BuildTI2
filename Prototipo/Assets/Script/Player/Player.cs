@@ -243,20 +243,21 @@ public class Player : MonoBehaviour
         if (isDead)
         {
             
-            
+             
             return;
            
         }
 
         
-        if (pos.y <= 3 && cheat == false)
+        if (pos.y <= 3 && cheat == false && isDead == false)
 
             {
                 deadbyfall = true;
                 isDead = true;
+               
                 speed.x = 0;
                 end2.SetActive(true);
-                gameManager.EndGame();
+                
                 return;
 
             }
@@ -313,7 +314,7 @@ public class Player : MonoBehaviour
     void ISekker()
     {
         Vector2 pos = transform.position;
-        Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
+        Vector2 sekkerPos = new Vector2(pos.x - 3, pos.y);
         prefab = Instantiate(sekker, sekkerPos, Quaternion.identity);
         isSekkerInstantiate = true;
     }
@@ -322,7 +323,7 @@ public class Player : MonoBehaviour
     {
         obstacle.boxCollider.enabled = false;
         ouch = true;
-        speed.x *= 0.8f;
+        speed.x *= 0.20f;
         soundManager.PlaySound(SoundType.Hit);
         Ranani.SetTrigger("Hit");
         CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
@@ -341,33 +342,30 @@ public class Player : MonoBehaviour
 
         if (hit.collider.CompareTag("Ground"))
         {
-            groundHeight = ground.groundHeight + 0.35f;
-            Debug.Log("dasuydagsudgasdgakuy");
-            pos.y = groundHeight;
+
             transform.rotation = rotationBase;
             GrindPP.transform.rotation = rotationBase;
 
             isGrind = false;
-            
+
             Ranani.SetBool("GrindTrick", false);
 
         }
 
-        if (hit.collider.CompareTag("Grind"))
+        if (hit.collider.CompareTag("Grind") && hit.moveDirection == Vector3.down)
         {
             Debug.Log("aaaaaaaaaaasssssssssaaaa");
-            groundHeight = grind.groundHeight + 0.35f;
-            pos.y = groundHeight;
-            speed.y = 0;
+
             transform.rotation = grind.transform.rotation;
             GrindPP.transform.rotation = grind.transform.rotation;
             isGrind = true;
             Debug.Log(isGrind);
-            
+
             Ranani.SetInteger("GrindTrickIndex", Random.Range(0, 5));
             Ranani.SetBool("GrindTrick", true);
 
         }
+        
 
         
 
@@ -418,6 +416,7 @@ public class Player : MonoBehaviour
             Ransekker.SetActive(true);
             end1.SetActive(true);
             isDead = true;
+            gameManager.EndGame();
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
         }
@@ -426,6 +425,10 @@ public class Player : MonoBehaviour
         {
             Vector2 pos = transform.position;
             soundManager.PlaySound(SoundType.Hit);
+            GameObject wall;
+            wall = GameObject.FindGameObjectWithTag("wall");
+            wall.SetActive(false);
+            gameManager.EndGame();
             isDead = true;
             if (deadbyfall)
 

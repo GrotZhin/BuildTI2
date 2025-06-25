@@ -39,7 +39,7 @@ public class Tricks : MonoBehaviour
             if (!onScreen)
             {
                 timer += Time.deltaTime;
-                if (timer >= 1.0f)
+                if (timer >= 0.25f)
                 {
                     ArrowAniintro();
                     direction = Trick();
@@ -108,7 +108,7 @@ public class Tricks : MonoBehaviour
 
         int direction = UnityEngine.Random.Range(0, 3);
         arrows[direction].SetActive(true);
-        Debug.Log("chamou");
+        
         return direction;
     }
 

@@ -19,6 +19,7 @@ public class GameUiController : MonoBehaviour
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;
+    public TextMeshProUGUI finalTPTxt;
     public TextMeshProUGUI finalScoreTxt;
     public GameObject resultPanel;
     public GameObject pausePanel;
@@ -44,6 +45,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform resoultsAni;
 
     public Image batery;
+    public Image hypeBar;
     public AudioSource Music;
     public AudioSource Music2;
     public float dietimer;
@@ -117,7 +119,10 @@ public class GameUiController : MonoBehaviour
                 ResoultsAni();
                 resultPanel.SetActive(true);
                 finalDistanceTxt.text = distance + "m";
-                finalScoreTxt.text = "TP: " + player.score;
+                finalTPTxt.text = "TP: " + player.score;
+                int finalScore = distance * player.score;
+                finalScoreTxt.text ="FinalScore: " + finalScore;
+
             }
         }
 
@@ -233,6 +238,14 @@ public class GameUiController : MonoBehaviour
         await ShockBtn.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
 
     }
+    public void Hype()
+    {
+        hypeBar.fillAmount += 0.2f;
+    }
+    public void LostHype()
+    { 
+        hypeBar.fillAmount -= 0.2f;
+    }
 
     public void ShockBtnt()
     {
@@ -243,12 +256,12 @@ public class GameUiController : MonoBehaviour
                 sekker = GameObject.FindGameObjectWithTag("Seeker").GetComponent<Sekker>();
                 batery.fillAmount -= 1;
                 sekker.StopMove();
-                
+
             }
-         
+
 
         }
-       
+
 
     }
 

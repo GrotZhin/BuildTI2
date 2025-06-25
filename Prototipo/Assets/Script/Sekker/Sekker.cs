@@ -1,4 +1,5 @@
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sekker : MonoBehaviour
@@ -50,8 +51,8 @@ public class Sekker : MonoBehaviour
     {
         
         Vector2 pos = transform.position;
-
-        if (pos.y <= 3)
+       
+        if (pos.y <= 3 ||Vector3.Distance(player.transform.position, transform.position) >= 20 )
         {
             player.sekkerInstantiate = false;
             player.isSekkerInstantiate = false;
@@ -112,18 +113,11 @@ public class Sekker : MonoBehaviour
         Vector3 pos = transform.position;
         Ground ground = hit.collider.GetComponent<Ground>();
 
-
-
-
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Obstacle obstacle = other.GetComponent<Obstacle>();
-        if (obstacle != null)
-        {
-            //HitObstacle(obstacle);
-        }
+     
 
         if (other.gameObject.CompareTag("Player"))
         {
