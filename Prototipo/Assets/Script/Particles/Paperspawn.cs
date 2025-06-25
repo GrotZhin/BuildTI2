@@ -1,12 +1,11 @@
-using UnityEngine;
-using DG.Tweening;
 using RWM;
+using UnityEngine;
 
-
-public class glassbreakPP : MonoBehaviour
+public class Paperspawn : MonoBehaviour
 {
+    
     public GameObject pp;
-    public GameObject glass;
+  
 
     public Camera CAM;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,8 +21,8 @@ public class glassbreakPP : MonoBehaviour
         {
             
             Instantiate(pp, transform.position, Quaternion.identity);
-            Destroy(glass);
-            soundManager.PlaySound(SoundType.Glass);
+          
+            soundManager.PlaySound(SoundType.Paper);
         }
     }
 }

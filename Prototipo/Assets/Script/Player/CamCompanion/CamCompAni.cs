@@ -55,6 +55,12 @@ public class CamCompAni : MonoBehaviour
 
             Canani.SetLayerWeight(1, 0);
             Canani.SetLayerWeight(0, 1);
+        } 
+        else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+
+            Canani.SetLayerWeight(1, 1);
+            Canani.SetLayerWeight(0, 0);
         }
 
     }

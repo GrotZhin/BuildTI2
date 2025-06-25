@@ -130,7 +130,13 @@ public class GameUiController : MonoBehaviour
     public async void Retry()
     {
         await RetryAni();
-        SceneManager.LoadScene("GameScene");
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            SceneManager.LoadScene("GameScene");
+        } else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
 
     }
     public void Pause()

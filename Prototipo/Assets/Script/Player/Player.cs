@@ -313,7 +313,7 @@ public class Player : MonoBehaviour
     void ISekker()
     {
         Vector2 pos = transform.position;
-        Vector2 sekkerPos = new Vector2(pos.x - 5, pos.y);
+        Vector2 sekkerPos = new Vector2(pos.x - 10, pos.y);
         prefab = Instantiate(sekker, sekkerPos, Quaternion.identity);
          isSekkerInstantiate = true;
     }
@@ -445,7 +445,7 @@ public class Player : MonoBehaviour
         }
     }
 
- 
+
     #region animations
 
     public void ChangeLayersWeight()
@@ -461,6 +461,12 @@ public class Player : MonoBehaviour
 
             Ranani.SetLayerWeight(1, 0);
             Ranani.SetLayerWeight(0, 1);
+        }
+        else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+
+            Ranani.SetLayerWeight(1, 1);
+            Ranani.SetLayerWeight(0, 0);
         }
 
     }
