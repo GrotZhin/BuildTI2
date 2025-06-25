@@ -1,7 +1,7 @@
 using System.IO;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+public partial class SaveSystem : MonoBehaviour
 {
     PlayerData playerData;
    

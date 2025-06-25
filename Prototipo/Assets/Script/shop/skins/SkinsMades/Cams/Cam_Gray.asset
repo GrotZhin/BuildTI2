@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82acd41564704a46a59bd10fe56568d, type: 3}
+  m_Name: Cam_Gray
+  m_EditorClassIdentifier: 
+  cameraSkinName: Grey
+  cameraMaterial: {fileID: 2100000, guid: bbf715ed4fbb0724d95fab87502c57ed, type: 2}
+  CameraMesh: {fileID: 6505224929099452927, guid: 39a646e56d775d944882a35fc61f2194, type: 3}
+  previewSprite: {fileID: 21300000, guid: ec0df49e5432ef94c89327a5e9e4bcca, type: 3}
+  price: 100

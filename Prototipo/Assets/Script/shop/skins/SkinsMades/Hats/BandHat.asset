@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79497b84cd0e3d947affd3b0c547af5c, type: 3}
+  m_Name: BandHat
+  m_EditorClassIdentifier: 
+  hatName: HeadBand
+  hatMaterial: {fileID: 2100000, guid: 6a2133031acc08e458d2c64171fd34a6, type: 2}
+  hatMesh: {fileID: 7697434172489398430, guid: fae081d8f487faa4ba2ba9354b6fda10, type: 3}
+  price: 125
+  hatPreviewSprite: {fileID: 21300000, guid: 46146d553edc37f45bd502df94ba1bc3, type: 3}
