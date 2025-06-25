@@ -1,13 +1,12 @@
-
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCam", menuName = "Shop/Cam")]
-public class Cam : ScriptableObject
+[CreateAssetMenu(fileName = "NewCameraSkin", menuName = "Shop/Camera Skin")]
+public class CameraSkin : ScriptableObject
 {
-    public string camName;
-    public Material camMaterial;
-    public Mesh camMesh;
+    public string cameraSkinName;
+    public Material cameraMaterial;
+    public Mesh CameraMesh;
+    public Sprite previewSprite;
     public int price;
-    public Sprite camPreviewSprite;
     private bool pruchased = false;
 }
