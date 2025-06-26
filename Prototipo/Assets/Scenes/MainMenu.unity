@@ -3359,6 +3359,7 @@ MonoBehaviour:
   ShopPanelTopPosx: 2545
   ShopPanelmiddlePosx: 0
   MenuSizein: 1.05
+  shopManager: {fileID: 609376147}
 --- !u!1 &340313464
 GameObject:
   m_ObjectHideFlags: 0
