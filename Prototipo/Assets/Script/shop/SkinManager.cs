@@ -8,7 +8,9 @@ public class SkinManager : MonoBehaviour
     public SkinnedMeshRenderer hatRenderer;
     public SkinnedMeshRenderer bodyRenderer;
     public SkinnedMeshRenderer cameraRenderer;
-    
+    public SkinnedMeshRenderer hatRenderer2;
+    public SkinnedMeshRenderer bodyRenderer2;
+
 
     public Hat[] allHats;
     public Body[] allBodies;
@@ -41,6 +43,8 @@ public class SkinManager : MonoBehaviour
         hatRenderer = GameObject.Find("HatDefault")?.GetComponent<SkinnedMeshRenderer>();
         bodyRenderer = GameObject.Find("Body")?.GetComponent<SkinnedMeshRenderer>();
         cameraRenderer = GameObject.Find("CamBody")?.GetComponent<SkinnedMeshRenderer>();
+        hatRenderer2 = GameObject.Find("HatDefault2")?.GetComponent<SkinnedMeshRenderer>();
+        bodyRenderer2 = GameObject.Find("Body2")?.GetComponent<SkinnedMeshRenderer>();
         LoadEquippedSkins();
     }
 
@@ -51,6 +55,11 @@ public class SkinManager : MonoBehaviour
             hatRenderer.material = hat.hatMaterial;
             hatRenderer.sharedMesh = hat.hatMesh;
         }
+        if (hatRenderer2 != null)
+        {
+            hatRenderer2.material = hat.hatMaterial;
+            hatRenderer2.sharedMesh = hat.hatMesh;
+        }
     }
 
     public void Equipbody(Body body)
@@ -59,6 +68,11 @@ public class SkinManager : MonoBehaviour
         {
             bodyRenderer.material = body.bodyMaterial;
             bodyRenderer.sharedMesh = body.bodyMesh;
+        }
+        if (bodyRenderer2 != null)
+        {
+            bodyRenderer2.material = body.bodyMaterial;
+            bodyRenderer2.sharedMesh = body.bodyMesh;
         }
     }
     
