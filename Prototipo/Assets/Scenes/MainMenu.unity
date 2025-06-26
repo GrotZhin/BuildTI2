@@ -5167,6 +5167,7 @@ GameObject:
   - component: {fileID: 609376148}
   - component: {fileID: 609376147}
   - component: {fileID: 609376149}
+  - component: {fileID: 609376150}
   m_Layer: 0
   m_Name: shopmanager
   m_TagString: Untagged
@@ -5233,6 +5234,7 @@ MonoBehaviour:
   wardrobeItemPrefabBodie: {fileID: 7123107696247691468, guid: b82937fb1e57d2e4e8cdd10b7e0f70bf, type: 3}
   wardrobeItemPrefabCamera: {fileID: 7427142086804406813, guid: d9af82fb8878ace4394de160f39efba3, type: 3}
   loadSystem: {fileID: 609376149}
+  saveSystem: {fileID: 609376150}
 --- !u!4 &609376148
 Transform:
   m_ObjectHideFlags: 0
@@ -5258,6 +5260,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec039f2eec868a148aab7e1c7355ffca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &609376150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609376146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b6bfb69239ceb46aa294d656edbf4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &616667391
@@ -7449,6 +7463,7 @@ GameObject:
   - component: {fileID: 925394376}
   - component: {fileID: 925394377}
   - component: {fileID: 925394378}
+  - component: {fileID: 925394379}
   m_Layer: 0
   m_Name: ConquistasManager
   m_TagString: Untagged
@@ -7487,7 +7502,7 @@ MonoBehaviour:
   highScore: {fileID: 925394372}
   conquistas: {fileID: 925394376}
   Manager: {fileID: 925394377}
-  loadSystem: {fileID: 0}
+  loadSystem: {fileID: 925394379}
   lista: []
   playerName: Vex
   panelName: {fileID: 139773188}
@@ -7568,6 +7583,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9b6bfb69239ceb46aa294d656edbf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &925394379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925394371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec039f2eec868a148aab7e1c7355ffca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &934855578

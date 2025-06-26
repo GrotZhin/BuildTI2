@@ -253,7 +253,8 @@ public class Player : MonoBehaviour
 
             {
                 deadbyfall = true;
-                isDead = true;
+                gameManager.EndGame();
+                 isDead = true;
                
                 speed.x = 0;
                 end2.SetActive(true);

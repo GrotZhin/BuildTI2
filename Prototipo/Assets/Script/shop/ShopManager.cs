@@ -23,7 +23,7 @@ public class ShopManager : MonoBehaviour
     private List<ShopItemUI> hatItems = new List<ShopItemUI>();
     private List<ShopItemUI> bodyItems = new List<ShopItemUI>();
     private List<ShopItemUI> cameraItems = new List<ShopItemUI>();
-    
+
     public GameObject wardrobePanel;
     public GameObject shopPanel;
 
@@ -33,44 +33,54 @@ public class ShopManager : MonoBehaviour
     public GameObject wardrobeItemPrefabHat;
     public GameObject wardrobeItemPrefabBodie;
     public GameObject wardrobeItemPrefabCamera;
-    
+
     private List<WardrobeItemUI> hatWardrobeItems = new();
     private List<WardrobeItemUI> bodyWardrobeItems = new();
     private List<WardrobeItemUI> cameraWardrobeItems = new();
-    
+
     [SerializeField] LoadSystem loadSystem;
-    
-    
-    
+    [SerializeField] SaveSystem saveSystem;
+
+
+
     void Start()
     {
         LoadShop();
         CreateShopItems();
         UpdateUI();
+       
     }
 
-    public void init(PlayerData playerData)
+    public void Init(PlayerData playerData)
     {
         shopData.trickPoints = playerData.trickpoints;
     }
-
+    
     void LoadShop()
-    {
+    {     
         shopData = SaveShop.LoadData();
+        if (shopData != null)
+        {
+            Debug.Log("entrei");
+            Init(loadSystem.LoadPlayerData());
+            Debug.Log("passei");
+        }
+       
         if (shopData == null)
         {
             shopData = new ShopData();
-            init(loadSystem.LoadPlayerData());
+           
+            
 
             foreach (var hat in hats)
                 shopData.ownedHats.Add(new HatData { hatName = hat.hatName, purchased = false });
 
             foreach (var body in bodies)
                 shopData.ownedBodies.Add(new BodyData { bodyName = body.bodyName, purchased = false });
-            
+
             foreach (var cam in cameraSkins)
                 shopData.ownedCameraSkins.Add(new CameraSkinData { cameraSkinName = cam.cameraSkinName, purchased = false });
-            
+              Init(loadSystem.LoadPlayerData());
             SaveShop.SaveData(shopData);
         }
     }
@@ -128,7 +138,7 @@ public class ShopManager : MonoBehaviour
         {
             var obj = Instantiate(shopItemPrefabCamera, cameraContainer);
             var item = obj.GetComponent<ShopItemUI>();
-            item.Init(i, false, this , isCamera: true);
+            item.Init(i, false, this, isCamera: true);
             cameraItems.Add(item);
         }
     }
@@ -148,7 +158,7 @@ public class ShopManager : MonoBehaviour
             shopData.equippedHatName = hat.hatName;
             SkinManager.instance.Equiphat(hat);
         }
-
+        saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
         UpdateUI();
     }
@@ -168,11 +178,11 @@ public class ShopManager : MonoBehaviour
             shopData.equippedBodyName = body.bodyName;
             SkinManager.instance.Equipbody(body);
         }
-
+        saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
         UpdateUI();
     }
-    
+
     public void OnCameraClick(int index)
     {
         var skin = cameraSkins[index];
@@ -188,7 +198,7 @@ public class ShopManager : MonoBehaviour
             shopData.equippedCameraSkinName = skin.cameraSkinName;
             SkinManager.instance.EquipCameraSkin(skin);
         }
-
+        saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
         UpdateUI();
     }
@@ -215,7 +225,7 @@ public class ShopManager : MonoBehaviour
             else if (shopData.trickPoints < hat.price)
                 color.a = 0.2f; // Mais apagado ainda se nem dá pra comprar
             else
-                color.a = 1f; 
+                color.a = 1f;
 
             ui.icon.color = color;
         }
@@ -237,7 +247,7 @@ public class ShopManager : MonoBehaviour
             else if (shopData.trickPoints < body.price)
                 color.a = 0.2f; // Mais apagado ainda se nem dá pra comprar
             else
-                color.a = 1f; 
+                color.a = 1f;
 
             ui.icon.color = color;
         }
@@ -263,6 +273,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("ResetSave")]
     public void ResetSave()
     {
         SaveShop.ResetSave();
@@ -313,13 +324,13 @@ public class ShopManager : MonoBehaviour
             var data = shopData.ownedBodies[i];
             if (!data.purchased) continue;
 
-            var obj = Instantiate(wardrobeItemPrefabBodie, bodyWardrobeContainer); 
+            var obj = Instantiate(wardrobeItemPrefabBodie, bodyWardrobeContainer);
             var ui = obj.GetComponent<WardrobeItemUI>();
 
             ui.icon.sprite = bodies[i].bodyPreviewSprite;
             ui.nameText.text = bodies[i].bodyName;
-            ui.Init(i, false, this); 
-            
+            ui.Init(i, false, this);
+
             if (shopData.equippedBodyName == bodies[i].bodyName)
             {
                 Color c = ui.icon.color;
@@ -351,7 +362,7 @@ public class ShopManager : MonoBehaviour
                 ui.icon.color = c;
             }
 
-            cameraWardrobeItems.Add(ui); 
+            cameraWardrobeItems.Add(ui);
         }
     }
 }

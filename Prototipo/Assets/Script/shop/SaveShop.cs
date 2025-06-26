@@ -7,6 +7,8 @@ public static class SaveShop
 
     public static void SaveData(ShopData data)
     {
+       
+       
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(path, json);
     }

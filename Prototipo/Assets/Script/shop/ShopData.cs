@@ -13,7 +13,9 @@ public class ShopData
     public List<HatData> ownedHats = new List<HatData>();
     public List<BodyData> ownedBodies = new List<BodyData>();
     public List<CameraSkinData> ownedCameraSkins = new List<CameraSkinData>();
+   
 }
+
 
 [Serializable]
 public class HatData

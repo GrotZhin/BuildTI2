@@ -60,6 +60,7 @@ public class GameUiController : MonoBehaviour
     [SerializeField] float ReTweenDur;
 
     public float Intimer;
+    float timer;
 
 
     // Start is called before the first frame update
@@ -125,12 +126,24 @@ public class GameUiController : MonoBehaviour
 
             }
         }
+
         if (hypeBar.fillAmount == 1)
         {
-            Mathf.Lerp(hypeBar.fillAmount = 1f, hypeBar.fillAmount = 0f, 3);
             hypeOn = true;
         }
-        else
+        if (hypeOn == true)
+        {
+            if (hypeOn)
+            {
+                timer += Time.smoothDeltaTime;
+                if (timer >= 2)
+                {
+                    hypeBar.fillAmount -= 0.2f;
+                    timer = 0;
+                }
+            }
+        }
+        if (hypeBar.fillAmount == 0)
         {
             hypeOn = false;
         }
@@ -260,6 +273,11 @@ public class GameUiController : MonoBehaviour
         {
             hypeBar.fillAmount -= 0.2f;
         }
+    }
+    public void ReduzirBarra()
+    {
+        float timer = 0;
+
     }
 
     public int Multiplicador()
