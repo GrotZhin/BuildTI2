@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 
         Ranani.SetBool("SlideTrick", false);
         Ranani.SetBool("FallBack", false);
-        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 7));
         Ranani.SetBool("JumpTricks", true);
         Ranani.SetBool("GrindTrick", false);
 

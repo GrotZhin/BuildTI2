@@ -44,8 +44,6 @@ public class Tutorial : MonoBehaviour
 
 
 
-
-
     }
 
     public async void tsugi()

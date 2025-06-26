@@ -17,6 +17,10 @@ public class ShockSfxEvent : MonoBehaviour
     {
         soundManager.PlaySound(SoundType.Shock);
     }
+     void SoundPlay2()
+    {
+        soundManager.PlaySound(SoundType.shockATK);
+    }
     
      void PPSpawn()
     {

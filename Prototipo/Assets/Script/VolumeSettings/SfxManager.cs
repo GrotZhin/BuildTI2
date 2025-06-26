@@ -29,6 +29,7 @@ namespace RWM
         grindswitch,
         fuckyea,
         Paper,
+        shockATK,
         
 
     }
