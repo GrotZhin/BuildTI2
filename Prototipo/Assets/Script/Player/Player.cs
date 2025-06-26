@@ -341,9 +341,7 @@ public class Player : MonoBehaviour
 
         if (hit.collider.CompareTag("Ground"))
         {
-            groundHeight = ground.groundHeight + 0.35f;
-            Debug.Log("dasuydagsudgasdgakuy");
-            pos.y = groundHeight;
+           
             transform.rotation = rotationBase;
             GrindPP.transform.rotation = rotationBase;
 
@@ -416,6 +414,7 @@ public class Player : MonoBehaviour
             Ransekker.SetActive(true);
             end1.SetActive(true);
             isDead = true;
+            gameManager.EndGame();
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
         }
@@ -423,6 +422,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("wall"))
         {
             Vector2 pos = transform.position;
+            gameManager.EndGame();
             soundManager.PlaySound(SoundType.Hit);
             isDead = true;
             if (deadbyfall)
