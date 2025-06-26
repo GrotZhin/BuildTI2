@@ -18,6 +18,8 @@ TagManager:
   - Glass
   - Seeker
   - wall
+  - Grind
+  - tuto
   layers:
   - Default
   - TransparentFX

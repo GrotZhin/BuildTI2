@@ -1,5 +1,4 @@
 using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Sekker : MonoBehaviour
@@ -13,7 +12,7 @@ public class Sekker : MonoBehaviour
     public int score = 0;
     public float time;
     float timerStop;
-    bool stopMove;
+    public bool stopMove;
     public float maxXSpeed = 100;
     public float maxAcceleration = 10;
     public float acceleration = 10;
@@ -21,6 +20,8 @@ public class Sekker : MonoBehaviour
     public float groundHeight;
     public float fbkTimer;
     private CharacterController characterController;
+
+    public bool Shocked = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -44,18 +45,21 @@ public class Sekker : MonoBehaviour
         }
 
         
+        
+
+
     }
 
     // Update is called once per frame
-        void FixedUpdate()
+    void FixedUpdate()
     {
-        
+
         Vector2 pos = transform.position;
-       
-        if (pos.y <= 3 ||Vector3.Distance(player.transform.position, transform.position) >= 20 )
+
+        if (pos.y <= 3)
         {
             player.sekkerInstantiate = false;
-            player.isSekkerInstantiate = false;
+             player.isSekkerInstantiate = false;
             Destroy(gameObject);
         }
 
@@ -65,8 +69,10 @@ public class Sekker : MonoBehaviour
             seekani.SetBool("jump", true);
             seekani.SetBool("fallback", false);
         }
+
         if (stopMove)
         {
+            seekani.SetTrigger("Shocked");
             timerStop += Time.deltaTime;
             if (timerStop >= 10)
             {
@@ -87,24 +93,27 @@ public class Sekker : MonoBehaviour
 
 
         }
+
         
-       
+
+
 
         characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
+    }
+
+    public void StopMove()
+    {
+        Debug.Log("Shocked");
+        speed.x = -1;
+        speed.y = 0;
+        stopMove = true;
+        
     }
     public void Jump()
     {
 
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
-        
-    }
-    public void StopMove()
-    {
-        Debug.Log("chamou");
-        speed.x = 0;
-        speed.y = 0;
-        stopMove = true;
-        
+
     }
 
 
@@ -113,11 +122,19 @@ public class Sekker : MonoBehaviour
         Vector3 pos = transform.position;
         Ground ground = hit.collider.GetComponent<Ground>();
 
+
+      
+
+
     }
 
     void OnTriggerEnter(Collider other)
     {
-     
+        Obstacle obstacle = other.GetComponent<Obstacle>();
+        if (obstacle != null)
+        {
+            //HitObstacle(obstacle);
+        }
 
         if (other.gameObject.CompareTag("Player"))
         {

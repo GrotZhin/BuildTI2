@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
 
         if (!sekkerInstantiate)
         {
-            if (speed.x <= 7)
+            if (speed.x <= 40)
             {
                 sekkerInstantiate = true;
                 ISekker();
@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
         }
         if (!slider)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && isGrind == false)
             {
                 Slide();
             }
@@ -209,7 +209,7 @@ public class Player : MonoBehaviour
 
         Ranani.SetBool("SlideTrick", false);
         Ranani.SetBool("FallBack", false);
-        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
+        Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 7));
         Ranani.SetBool("JumpTricks", true);
         Ranani.SetBool("GrindTrick", false);
 
@@ -243,22 +243,20 @@ public class Player : MonoBehaviour
         if (isDead)
         {
             
-             
+            
             return;
            
         }
 
         
-        if (pos.y <= 3 && cheat == false && isDead == false)
+        if (pos.y <= 3 && cheat == false)
 
             {
                 deadbyfall = true;
-                gameManager.EndGame();
-                 isDead = true;
-               
+                isDead = true;
                 speed.x = 0;
                 end2.SetActive(true);
-                
+                gameManager.EndGame();
                 return;
 
             }
@@ -315,16 +313,16 @@ public class Player : MonoBehaviour
     void ISekker()
     {
         Vector2 pos = transform.position;
-        Vector2 sekkerPos = new Vector2(pos.x - 3, pos.y);
+        Vector2 sekkerPos = new Vector2(pos.x - 10, pos.y);
         prefab = Instantiate(sekker, sekkerPos, Quaternion.identity);
-        isSekkerInstantiate = true;
+         isSekkerInstantiate = true;
     }
 
     public void HitObstacle(Obstacle obstacle)
     {
         obstacle.boxCollider.enabled = false;
         ouch = true;
-        speed.x *= 0.20f;
+        speed.x *= 0.8f;
         soundManager.PlaySound(SoundType.Hit);
         Ranani.SetTrigger("Hit");
         CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
@@ -343,30 +341,31 @@ public class Player : MonoBehaviour
 
         if (hit.collider.CompareTag("Ground"))
         {
-
+            groundHeight = ground.groundHeight + 0.35f;
+            Debug.Log("dasuydagsudgasdgakuy");
+            pos.y = groundHeight;
             transform.rotation = rotationBase;
             GrindPP.transform.rotation = rotationBase;
 
             isGrind = false;
-
+            
             Ranani.SetBool("GrindTrick", false);
 
         }
 
-        if (hit.collider.CompareTag("Grind") && hit.moveDirection == Vector3.down)
+        if (hit.collider.CompareTag("Grind"))
         {
             Debug.Log("aaaaaaaaaaasssssssssaaaa");
-
+            
             transform.rotation = grind.transform.rotation;
             GrindPP.transform.rotation = grind.transform.rotation;
             isGrind = true;
             Debug.Log(isGrind);
-
+            
             Ranani.SetInteger("GrindTrickIndex", Random.Range(0, 5));
             Ranani.SetBool("GrindTrick", true);
 
         }
-        
 
         
 
@@ -417,7 +416,6 @@ public class Player : MonoBehaviour
             Ransekker.SetActive(true);
             end1.SetActive(true);
             isDead = true;
-            gameManager.EndGame();
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
         }
@@ -426,10 +424,6 @@ public class Player : MonoBehaviour
         {
             Vector2 pos = transform.position;
             soundManager.PlaySound(SoundType.Hit);
-            GameObject wall;
-            wall = GameObject.FindGameObjectWithTag("wall");
-            wall.SetActive(false);
-            gameManager.EndGame();
             isDead = true;
             if (deadbyfall)
 
@@ -451,7 +445,7 @@ public class Player : MonoBehaviour
         }
     }
 
- 
+
     #region animations
 
     public void ChangeLayersWeight()
@@ -467,6 +461,12 @@ public class Player : MonoBehaviour
 
             Ranani.SetLayerWeight(1, 0);
             Ranani.SetLayerWeight(0, 1);
+        }
+        else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+
+            Ranani.SetLayerWeight(1, 1);
+            Ranani.SetLayerWeight(0, 0);
         }
 
     }

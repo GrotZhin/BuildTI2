@@ -10,16 +10,14 @@ using UnityEngine.SocialPlatforms.Impl;
 using System.Threading.Tasks;
 using UnityEngine.UI;
 using RWM;
-using Unity.VisualScripting;
 
 public class GameUiController : MonoBehaviour
 {
     Player player;
-    [SerializeField] Sekker sekker;
+    Sekker sekker;
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;
-    public TextMeshProUGUI finalTPTxt;
     public TextMeshProUGUI finalScoreTxt;
     public GameObject resultPanel;
     public GameObject pausePanel;
@@ -45,11 +43,10 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform resoultsAni;
 
     public Image batery;
-    public Image hypeBar;
     public AudioSource Music;
     public AudioSource Music2;
     public float dietimer;
-    public bool hypeOn = false;
+
     //DOtween positions
     [SerializeField] float MenuSizein, MenuSizeout;
     [SerializeField] float UpTopPosY, UpmiddlePosY;
@@ -59,20 +56,19 @@ public class GameUiController : MonoBehaviour
     [SerializeField] float TweenDur;
     [SerializeField] float ReTweenDur;
 
+    public Animator Canani;
+
     public float Intimer;
-    float timer;
 
 
     // Start is called before the first frame update
     private void Awake()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-
-
-
 
 
 
@@ -120,34 +116,11 @@ public class GameUiController : MonoBehaviour
                 ResoultsAni();
                 resultPanel.SetActive(true);
                 finalDistanceTxt.text = distance + "m";
-                finalTPTxt.text = "TP: " + player.score;
-                int finalScore = distance * player.score;
-                finalScoreTxt.text = "FinalScore: " + finalScore;
-
+                finalScoreTxt.text = "TP: " + player.score;
             }
         }
 
-        if (hypeBar.fillAmount == 1)
-        {
-            hypeOn = true;
-        }
-        if (hypeOn == true)
-        {
-            if (hypeOn)
-            {
-                timer += Time.smoothDeltaTime;
-                if (timer >= 2)
-                {
-                    hypeBar.fillAmount -= 0.2f;
-                    timer = 0;
-                }
-            }
-        }
-        if (hypeBar.fillAmount == 0)
-        {
-            hypeOn = false;
-        }
-
+        
 
     }
     public void Exit()
@@ -157,7 +130,13 @@ public class GameUiController : MonoBehaviour
     public async void Retry()
     {
         await RetryAni();
-        SceneManager.LoadScene("GameScene");
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            SceneManager.LoadScene("GameScene");
+        } else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
 
     }
     public void Pause()
@@ -259,42 +238,12 @@ public class GameUiController : MonoBehaviour
         await ShockBtn.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
 
     }
-    public void Hype()
-    {
-        if (hypeOn == false)
-        {
-            hypeBar.fillAmount += 0.2f;
-        }
 
-    }
-    public void LostHype()
-    {
-        if (hypeOn == false)
-        {
-            hypeBar.fillAmount -= 0.2f;
-        }
-    }
-    public void ReduzirBarra()
-    {
-        float timer = 0;
-
-    }
-
-    public int Multiplicador()
-    {
-        int multiplier = 1;
-        if (hypeBar.fillAmount == 1)
-        {
-
-            hypeOn = true;
-            return multiplier *= 2;
-        }
-        return multiplier;
-    }
     public void ShockBtnt()
     {
         if (batery.fillAmount == 1)
         {
+            Canani.SetTrigger("Shock");
             if (player.isSekkerInstantiate)
             {
                 sekker = GameObject.FindGameObjectWithTag("Seeker").GetComponent<Sekker>();
@@ -302,11 +251,9 @@ public class GameUiController : MonoBehaviour
                 sekker.StopMove();
 
             }
-
+         
 
         }
-
-
     }
 
     public async Task ShockBtnintro()
@@ -314,16 +261,16 @@ public class GameUiController : MonoBehaviour
 
         if (batery.fillAmount == 1)
         {
-
+            
             ShockBtn.DOAnchorPosX(760, 0.5f).SetEase(Ease.OutCubic).SetUpdate(true);
 
         }
         else
         {
-
+           
             await ShockBtnAni();
             ShockBtn.DOAnchorPosX(1155, 1).SetEase(Ease.OutCubic).SetUpdate(true);
         }
     }
-
+    
 }
