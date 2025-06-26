@@ -70,7 +70,7 @@ public class MenuUiController : MonoBehaviour
     [SerializeField] float ShopTopPosx, ShopmiddlePosx;
     [SerializeField] float ShopPanelTopPosx, ShopPanelmiddlePosx;
     [SerializeField] float MenuSizein;
-
+    [SerializeField] ShopManager shopManager;
 
     // Start is called before the first frame update
     public void Start()
@@ -129,6 +129,7 @@ public class MenuUiController : MonoBehaviour
     }
     public async void Wardrobe()
     {
+        shopManager.UpdateWardrobe();
         soundManager.PlaySound(SoundType.SliddingDoorClos);
         shopIntro.SetActive(true);
         shopOutro.SetActive(false);

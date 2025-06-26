@@ -286,7 +286,7 @@ public class ShopManager : MonoBehaviour
 
         UpdateWardrobe();
     }
-    void UpdateWardrobe()
+    public void UpdateWardrobe()
     {
         foreach (Transform child in hatWardrobeContainer) Destroy(child.gameObject);
         foreach (Transform child in bodyWardrobeContainer) Destroy(child.gameObject);

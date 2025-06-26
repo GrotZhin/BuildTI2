@@ -24,7 +24,7 @@ public class WardrobeItemUI : MonoBehaviour
         button.onClick.AddListener(OnClick);
     }
 
-    void OnClick()
+     void OnClick()
     {
         if (isCamera)
             shopManager.EquipCamera(index);
