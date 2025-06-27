@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hatName: Aviator
   hatMaterial: {fileID: 2100000, guid: 9be3ca6c6a7241849852994ef1d101da, type: 2}
-  hatMesh: {fileID: -8205975742717224321, guid: fae081d8f487faa4ba2ba9354b6fda10, type: 3}
+  hatMesh: {fileID: -8205975742717224321, guid: 3253dde4fae399d4bbbb1b61c0678543, type: 3}
   price: 200
   hatPreviewSprite: {fileID: 21300000, guid: e85e1b24fbe94f24ca6178dc08704cd5, type: 3}
+  meshScale: {x: 1, y: 1, z: 1}

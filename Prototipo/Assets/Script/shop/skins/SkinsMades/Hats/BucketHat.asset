@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hatName: Bucket
   hatMaterial: {fileID: 2100000, guid: 1450a0566fcb4944a921bd683a1ed642, type: 2}
-  hatMesh: {fileID: 2244841440550617734, guid: fae081d8f487faa4ba2ba9354b6fda10, type: 3}
+  hatMesh: {fileID: 2244841440550617734, guid: 3253dde4fae399d4bbbb1b61c0678543, type: 3}
   price: 100
   hatPreviewSprite: {fileID: 21300000, guid: a8db2a0cda501d0418dabd2aa1c7f6f5, type: 3}
+  meshScale: {x: 1, y: 1, z: 1}
