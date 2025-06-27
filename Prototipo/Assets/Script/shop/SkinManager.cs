@@ -50,18 +50,26 @@ public class SkinManager : MonoBehaviour
 
     public void Equiphat(Hat hat)
     {
-        if (hatRenderer != null)
-        {
-            hatRenderer.material = hat.hatMaterial;
-            hatRenderer.sharedMesh = hat.hatMesh;
-        }
-        if (hatRenderer2 != null)
-        {
-            hatRenderer2.material = hat.hatMaterial;
-            hatRenderer2.sharedMesh = hat.hatMesh;
-        }
+        ApplyHatToRenderer(hatRenderer, bodyRenderer, hat);
+        ApplyHatToRenderer(hatRenderer2, bodyRenderer2, hat);
     }
 
+    // --------- helper privado ---------
+    void ApplyHatToRenderer(SkinnedMeshRenderer target, SkinnedMeshRenderer reference, Hat hat)
+    {
+        if (target == null || reference == null || hat == null) return;
+
+        // troca mesh e material
+        target.sharedMesh = hat.hatMesh;
+        target.sharedMaterial = hat.hatMaterial;
+
+        // copia esqueleto do corpo
+        target.bones = reference.bones;
+        target.rootBone = reference.rootBone;
+
+        // bounding box para culling correto
+        target.localBounds = hat.hatMesh.bounds;
+    }
     public void Equipbody(Body body)
     {
         if (bodyRenderer != null)

@@ -16,4 +16,5 @@ MonoBehaviour:
   hatMaterial: {fileID: 2100000, guid: 8359bffe66d25f949bdaf359a2ad2a8c, type: 2}
   hatMesh: {fileID: 5032666711019121373, guid: fae081d8f487faa4ba2ba9354b6fda10, type: 3}
   price: 250
-  hatPreviewSprite: {fileID: 21300000, guid: a474215c184f6f14fb043fec3edc8afb, type: 3}
+  hatPreviewSprite: {fileID: 21300000, guid: 47cf6ad7cc1714e46b824c08360d2b91, type: 3}
+  meshScale: {x: 0.2, y: 0.2, z: 0.2}

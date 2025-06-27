@@ -10,4 +10,5 @@ public class Hat : ScriptableObject
     public int price;
     public Sprite hatPreviewSprite;
     private bool pruchased = false;
+    public Vector3 meshScale = Vector3.one;
 }
