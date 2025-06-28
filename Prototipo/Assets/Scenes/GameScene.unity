@@ -503,6 +503,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cfb9cb03d7be71499d0683855ea1874, type: 2}
   - {fileID: 11400000, guid: 7ca44c10536059e4b92fc89405061358, type: 2}
   - {fileID: 11400000, guid: 624ab9abbe52f5645bb748f4c87965f8, type: 2}
+  hatParents:
+  - {fileID: 158874374}
+  - {fileID: 158874374}
 --- !u!4 &564334453
 Transform:
   m_ObjectHideFlags: 0
@@ -2370,6 +2373,10 @@ PrefabInstance:
       propertyPath: maxAcceleration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2944984298014644090, guid: c72c4258cada45340940e6c953657439, type: 3}
+      propertyPath: m_Name
+      value: HatDefault
+      objectReference: {fileID: 0}
     - target: {fileID: 3044472638719221727, guid: c72c4258cada45340940e6c953657439, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2570,6 +2577,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.583411
       objectReference: {fileID: 0}
+    - target: {fileID: 4823533887067183822, guid: c72c4258cada45340940e6c953657439, type: 3}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
     - target: {fileID: 4964168009150789483, guid: c72c4258cada45340940e6c953657439, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -18.058184
@@ -2605,6 +2616,10 @@ PrefabInstance:
     - target: {fileID: 5086412254885245197, guid: c72c4258cada45340940e6c953657439, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -177.79279
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107117612206425079, guid: c72c4258cada45340940e6c953657439, type: 3}
+      propertyPath: m_Name
+      value: RannaModel
       objectReference: {fileID: 0}
     - target: {fileID: 5186100789927101520, guid: c72c4258cada45340940e6c953657439, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

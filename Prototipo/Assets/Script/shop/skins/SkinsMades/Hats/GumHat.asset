@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79497b84cd0e3d947affd3b0c547af5c, type: 3}
   m_Name: GumHat
   m_EditorClassIdentifier: 
-  hatName: Aviator
-  hatMaterial: {fileID: 2100000, guid: 9be3ca6c6a7241849852994ef1d101da, type: 2}
-  hatMesh: {fileID: -8205975742717224321, guid: 3253dde4fae399d4bbbb1b61c0678543, type: 3}
+  hatName: HatAviator
   price: 200
   hatPreviewSprite: {fileID: 21300000, guid: e85e1b24fbe94f24ca6178dc08704cd5, type: 3}
-  meshScale: {x: 1, y: 1, z: 1}
+  overrideMaterial: {fileID: 2100000, guid: 9be3ca6c6a7241849852994ef1d101da, type: 2}

@@ -1,7 +1,7 @@
-
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 public class ShopManager : MonoBehaviour
 {
@@ -48,16 +48,16 @@ public class ShopManager : MonoBehaviour
         LoadShop();
         CreateShopItems();
         UpdateUI();
-       
+
     }
 
     public void Init(PlayerData playerData)
     {
         shopData.trickPoints = playerData.trickpoints;
     }
-    
+
     void LoadShop()
-    {     
+    {
         shopData = SaveShop.LoadData();
         if (shopData != null)
         {
@@ -65,12 +65,12 @@ public class ShopManager : MonoBehaviour
             Init(loadSystem.LoadPlayerData());
             Debug.Log("passei");
         }
-       
+
         if (shopData == null)
         {
             shopData = new ShopData();
-           
-            
+
+
 
             foreach (var hat in hats)
                 shopData.ownedHats.Add(new HatData { hatName = hat.hatName, purchased = false });
@@ -80,7 +80,7 @@ public class ShopManager : MonoBehaviour
 
             foreach (var cam in cameraSkins)
                 shopData.ownedCameraSkins.Add(new CameraSkinData { cameraSkinName = cam.cameraSkinName, purchased = false });
-              Init(loadSystem.LoadPlayerData());
+            Init(loadSystem.LoadPlayerData());
             SaveShop.SaveData(shopData);
         }
     }
@@ -92,7 +92,7 @@ public class ShopManager : MonoBehaviour
 
         shopData.equippedHatName = hat.hatName;
         SaveShop.SaveData(shopData);
-        SkinManager.instance.Equiphat(hat);
+        SkinManager.instance.EquipHat(hat);
     }
 
     public void EquipBody(int index)
@@ -103,7 +103,7 @@ public class ShopManager : MonoBehaviour
 
         shopData.equippedBodyName = body.bodyName;
         SaveShop.SaveData(shopData);
-        SkinManager.instance.Equipbody(body);
+        SkinManager.instance.EquipBody(body);
     }
     public void EquipCamera(int index)
     {
@@ -156,10 +156,11 @@ public class ShopManager : MonoBehaviour
         else if (data.purchased)
         {
             shopData.equippedHatName = hat.hatName;
-            SkinManager.instance.Equiphat(hat);
+            SkinManager.instance.EquipHat(hat);
         }
         saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
+        
         UpdateUI();
     }
 
@@ -176,10 +177,11 @@ public class ShopManager : MonoBehaviour
         else if (data.purchased)
         {
             shopData.equippedBodyName = body.bodyName;
-            SkinManager.instance.Equipbody(body);
+            SkinManager.instance.EquipBody(body);
         }
         saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
+        
         UpdateUI();
     }
 

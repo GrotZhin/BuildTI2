@@ -1,14 +1,11 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHat", menuName = "Shop/Hat")]
+[CreateAssetMenu(menuName = "Shop/Hat")]
 public class Hat : ScriptableObject
 {
-    public string hatName;
-    public Material hatMaterial;
-    public Mesh hatMesh;
+    public string hatName;    // deve bater com o nome do GameObject
     public int price;
     public Sprite hatPreviewSprite;
-    private bool pruchased = false;
-    public Vector3 meshScale = Vector3.one;
+    public Material overrideMaterial;
 }
