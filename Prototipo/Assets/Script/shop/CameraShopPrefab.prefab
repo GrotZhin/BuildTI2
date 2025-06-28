@@ -304,6 +304,7 @@ MonoBehaviour:
   icon: {fileID: 5777501590650455557}
   button: {fileID: 4004054225799247230}
   priceText: {fileID: 160021550448142652}
+  Ani: {fileID: 6723594431750813918}
   index: 0
   isHat: 0
   shopManager: {fileID: 0}

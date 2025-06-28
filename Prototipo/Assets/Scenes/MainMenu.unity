@@ -12505,7 +12505,8 @@ MonoBehaviour:
   - name: Slide
     sounds: []
   - name: Hit
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: 56ce0882ffff6a4418b4f2b643145eb5, type: 3}
   - name: Glass
     sounds: []
   - name: Shock
@@ -12513,11 +12514,15 @@ MonoBehaviour:
   - name: grindswitch
     sounds: []
   - name: fuckyea
-    sounds: []
+    sounds:
+    - {fileID: 8300000, guid: 51dacb95ef66e18498d80bfaae46f789, type: 3}
   - name: Paper
     sounds: []
   - name: shockATK
     sounds: []
+  - name: Purchased
+    sounds:
+    - {fileID: 8300000, guid: 54dc0e71ba8fb6c45b7b37472a48c3ac, type: 3}
   musicSource: {fileID: 2039226751}
 --- !u!114 &1757800629
 MonoBehaviour:

@@ -30,6 +30,7 @@ namespace RWM
         fuckyea,
         Paper,
         shockATK,
+        Purchased,
         
 
     }

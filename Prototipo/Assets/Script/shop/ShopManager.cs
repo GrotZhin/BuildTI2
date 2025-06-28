@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using NUnit.Framework;
+using RWM;
 
 public class ShopManager : MonoBehaviour
 {
@@ -150,17 +151,24 @@ public class ShopManager : MonoBehaviour
 
         if (!data.purchased && shopData.trickPoints >= hat.price)
         {
+            soundManager.PlaySound(SoundType.Purchased);
             shopData.trickPoints -= hat.price;
             data.purchased = true;
         }
         else if (data.purchased)
         {
+            soundManager.PlaySound(SoundType.Hit);
             shopData.equippedHatName = hat.hatName;
             SkinManager.instance.EquipHat(hat);
         }
         saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
-        
+
+        if (shopData.trickPoints <= hat.price)
+        {
+            soundManager.PlaySound(SoundType.Hit);
+        }
+
         UpdateUI();
     }
 
@@ -171,17 +179,23 @@ public class ShopManager : MonoBehaviour
 
         if (!data.purchased && shopData.trickPoints >= body.price)
         {
+            soundManager.PlaySound(SoundType.Purchased);
             shopData.trickPoints -= body.price;
             data.purchased = true;
         }
         else if (data.purchased)
         {
+            soundManager.PlaySound(SoundType.Hit);
             shopData.equippedBodyName = body.bodyName;
             SkinManager.instance.EquipBody(body);
         }
         saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
-        
+        if (shopData.trickPoints <= body.price)
+        {
+            soundManager.PlaySound(SoundType.Hit);
+        }
+
         UpdateUI();
     }
 
@@ -192,16 +206,22 @@ public class ShopManager : MonoBehaviour
 
         if (!data.purchased && shopData.trickPoints >= skin.price)
         {
+            soundManager.PlaySound(SoundType.Purchased);
             shopData.trickPoints -= skin.price;
             data.purchased = true;
         }
         else if (data.purchased)
         {
+            soundManager.PlaySound(SoundType.Hit);
             shopData.equippedCameraSkinName = skin.cameraSkinName;
             SkinManager.instance.EquipCameraSkin(skin);
         }
         saveSystem.SavePlayerData("", shopData.trickPoints);
         SaveShop.SaveData(shopData);
+        if (shopData.trickPoints <= skin.price)
+        {
+            soundManager.PlaySound(SoundType.Hit);
+        }
         UpdateUI();
     }
 
@@ -367,4 +387,6 @@ public class ShopManager : MonoBehaviour
             cameraWardrobeItems.Add(ui);
         }
     }
+    
+    
 }

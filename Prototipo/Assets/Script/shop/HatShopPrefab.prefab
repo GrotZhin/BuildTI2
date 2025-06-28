@@ -151,9 +151,11 @@ MonoBehaviour:
   icon: {fileID: 7738049992248897420}
   button: {fileID: 7140158864113386235}
   priceText: {fileID: 1490540087704592278}
+  Ani: {fileID: 6692319582094224966}
   index: 0
   isHat: 0
   shopManager: {fileID: 0}
+  isCamera: 0
 --- !u!1 &1798381399823561475
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,9 +379,11 @@ MonoBehaviour:
   icon: {fileID: 0}
   button: {fileID: 0}
   priceText: {fileID: 0}
+  Ani: {fileID: 0}
   index: 0
   isHat: 0
   shopManager: {fileID: 0}
+  isCamera: 0
 --- !u!1 &5354715351592748886
 GameObject:
   m_ObjectHideFlags: 0
