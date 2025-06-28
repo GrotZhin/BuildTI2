@@ -43,11 +43,12 @@ public class GameManager : MonoBehaviour
             loadSystem.LoadPlayerData();
             trickpoints += player.score;
             Debug.Log("change" + trickpoints);
-            saveSystem.SavePlayerData(playerName,trickpoints);
+            saveSystem.SavePlayerData(playerName, trickpoints);
             highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score, 0, player.distance));
             endGame = false;
             conquistas.DeathCount += 1;
             conquistas.SaveConquistas();
+            player.isDead = true;
 
         }
 

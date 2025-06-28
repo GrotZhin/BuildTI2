@@ -53,7 +53,10 @@ public class Sekker : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        if (player.isDead == true)
+        { 
+            Destroy(this.gameObject);
+        }
         Vector2 pos = transform.position;
 
         if (pos.y <= 3)

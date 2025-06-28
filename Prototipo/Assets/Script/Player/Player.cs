@@ -253,7 +253,7 @@ public class Player : MonoBehaviour
 
             {
                 deadbyfall = true;
-                isDead = true;
+               
                 speed.x = 0;
                 end2.SetActive(true);
                 gameManager.EndGame();
@@ -339,7 +339,7 @@ public class Player : MonoBehaviour
         Ground ground = hit.collider.GetComponent<Ground>();
         Grind grind = hit.collider.GetComponent<Grind>();
 
-        if (hit.collider.CompareTag("Ground"))
+        if (hit.collider.CompareTag("Ground") && isDead == false)
         {
            
             transform.rotation = rotationBase;
@@ -351,7 +351,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (hit.collider.CompareTag("Grind"))
+        if (hit.collider.CompareTag("Grind") && isDead == false)
         {
             Debug.Log("aaaaaaaaaaasssssssssaaaa");
             
@@ -413,7 +413,7 @@ public class Player : MonoBehaviour
         {
             Ransekker.SetActive(true);
             end1.SetActive(true);
-            isDead = true;
+            
             gameManager.EndGame();
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
@@ -421,10 +421,11 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("wall"))
         {
-            Vector2 pos = transform.position;
+            
             gameManager.EndGame();
+            
             soundManager.PlaySound(SoundType.Hit);
-            isDead = true;
+          
             if (deadbyfall)
 
             {
