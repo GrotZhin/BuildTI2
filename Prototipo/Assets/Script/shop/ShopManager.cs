@@ -328,7 +328,7 @@ public class ShopManager : MonoBehaviour
             var ui = obj.GetComponent<WardrobeItemUI>();
 
             ui.icon.sprite = hats[i].hatPreviewSprite;
-            ui.nameText.text = hats[i].hatName;
+            
             ui.Init(i, true, this);
             // Apagar o ícone se estiver equipado
             if (shopData.equippedHatName == hats[i].hatName)
@@ -350,7 +350,7 @@ public class ShopManager : MonoBehaviour
             var ui = obj.GetComponent<WardrobeItemUI>();
 
             ui.icon.sprite = bodies[i].bodyPreviewSprite;
-            ui.nameText.text = bodies[i].bodyName;
+            
             ui.Init(i, false, this);
 
             if (shopData.equippedBodyName == bodies[i].bodyName)
@@ -373,7 +373,7 @@ public class ShopManager : MonoBehaviour
             var ui = obj.GetComponent<WardrobeItemUI>();
 
             ui.icon.sprite = cameraSkins[i].previewSprite;
-            ui.nameText.text = cameraSkins[i].cameraSkinName;
+            
             ui.Init(i, false, this, isCamera: true);
 
             // Apagar o ícone se for o equipado
