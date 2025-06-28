@@ -80,6 +80,7 @@ MonoBehaviour:
   acceleration: 0.5
   jumpSpeed: 4
   groundHeight: 0
+  fbkTimer: 0
 --- !u!143 &4614517276269433524
 CharacterController:
   m_ObjectHideFlags: 0

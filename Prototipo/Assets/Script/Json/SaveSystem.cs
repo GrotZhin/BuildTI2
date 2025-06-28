@@ -1,16 +1,16 @@
 using System.IO;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+public partial class SaveSystem : MonoBehaviour
 {
     PlayerData playerData;
    
-    public void SavePlayerData( )
+    public void SavePlayerData(string playerName, int tp)
     {
         
-        playerData = new PlayerData("Masco", 228);
+        playerData = new PlayerData(playerName,0,tp,0);
         string json = JsonUtility.ToJson(playerData);
         File.WriteAllText(Application.persistentDataPath + "/playerData.json", json);
-        Debug.Log(playerData.playerName + playerData.score);
+       Debug.Log(Application.persistentDataPath + "/playerData.json");
     }
 }

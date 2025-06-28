@@ -7,6 +7,7 @@ using RWM;
 public class Tricks : MonoBehaviour
 {
     public int trickPoint;
+    GameUiController gameUiController;
     Player player;
     public GameObject[] arrows;
     GameObject arrow;
@@ -29,6 +30,7 @@ public class Tricks : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameUiController = GameObject.Find("Canvas").GetComponent<GameUiController>();
         player = GetComponent<Player>();
         Ranani = Ranna.GetComponent<Animator>();
     }
@@ -39,7 +41,7 @@ public class Tricks : MonoBehaviour
             if (!onScreen)
             {
                 timer += Time.deltaTime;
-                if (timer >= 1.0f)
+                if (timer >= 0.25f)
                 {
                     ArrowAniintro();
                     direction = Trick();
@@ -82,12 +84,14 @@ public class Tricks : MonoBehaviour
                     Instantiate(comG, ReDad.position, Quaternion.identity, ReDad);
                 }
                 soundManager.PlaySound(SoundType.Plamn);
-                player.score += 20;
+                player.score += 20 * gameUiController.Multiplicador();
+               
                 Ranani.SetInteger("GrindTrickIndex", Random.Range(0, 5));
                 Ranani.SetTrigger("grindtrig");
                 await ArrowAnioutro();
                 arrows[direction].SetActive(false);
                 onScreen = false;
+                gameUiController.Hype();
                 ArrowAni.DOScale(1, ReTweenDur).SetEase(Ease.OutFlash).SetUpdate(true);
             }
 
@@ -97,6 +101,7 @@ public class Tricks : MonoBehaviour
             {
                 soundManager.PlaySound(SoundType.Hit);
                 await ArrowAnioutroWng();
+                gameUiController.LostHype();
                 arrows[direction].SetActive(false);
                 onScreen = false;
                 return;
@@ -108,7 +113,7 @@ public class Tricks : MonoBehaviour
 
         int direction = UnityEngine.Random.Range(0, 3);
         arrows[direction].SetActive(true);
-        Debug.Log("chamou");
+        
         return direction;
     }
 

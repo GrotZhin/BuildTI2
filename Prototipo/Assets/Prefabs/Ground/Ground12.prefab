@@ -425,7 +425,6 @@ MonoBehaviour:
   cameraHalfSize: 0
   boxPrefab: []
   groundPrefab:
-  - {fileID: 1902924018311492512, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}
   - {fileID: 1902924018311492512, guid: 774e547bcbaaba24fb07014c97df6b56, type: 3}
   - {fileID: 1902924018311492512, guid: 81895efff25758747971c607a93256fe, type: 3}
   - {fileID: 1902924018311492512, guid: 72318dd6ca7dc55488a02cd93dcd85f3, type: 3}
@@ -436,6 +435,12 @@ MonoBehaviour:
   - {fileID: 1902924018311492512, guid: 74d49b6319b72224a96930803c030107, type: 3}
   - {fileID: 1902924018311492512, guid: 280e33f5e0ed9244fa48d0f72898e00e, type: 3}
   - {fileID: 1902924018311492512, guid: 364000611e030f64b9977be9a4c7594f, type: 3}
+  - {fileID: 1902924018311492512, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}
+  - {fileID: 1902924018311492512, guid: c982b0b1fd966784682069472b26eb64, type: 3}
+  - {fileID: 1902924018311492512, guid: af3935a866eccf4428e0d7d0991f14c3, type: 3}
+  - {fileID: 1902924018311492512, guid: 687e468cf49ce164eb2f3db3ec8cd3e8, type: 3}
+  - {fileID: 1902924018311492512, guid: 2beccc210cf04f247b04c9e8089b2ec2, type: 3}
+  - {fileID: 1902924018311492512, guid: 9e663b19920207e46916643b3b182248, type: 3}
   scoreCollider: {fileID: 0}
   powerUp: {fileID: 0}
 --- !u!65 &4353557523071889385

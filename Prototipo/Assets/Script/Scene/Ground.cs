@@ -52,9 +52,9 @@ public class Ground : MonoBehaviour
                 Destroy(gameObject);
                 timer = 0;
                 return;
-                
+
             }
-            
+
         }
 
 
@@ -80,27 +80,8 @@ public class Ground : MonoBehaviour
 
         BoxCollider goCollider = GetComponent<BoxCollider>();
         Vector3 pos;
+        Vector3 posPredioAtual = transform.position;
 
-        float h1 = player.jumpSpeed * player.maxHoldJumpTime;
-        float t = player.jumpSpeed / -player.gravity;
-        float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
-        float maxJumpHeight = h1 + h2;
-        float maxY = player.transform.position.y + maxJumpHeight * 8f;
-
-
-        float minY = 7;
-        float actualY = UnityEngine.Random.Range(minY, maxY);
-
-
-        pos.y = actualY - goCollider.size.y / 2 ;
-        if (pos.y > 8)
-        {
-            pos.y = 8;
-        }
-        if (pos.y < 6)
-        {
-            pos.y = 6;
-        }
 
         float maxX = screenRight + 1;
 
@@ -111,39 +92,46 @@ public class Ground : MonoBehaviour
 
 
         pos.x = actualX + goCollider.size.x / 2;
+
+
+        float h1 = player.jumpSpeed * player.maxHoldJumpTime;
+        float t = player.jumpSpeed / -player.gravity;
+        float h2 = player.jumpSpeed * t + (0.5f * (player.gravity * (t * t)));
+        float maxJumpHeight = h1 + h2;
+        float maxY = player.transform.position.y + maxJumpHeight * 8f;
+
+
+        float minY = 7;
+        float actualY = UnityEngine.Random.Range(minY, maxY);
+        if (rdGround == 15)
+        {
+            pos.y = posPredioAtual.y + 5;
+            pos.z = posPredioAtual.z;
+            pos.x = actualX + goCollider.size.x / 2;
+               go.transform.position = pos;
+            return;
+
+        }
+
+        pos.y = actualY - goCollider.size.y / 2;
+        if (pos.y > 8)
+        {
+            pos.y = 8;
+        }
+        if (pos.y < 6)
+        {
+            pos.y = 6;
+        }
         pos.z = -0.56f;
+
         go.transform.position = pos;
 
         Ground goGround = go.GetComponent<Ground>();
         goGround.groundHeight = go.transform.position.y + (goCollider.size.y / 2);
 
 
-        int obstacleNum = UnityEngine.Random.Range(0, 3);
 
 
-        for (int i = 0; i < obstacleNum; i++)
-        {
-            var random = UnityEngine.Random.Range(0, boxPrefab.Length);
-
-
-            //GameObject scoreBox = Instantiate(scoreCollider.gameObject);
-            //GameObject powerUps = Instantiate(powerUp.gameObject);
-
-            float y = goGround.groundHeight;
-            float halfWidth = goCollider.size.x / 2 - 1;
-            float left = go.transform.position.x - halfWidth;
-            float right = go.transform.position.x + halfWidth;
-            float x = UnityEngine.Random.Range(left, right);
-
-            Vector3 boxPos = new Vector3(x, y, -0.56f);
-            float x2 = UnityEngine.Random.Range(left, right);
-            Vector3 boxPos2 = new Vector3(x2, y, -0.56f);
-            //box = Instantiate(boxPrefab[random].gameObject, boxPos, quaternion.identity);
-           // box.transform.position = boxPos;
-            //scoreBox.transform.position = boxPos;
-            //powerUps.transform.position = boxPos2;
-
-        }
 
     }
 }

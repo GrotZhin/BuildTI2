@@ -43,6 +43,9 @@ public class GameUiController : MonoBehaviour
     [SerializeField] RectTransform resoultsAni;
 
     public Image batery;
+    public Image hypeBar;
+    public bool hypeOn = false;
+    float timer;
     public AudioSource Music;
     public AudioSource Music2;
     public float dietimer;
@@ -119,8 +122,30 @@ public class GameUiController : MonoBehaviour
                 finalScoreTxt.text = "TP: " + player.score;
             }
         }
+        if (hypeBar.fillAmount == 1)
+        {
 
-        
+            hypeOn = true;
+        }
+        if (hypeOn == true)
+        {
+            if (hypeOn)
+            {
+                timer += Time.smoothDeltaTime;
+                if (timer >= 2)
+                {
+                    hypeBar.fillAmount -= 0.2f;
+                    timer = 0;
+                }
+            }
+        }
+        if (hypeBar.fillAmount == 0)
+        {
+            hypeOn = false;
+        }
+
+
+
 
     }
     public void Exit()
@@ -133,7 +158,8 @@ public class GameUiController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "GameScene")
         {
             SceneManager.LoadScene("GameScene");
-        } else if (SceneManager.GetActiveScene().name == "Tutorial")
+        }
+        else if (SceneManager.GetActiveScene().name == "Tutorial")
         {
             SceneManager.LoadScene("Tutorial");
         }
@@ -251,26 +277,53 @@ public class GameUiController : MonoBehaviour
                 sekker.StopMove();
 
             }
-         
+
 
         }
     }
+    public void Hype()
+    {
+        if (hypeOn == false)
+        {
+            hypeBar.fillAmount += 0.2f;
+        }
 
+    }
+    public void LostHype()
+    {
+        if (hypeOn == false)
+        {
+            hypeBar.fillAmount -= 0.2f;
+        }
+    }
+
+
+    public int Multiplicador()
+    {
+        int multiplier = 1;
+        if (hypeBar.fillAmount == 1)
+        {
+
+            hypeOn = true;
+            return multiplier *= 2;
+        }
+        return multiplier;
+    }
     public async Task ShockBtnintro()
     {
 
         if (batery.fillAmount == 1)
         {
-            
+
             ShockBtn.DOAnchorPosX(760, 0.5f).SetEase(Ease.OutCubic).SetUpdate(true);
 
         }
         else
         {
-           
+
             await ShockBtnAni();
             ShockBtn.DOAnchorPosX(1155, 1).SetEase(Ease.OutCubic).SetUpdate(true);
         }
     }
-    
+
 }

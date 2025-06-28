@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public SaveSystem saveSystem;
+    [SerializeField] GameUiController uiController;
     [SerializeField] HighScore highScore;
     [SerializeField] Conquistas conquistas;
     [SerializeField] ConquistasManager Manager;
@@ -14,28 +15,49 @@ public class GameManager : MonoBehaviour
     Player player;
     [SerializeField] string playerName;
     [SerializeField] GameObject panelName;
-    
+    int trickpoints;
+    bool endGame = true;
+
     [SerializeField] TMP_InputField inputField;
 
+    public void Init(PlayerData playerData)
+    {
+        playerName = playerData.playerName;
+        trickpoints = playerData.trickpoints;
+    }
     void Start()
 
     {
-        
+        Init(loadSystem.LoadPlayerData());
+        Debug.Log("start" + trickpoints);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        
+
 
     }
     public void EndGame()
     {
-        highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score));
-        conquistas.DeathCount += 1;
-        conquistas.SaveConquistas();
-        
+
+        if (endGame)
+        {
+            Debug.Log("EndGame");
+            loadSystem.LoadPlayerData();
+            trickpoints += player.score;
+            Debug.Log("change" + trickpoints);
+            saveSystem.SavePlayerData(playerName,trickpoints);
+            highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score, 0, player.distance));
+            endGame = false;
+            conquistas.DeathCount += 1;
+            conquistas.SaveConquistas();
+
+        }
+
+
     }
 
     public void Name()
     {
         playerName = inputField.text;
+        saveSystem.SavePlayerData(playerName,trickpoints);
         inputField.text = "";
         panelName.SetActive(false);
 
