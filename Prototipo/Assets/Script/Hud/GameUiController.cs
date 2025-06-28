@@ -15,6 +15,7 @@ public class GameUiController : MonoBehaviour
 {
     Player player;
     Sekker sekker;
+    
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;

@@ -109,6 +109,30 @@ public class MenuUiController : MonoBehaviour
         soundManager.PlaySound(SoundType.SettingsOp);
         SettingsAni();
     }
+    
+    public async void Tutorial()
+    {
+        CanvasB.SetActive(true);
+        settingsPanel.SetActive(false);
+        HS.SetActive(false);
+        await Fadeani();
+        
+        SceneManager.LoadScene("Tutorial");
+        
+
+    }
+
+    public async void Credits()
+    {
+        CanvasB.SetActive(true);
+        settingsPanel.SetActive(false);
+        HS.SetActive(false);
+        NosincFadein();
+
+        SceneManager.LoadScene("Credits");
+
+
+    }
     public async void Apply()
     {
         settingsPanel.SetActive(false);
@@ -121,7 +145,7 @@ public class MenuUiController : MonoBehaviour
         CanvasB.SetActive(true);
         settingsPanel.SetActive(false);
         HS.SetActive(false);
-        await Fadeani();
+        NosincFadein();
         
         SceneManager.LoadScene("GameScene");
         
