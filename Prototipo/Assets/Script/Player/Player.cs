@@ -393,13 +393,17 @@ public class Player : MonoBehaviour
 
             if (firstHit == false)
             {
-                move = false;
-                speed.x = 0;
-                
-                //ISekker();
-                Ransekker.SetActive(true);
-                soundManager.PlaySound(SoundType.bark);
-                Ranani.SetTrigger("Hit");
+                if (characterController.isGrounded)
+                {
+
+                    move = false;
+                    speed.x = 0;
+
+                    //ISekker();
+                    Ransekker.SetActive(true);
+                    soundManager.PlaySound(SoundType.bark);
+                    Ranani.SetTrigger("Hit");
+                }
             }
             HitObstacle(obstacle);
 
