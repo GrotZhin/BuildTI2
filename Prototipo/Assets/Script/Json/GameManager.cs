@@ -14,14 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] ConquistasManager Manager;
     public LoadSystem loadSystem;
     public PlayerData[] lista;
-    [SerializeField]Player player;
+    [SerializeField] Player player;
     [SerializeField] string playerName;
     [SerializeField] GameObject panelName;
     int trickpoints;
     bool endGame = true;
     bool tutorial;
-    Scene scene;    
-    
+    Scene scene;
+
 
     [SerializeField] TMP_InputField inputField;
 
@@ -33,15 +33,15 @@ public class GameManager : MonoBehaviour
     void Start()
 
     {
-       
+
         if (SceneManager.GetActiveScene().name == "Tutorial")
         {
-            
+
             tutorial = true;
         }
         Init(loadSystem.LoadPlayerData());
-       
-        
+
+
 
 
     }
@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour
 
         if (endGame)
         {
-           
+
             player.isDead = true;
             if (tutorial == false)
             {
                 loadSystem.LoadPlayerData();
                 trickpoints += player.score;
-               
+
                 saveSystem.SavePlayerData(playerName, trickpoints);
                 highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score, 0, player.distance));
                 endGame = false;
@@ -78,5 +78,10 @@ public class GameManager : MonoBehaviour
         inputField.text = "";
         panelName.SetActive(false);
 
+    }
+    [ContextMenu("TpInfinito")]
+    public void TpInfinito()
+    {
+        saveSystem.SavePlayerData(playerName, 500000000);
     }
 }
