@@ -62,9 +62,9 @@ public class ShopManager : MonoBehaviour
         shopData = SaveShop.LoadData();
         if (shopData != null)
         {
-            Debug.Log("entrei");
+            
             Init(loadSystem.LoadPlayerData());
-            Debug.Log("passei");
+          
         }
 
         if (shopData == null)

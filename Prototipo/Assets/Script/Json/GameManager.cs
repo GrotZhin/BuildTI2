@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +14,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] ConquistasManager Manager;
     public LoadSystem loadSystem;
     public PlayerData[] lista;
-    Player player;
+    [SerializeField]Player player;
     [SerializeField] string playerName;
     [SerializeField] GameObject panelName;
     int trickpoints;
     bool endGame = true;
+    bool tutorial;
+    Scene scene;    
+    
 
     [SerializeField] TMP_InputField inputField;
 
@@ -28,9 +33,15 @@ public class GameManager : MonoBehaviour
     void Start()
 
     {
+       
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            
+            tutorial = true;
+        }
         Init(loadSystem.LoadPlayerData());
-        Debug.Log("start" + trickpoints);
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+       
+        
 
 
     }
@@ -39,17 +50,21 @@ public class GameManager : MonoBehaviour
 
         if (endGame)
         {
-            Debug.Log("EndGame");
-             player.isDead = true;
-            loadSystem.LoadPlayerData();
-            trickpoints += player.score;
-            Debug.Log("change" + trickpoints);
-            saveSystem.SavePlayerData(playerName, trickpoints);
-            highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score, 0, player.distance));
-            endGame = false;
-            conquistas.DeathCount += 1;
-            conquistas.SaveConquistas();
            
+            player.isDead = true;
+            if (tutorial == false)
+            {
+                loadSystem.LoadPlayerData();
+                trickpoints += player.score;
+               
+                saveSystem.SavePlayerData(playerName, trickpoints);
+                highScore.AddHighScoreIfPossible(new PlayerData(playerName, player.score, 0, player.distance));
+                endGame = false;
+                conquistas.DeathCount += 1;
+                conquistas.SaveConquistas();
+            }
+
+
 
         }
 
@@ -59,7 +74,7 @@ public class GameManager : MonoBehaviour
     public void Name()
     {
         playerName = inputField.text;
-        saveSystem.SavePlayerData(playerName,trickpoints);
+        saveSystem.SavePlayerData(playerName, trickpoints);
         inputField.text = "";
         panelName.SetActive(false);
 

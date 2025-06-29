@@ -1168,6 +1168,7 @@ MonoBehaviour:
   screenLeft: 0
   laele: {fileID: 7539571098420916031}
   cameraHalfSize: 0
+  timerDelete: 3
   boxPrefab: []
   groundPrefab:
   - {fileID: 1902924018311492512, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}

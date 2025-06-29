@@ -92,13 +92,13 @@ public class InputManager : MonoBehaviour
     {
         if (swipeDirection.normalized.x > normalizedX)
         {
-            Debug.Log("direita");
+          
             tricks.TrickCerto(3);
            
         }
         if (swipeDirection.normalized.x < -normalizedX)
         {
-            Debug.Log("esquerda");
+
             tricks.TrickCerto(2);
             
         }
@@ -109,13 +109,13 @@ public class InputManager : MonoBehaviour
         if (swipeDirection.normalized.y > normalizedY)
         {
             
-            Debug.Log("cima");
+          
             tricks.TrickCerto(0);
             
         }
         if (swipeDirection.normalized.y < -normalizedY)
         {
-            Debug.Log("baixo");
+           
             tricks.TrickCerto(1);
            
         }

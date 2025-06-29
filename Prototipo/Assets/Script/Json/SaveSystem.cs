@@ -11,6 +11,6 @@ public partial class SaveSystem : MonoBehaviour
         playerData = new PlayerData(playerName,0,tp,0);
         string json = JsonUtility.ToJson(playerData);
         File.WriteAllText(Application.persistentDataPath + "/playerData.json", json);
-       Debug.Log(Application.persistentDataPath + "/playerData.json");
+     
     }
 }

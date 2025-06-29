@@ -56,14 +56,14 @@ public class SkinManager : MonoBehaviour
 
             if (parent)
             {
-                foreach (Transform child in parent)            // chapéus-filhos
+                foreach (Transform child in parent)            // chapï¿½us-filhos
                     if (child.name.StartsWith("Hat"))      // filtragem
                         map[child.name] = child.gameObject;
             }
             else
-                Debug.LogWarning("Hat parent ausente em hatParents[]");
+                
 
-            hatMaps.Add(map);   // mantém a ordem: 0  player1, 1  player2
+            hatMaps.Add(map);   // mantï¿½m a ordem: 0  player1, 1  player2
         }
     }
 
@@ -116,7 +116,7 @@ public class SkinManager : MonoBehaviour
         Body body = FindBodyByName(data.equippedBodyName);
         if (body == null)
         {
-            Debug.LogWarning($"Corpo '{data.equippedBodyName}' não existe na lista allBodies.");
+           
             return;
         }
 
@@ -162,11 +162,11 @@ public class SkinManager : MonoBehaviour
 
         foreach (var map in hatMaps)    
         {
-            // Desliga todos os chapéus desse player
+            // Desliga todos os chapï¿½us desse player
             foreach (var go in map.Values)
                 go.SetActive(false);
 
-            // Liga o chapéu escolhido (se existir no mapa)
+            // Liga o chapï¿½u escolhido (se existir no mapa)
             if (map.TryGetValue(hat.hatName, out var chosen))
                 chosen.SetActive(true);
             var rend = chosen.GetComponent<SkinnedMeshRenderer>();

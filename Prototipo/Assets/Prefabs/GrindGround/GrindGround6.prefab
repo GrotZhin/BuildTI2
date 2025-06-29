@@ -29,10 +29,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6746382656461415370}
   - {fileID: 1394456022158942157}
   - {fileID: 5733923810968794558}
   - {fileID: 1250784573110213810}
+  - {fileID: 6746382656461415370}
   m_Father: {fileID: 4930542994470649472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.2}
 --- !u!1 &1902924018311492512
@@ -595,11 +595,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.714304
+      value: 17.7143
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8478675
+      value: 2.847868
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.z
@@ -739,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8478675
+      value: 2.8478677
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.z
@@ -801,7 +801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.8478675
+      value: 2.847868
       objectReference: {fileID: 0}
     - target: {fileID: 6584427333829234345, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1128,6 +1128,7 @@ MonoBehaviour:
   screenLeft: 0
   laele: {fileID: 944901623860347422}
   cameraHalfSize: 0
+  timerDelete: 3
   boxPrefab: []
   groundPrefab:
   - {fileID: 1902924018311492512, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}

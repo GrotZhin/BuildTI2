@@ -15,7 +15,7 @@ public class GrindGround : MonoBehaviour
     GameObject box;
     public float cameraHalfSize;
 
-
+    public float timerDelete;
     bool didGenerateGround = false;
 
     public GameObject[] boxPrefab;
@@ -49,7 +49,7 @@ public class GrindGround : MonoBehaviour
         if (screenLeft >= groundRight)
         {
             timer += Time.deltaTime;
-            if (timer >= 3)
+            if (timer >= timerDelete)
             {
                 Destroy(gameObject);
                 timer = 0;

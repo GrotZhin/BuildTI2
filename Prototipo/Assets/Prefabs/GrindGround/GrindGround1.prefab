@@ -743,7 +743,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3443617790883427424, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
@@ -887,6 +888,7 @@ MonoBehaviour:
   screenLeft: 0
   laele: {fileID: 7817981904698393996}
   cameraHalfSize: 0
+  timerDelete: 3
   boxPrefab: []
   groundPrefab:
   - {fileID: 1902924018311492512, guid: 99432a1d44e581f49aee8b647f02bce1, type: 3}
@@ -1034,7 +1036,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3443617790883427424, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
@@ -1170,7 +1173,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3443617790883427424, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
@@ -1380,7 +1384,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3443617790883427424, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6be5924f32c8ab48be541ea69dca289, type: 3}

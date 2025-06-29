@@ -15,7 +15,7 @@ public class ConquistasManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         DeathCount = conquistas.DeathCount;
-        Debug.Log(DeathCount);
+     
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ public class Grind : MonoBehaviour
 {
     public float groundHeight =0;
     public Quaternion rotation;
-    BoxCollider collider;
+    public BoxCollider collider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

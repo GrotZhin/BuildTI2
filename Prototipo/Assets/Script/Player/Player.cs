@@ -78,19 +78,22 @@ public class Player : MonoBehaviour
     public bool ouch = false;
     public bool deadbyfall = false;
     public bool isSekkerInstantiate = false;
-   public GameObject prefab;
+    public GameObject prefab;
     bool firstHit = true;
     InputManager inputManager;
     GameManager gameManager;
     float timer;
     bool move = true;
+    bool jump;
 
     Vector3 inicialPosition;
     [SerializeField] HighScore highScore;
 
+    GameUiController gameUiController;
     // Start is called before the first frame update
     void Start()
     {
+        gameUiController = GameObject.Find("Canvas").GetComponent<GameUiController>();
         rotationBase = transform.rotation;
         characterController = this.GetComponent<CharacterController>();
         powerUp = GameObject.Find("GM").GetComponent<PowerUp>();
@@ -204,7 +207,7 @@ public class Player : MonoBehaviour
     public void Jump()
     {
         assist = true;
-        Debug.Log("character" + characterController.isGrounded);
+     
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         soundManager.PlaySound(SoundType.Jump);
 
@@ -213,7 +216,7 @@ public class Player : MonoBehaviour
         Ranani.SetInteger("JumpTrickIndex", Random.Range(0, 6));
         Ranani.SetBool("JumpTricks", true);
         Ranani.SetBool("GrindTrick", false);
-
+        jump = true;
         Instantiate(JumpPP, PP, Quaternion.identity);
 
     }
@@ -300,6 +303,7 @@ public class Player : MonoBehaviour
             float speedRatio = speed.x / maxXSpeed;
             acceleration = maxAcceleration * (1 - speedRatio);
             maxHoldJumpTime = maxHoldJump * speedRatio;
+            jump = false;
 
             if (speed.x >= maxXSpeed)
             {
@@ -310,16 +314,16 @@ public class Player : MonoBehaviour
         if (firstHit == false)
         {
             timer += Time.deltaTime;
-            if (timer >= 20)
+            if (timer >= 10)
             {
                 firstHit = true;
                 timer = 0;
             }
         }
-        
-            characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
-        
-      
+
+        characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
+
+
 
     }
     void ISekker()
@@ -365,12 +369,12 @@ public class Player : MonoBehaviour
 
         if (hit.collider.CompareTag("Grind") && isDead == false && hit.moveDirection == Vector3.down)
         {
-            Debug.Log("aaaaaaaaaaasssssssssaaaa");
+           
 
             transform.rotation = grind.transform.rotation;
             GrindPP.transform.rotation = grind.transform.rotation;
             isGrind = true;
-            Debug.Log(isGrind);
+           
 
             Ranani.SetInteger("GrindTrickIndex", Random.Range(0, 5));
             Ranani.SetBool("GrindTrick", true);
@@ -378,7 +382,12 @@ public class Player : MonoBehaviour
         }
         if (hit.collider.CompareTag("Grind") && isDead == false && hit.moveDirection == Vector3.right)
         {
-            Debug.Log("voce consegui");
+            grind.collider.enabled = false;
+            if (jump)
+            {
+                grind.collider.enabled = true;
+            }
+
         }
 
 
@@ -391,14 +400,25 @@ public class Player : MonoBehaviour
         if (obstacle != null)
         {
 
-            if (firstHit == false)
+            if (firstHit == false && cheat == false)
             {
                 move = false;
                 speed.x = 0;
-                
+
                 //ISekker();
-                Ransekker.SetActive(true);
+                if (cheat == false)
+                {
+                    if (gameUiController.batery.fillAmount == 1)
+                    {
+                        gameUiController.batery.fillAmount = 0;
+                        move = true;
+                        return;
+                    }
+                    Ransekker.SetActive(true);
+                }
+
                 soundManager.PlaySound(SoundType.bark);
+
                 Ranani.SetTrigger("Hit");
             }
             HitObstacle(obstacle);
@@ -412,7 +432,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Score"))
         {
-            score += 10;
+
+            score += 10 * gameUiController.Multiplicador();
             powerUp.BaterylilFill();
 
             Instantiate(comJ, ReDad.position, Quaternion.identity, ReDad);
@@ -421,7 +442,7 @@ public class Player : MonoBehaviour
         }
         if (other.gameObject.CompareTag("SlideScore"))
         {
-            score += 10;
+            score += 10* gameUiController.Multiplicador();
             powerUp.BaterylilFill();
 
             Instantiate(comS, ReDad.position, Quaternion.identity, ReDad);

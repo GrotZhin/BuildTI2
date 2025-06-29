@@ -15,7 +15,7 @@ public class GameUiController : MonoBehaviour
 {
     Player player;
     Sekker sekker;
-    
+
     public TextMeshProUGUI distanceTxt;
     public TextMeshProUGUI scoreTxt;
     public TextMeshProUGUI finalDistanceTxt;
@@ -83,7 +83,7 @@ public class GameUiController : MonoBehaviour
     void Update()
     {
         Intimer += Time.deltaTime;
-        
+
 
         if (Intimer >= 0.6)
         {
@@ -130,23 +130,18 @@ public class GameUiController : MonoBehaviour
         }
         if (hypeOn == true)
         {
-            if (hypeOn)
+            timer += Time.smoothDeltaTime;
+            if (timer >= 5)
             {
-                timer += Time.smoothDeltaTime;
-                if (timer >= 2)
-                {
-                    hypeBar.fillAmount -= 0.2f;
-                    timer = 0;
-                }
+                hypeBar.fillAmount -= 0.2f;
+                timer = 0;
             }
+
         }
         if (hypeBar.fillAmount == 0)
         {
             hypeOn = false;
         }
-
-
-
 
     }
     public void Exit()
@@ -302,10 +297,8 @@ public class GameUiController : MonoBehaviour
     public int Multiplicador()
     {
         int multiplier = 1;
-        if (hypeBar.fillAmount == 1)
+        if (hypeOn)
         {
-
-            hypeOn = true;
             return multiplier *= 2;
         }
         return multiplier;

@@ -96,7 +96,7 @@ public class Conquistas : MonoBehaviour
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/conquistas.json", json);
-        Debug.Log(Application.persistentDataPath + "/conquistas.json");
+        
 
     }
     public ConquistasData LoadConquistas()
@@ -112,7 +112,7 @@ public class Conquistas : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Save file not found in " + path);
+            
             return null;
         }
     }

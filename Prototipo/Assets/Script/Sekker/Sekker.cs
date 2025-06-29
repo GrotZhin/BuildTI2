@@ -106,7 +106,7 @@ public class Sekker : MonoBehaviour
 
     public void StopMove()
     {
-        Debug.Log("Shocked");
+        
         speed.x = -1;
         speed.y = 0;
         stopMove = true;
