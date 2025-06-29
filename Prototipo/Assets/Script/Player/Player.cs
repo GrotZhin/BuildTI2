@@ -335,7 +335,6 @@ public class Player : MonoBehaviour
         ouch = true;
         firstHit = false;
         speed.x *= 0.2f;
-       
         soundManager.PlaySound(SoundType.Hit);
         Ranani.SetTrigger("Hit");
         CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
@@ -396,7 +395,11 @@ public class Player : MonoBehaviour
             {
                 move = false;
                 speed.x = 0;
-                ISekker();
+                
+                //ISekker();
+                Ransekker.SetActive(true);
+                soundManager.PlaySound(SoundType.bark);
+                Ranani.SetTrigger("Hit");
             }
             HitObstacle(obstacle);
 
@@ -436,7 +439,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Seeker"))
         {
-            Ransekker.SetActive(true);
+            //Ransekker.SetActive(true);
             end1.SetActive(true);
 
             gameManager.EndGame();

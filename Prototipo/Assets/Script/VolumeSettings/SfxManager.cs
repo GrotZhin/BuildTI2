@@ -31,6 +31,7 @@ namespace RWM
         Paper,
         shockATK,
         Purchased,
+        bark,
         
 
     }

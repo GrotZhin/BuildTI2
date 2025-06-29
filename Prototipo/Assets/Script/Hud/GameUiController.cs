@@ -83,7 +83,7 @@ public class GameUiController : MonoBehaviour
     void Update()
     {
         Intimer += Time.deltaTime;
-        ShockBtnintro();
+        
 
         if (Intimer >= 0.6)
         {
