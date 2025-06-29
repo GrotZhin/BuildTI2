@@ -16,4 +16,4 @@ MonoBehaviour:
   cameraMaterial: {fileID: 2100000, guid: ee9029a5ecde4ae4f8e4dd45764ce43a, type: 2}
   CameraMesh: {fileID: 6505224929099452927, guid: 39a646e56d775d944882a35fc61f2194, type: 3}
   previewSprite: {fileID: 21300000, guid: 88788f87ac0b5ce45b73334acee40b51, type: 3}
-  price: 300
+  price: 8000

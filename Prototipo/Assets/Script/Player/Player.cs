@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     float sliderTimer;
     public GameObject sekker;
     public GameObject Ransekker;
+    public GameObject Ransekker2;
     public bool sekkerInstantiate = false;
 
     //Animation
@@ -410,16 +411,24 @@ public class Player : MonoBehaviour
                 {
                     if (gameUiController.batery.fillAmount == 1)
                     {
+                        Ransekker2.SetActive(true);
+                        
+                        gameUiController.flash();
+                        speed.x = 10;
                         gameUiController.batery.fillAmount = 0;
                         move = true;
                         return;
                     }
-                    Ransekker.SetActive(true);
+
+                    if (characterController.isGrounded)
+                    {
+                        Ransekker.SetActive(true);
+                        soundManager.PlaySound(SoundType.bark);
+                        Ranani.SetTrigger("Hit");
+                    }
                 }
 
-                soundManager.PlaySound(SoundType.bark);
-
-                Ranani.SetTrigger("Hit");
+                
             }
             HitObstacle(obstacle);
 

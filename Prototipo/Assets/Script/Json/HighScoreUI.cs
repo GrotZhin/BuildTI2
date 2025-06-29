@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using RWM;
 
 public class HighScoreUI : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class HighScoreUI : MonoBehaviour
     [SerializeField] Transform elementWrapper;
     List<GameObject> uiElements = new List<GameObject>();
 
-
+    [SerializeField] Transform Panel;
 
     private void OnEnable()
     {
@@ -28,14 +30,18 @@ public class HighScoreUI : MonoBehaviour
     public void ShowPanel()
     {
         panel.SetActive(true);
+        Panel.DOScale(0.81f, 0.08f).SetEase(Ease.InOutCubic);
+        soundManager.PlaySound(SoundType.SettingsOp);
     }
     public void ShowPanelName()
     { 
         panelName.SetActive(true);
     }
 
-    public void HidePanel()
+    public async void HidePanel()
     {
+        await Panel.DOScale(0.7f, 0.08f).SetEase(Ease.InOutCubic).SetUpdate(true).AsyncWaitForCompletion();
+        soundManager.PlaySound(SoundType.SettingsClos);
         panel.SetActive(false);
     }
     private void UpdateUI(List<PlayerData> list)

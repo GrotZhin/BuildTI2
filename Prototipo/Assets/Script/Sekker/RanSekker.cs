@@ -1,4 +1,5 @@
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RanSekker : MonoBehaviour
@@ -6,6 +7,7 @@ public class RanSekker : MonoBehaviour
     public GameObject Stalker;
     public Animator seekani;
     public GameObject Col;
+    public GameObject stk;
     public float tmr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,14 +19,15 @@ public class RanSekker : MonoBehaviour
     void Update()
     {
         //seekani.SetTrigger("Capture");
-        tmr-= Time.deltaTime;
+        tmr -= Time.deltaTime;
 
         if (tmr <= 0)
         {
             Col.SetActive(true);
+
         }
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         Obstacle obstacle = other.GetComponent<Obstacle>();
@@ -36,8 +39,12 @@ public class RanSekker : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Stalker.SetActive(true);
-            
-        
+
+
         }
+    }
+    public void Deat()
+    {
+         this.gameObject.SetActive(false);
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GumHat
   m_EditorClassIdentifier: 
   hatName: HatAviator
-  price: 200
+  price: 3000
   hatPreviewSprite: {fileID: 21300000, guid: e85e1b24fbe94f24ca6178dc08704cd5, type: 3}
   overrideMaterial: {fileID: 2100000, guid: 9be3ca6c6a7241849852994ef1d101da, type: 2}

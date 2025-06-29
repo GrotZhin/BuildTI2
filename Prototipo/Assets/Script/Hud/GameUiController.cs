@@ -24,6 +24,8 @@ public class GameUiController : MonoBehaviour
     public GameObject pausePanel;
     public GameObject settingsPanel;
 
+    public GameObject flashPanel;
+
     //DoTween Animations
     [SerializeField] RectTransform MenuAni;
     [SerializeField] RectTransform UpBar;
@@ -40,6 +42,8 @@ public class GameUiController : MonoBehaviour
     [SerializeField] CanvasGroup PauseFade;
     [SerializeField] CanvasGroup ResultFade;
     [SerializeField] CanvasGroup ResultFadescreen;
+    [SerializeField] CanvasGroup Flashscreen1;
+    [SerializeField] CanvasGroup Flashscreen2;
     [SerializeField] Image CamSnap;
     [SerializeField] RectTransform resoultsAni;
 
@@ -73,7 +77,7 @@ public class GameUiController : MonoBehaviour
         resultPanel.SetActive(false);
         pausePanel.SetActive(false);
         settingsPanel.SetActive(false);
-
+        flashPanel.SetActive(false);
 
 
     }
@@ -277,6 +281,20 @@ public class GameUiController : MonoBehaviour
 
         }
     }
+
+    public async void flash()
+    {
+        soundManager.PlaySound(SoundType.shockATK);
+        flashPanel.SetActive(true);
+        await Flashscreen1.DOFade(0, 0.05f).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await Flashscreen2.DOFade(0, 0.05f).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await Flashscreen1.DOFade(1, 0.05f).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await Flashscreen2.DOFade(1, 0.05f).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await Flashscreen1.DOFade(0, 0.6f).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        await Flashscreen2.DOFade(0, 0.8f).SetEase(Ease.OutFlash).SetUpdate(true).AsyncWaitForCompletion();
+        
+       
+  }
     public void Hype()
     {
         if (hypeOn == false)

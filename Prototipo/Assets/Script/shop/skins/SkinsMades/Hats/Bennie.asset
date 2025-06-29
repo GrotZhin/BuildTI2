@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bennie
   m_EditorClassIdentifier: 
   hatName: HatBeanie
-  price: 100
+  price: 400
   hatPreviewSprite: {fileID: 21300000, guid: 276db965332fd484fb03ad099c6a4a8b, type: 3}
   overrideMaterial: {fileID: 2100000, guid: 093fa8f721c7a594f8589346ec13fd74, type: 2}

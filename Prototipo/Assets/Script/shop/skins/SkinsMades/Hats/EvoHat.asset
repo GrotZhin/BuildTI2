@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EvoHat
   m_EditorClassIdentifier: 
   hatName: HatCap
-  price: 150
+  price: 2200
   hatPreviewSprite: {fileID: 21300000, guid: 337e5edfff924e145b85ae8e475d4feb, type: 3}
   overrideMaterial: {fileID: 2100000, guid: 920f1c05cb29bf048a4315f393da3608, type: 2}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BucketHat
   m_EditorClassIdentifier: 
   hatName: HatBucket
-  price: 100
+  price: 1000
   hatPreviewSprite: {fileID: 21300000, guid: a8db2a0cda501d0418dabd2aa1c7f6f5, type: 3}
   overrideMaterial: {fileID: 2100000, guid: 1450a0566fcb4944a921bd683a1ed642, type: 2}

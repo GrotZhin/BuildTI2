@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BandHat
   m_EditorClassIdentifier: 
   hatName: HatHeadBand
-  price: 125
+  price: 300
   hatPreviewSprite: {fileID: 21300000, guid: 46146d553edc37f45bd502df94ba1bc3, type: 3}
   overrideMaterial: {fileID: 2100000, guid: 6a2133031acc08e458d2c64171fd34a6, type: 2}

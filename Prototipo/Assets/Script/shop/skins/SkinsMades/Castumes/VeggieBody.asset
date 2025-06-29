@@ -15,5 +15,5 @@ MonoBehaviour:
   bodyName: VeggieBodie
   bodyMaterial: {fileID: 2100000, guid: 0f04712ce584c2447bdd54bd4fa14b14, type: 2}
   bodyMesh: {fileID: 2959467708922500008, guid: c9d3054c8c2e1654cac4e81dee62fb46, type: 3}
-  price: 100
+  price: 6600
   bodyPreviewSprite: {fileID: 21300000, guid: 600943d8c9f02b447b312233cc517303, type: 3}

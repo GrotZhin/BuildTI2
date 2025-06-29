@@ -122,7 +122,7 @@ public class MenuUiController : MonoBehaviour
 
     }
 
-    public async void Credits()
+    public  void Credits()
     {
         CanvasB.SetActive(true);
         settingsPanel.SetActive(false);
@@ -145,7 +145,7 @@ public class MenuUiController : MonoBehaviour
         CanvasB.SetActive(true);
         settingsPanel.SetActive(false);
         HS.SetActive(false);
-        NosincFadein();
+        await Fadeani();
         
         SceneManager.LoadScene("GameScene");
         
