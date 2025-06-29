@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4930542994470649472}
   - component: {fileID: 808376474717726249}
+  - component: {fileID: -9066039087458371067}
   m_Layer: 0
   m_Name: Ground11
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +56,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 37.31703, y: 1, z: 1}
   m_Center: {x: -0.025684357, y: 0, z: 0}
+--- !u!114 &-9066039087458371067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902924018311492512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4765841ac7ddd408717b396072a84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filho: {fileID: 565681580290454943}
 --- !u!1 &3843374180554709199
 GameObject:
   m_ObjectHideFlags: 0

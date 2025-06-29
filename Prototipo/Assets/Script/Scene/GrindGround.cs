@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Ground : MonoBehaviour
+public class GrindGround : MonoBehaviour
 {
     Player player;
     public float groundHeight;
@@ -26,7 +26,7 @@ public class Ground : MonoBehaviour
 
     private void Awake()
     {
-
+        
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         collider = GetComponent<BoxCollider>();
         groundHeight = laele.transform.position.y;
@@ -48,14 +48,11 @@ public class Ground : MonoBehaviour
 
         if (screenLeft >= groundRight)
         {
-
             timer += Time.deltaTime;
             if (timer >= 3)
             {
-
-                timer = 0;
                 Destroy(gameObject);
-
+                timer = 0;
                 return;
 
             }
@@ -66,12 +63,11 @@ public class Ground : MonoBehaviour
 
         if (!didGenerateGround)
         {
-
             if (groundRight <= screenRight)
             {
                 didGenerateGround = true;
-                GenerateGround();
 
+                GenerateGround();
             }
         }
 
@@ -80,7 +76,7 @@ public class Ground : MonoBehaviour
 
 
     void GenerateGround()
-    {
+    {   
 
         int rdGround = UnityEngine.Random.Range(0, groundPrefab.Length);
         GameObject go = Instantiate(groundPrefab[rdGround]);
@@ -110,15 +106,7 @@ public class Ground : MonoBehaviour
 
         float minY = 7;
         float actualY = UnityEngine.Random.Range(minY, maxY);
-        if (rdGround == 15)
-        {
-            pos.y = posPredioAtual.y + 5;
-            pos.z = posPredioAtual.z;
-            pos.x = actualX + goCollider.size.x / 2;
-            go.transform.position = pos;
-            return;
-
-        }
+       
 
         pos.y = actualY - goCollider.size.y / 2;
         if (pos.y > 8)

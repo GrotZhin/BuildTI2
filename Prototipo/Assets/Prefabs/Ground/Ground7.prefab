@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4930542994470649472}
   - component: {fileID: 9042514583995699054}
+  - component: {fileID: 9123148967750417619}
   m_Layer: 0
   m_Name: Ground7
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +56,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 47.76806, y: 1, z: 1}
   m_Center: {x: 0.15165234, y: 0, z: 0}
+--- !u!114 &9123148967750417619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902924018311492512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4765841ac7ddd408717b396072a84b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filho: {fileID: 8425174722107550123}
 --- !u!1 &2089477738267280928
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,8 +367,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.627039, y: 0.19014215, z: 7.222886}
-  m_Center: {x: -3.1107674, y: 7.313731, z: 0.5424638}
+  m_Size: {x: 5.627039, y: 0.44079685, z: 7.222886}
+  m_Center: {x: -3.1107674, y: 7.0662885, z: 0.5424638}
 --- !u!1 &8800077151404923360
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         if (endGame)
         {
             Debug.Log("EndGame");
+             player.isDead = true;
             loadSystem.LoadPlayerData();
             trickpoints += player.score;
             Debug.Log("change" + trickpoints);
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
             endGame = false;
             conquistas.DeathCount += 1;
             conquistas.SaveConquistas();
-            player.isDead = true;
+           
 
         }
 

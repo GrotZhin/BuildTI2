@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public float jumpGroundTreshhold = 1;
     Quaternion rotationBase;
 
-    
+
     public bool assist = false;
 
     bool slider = false;
@@ -78,12 +78,13 @@ public class Player : MonoBehaviour
     public bool ouch = false;
     public bool deadbyfall = false;
     public bool isSekkerInstantiate = false;
-    GameObject prefab;
-
+   public GameObject prefab;
+    bool firstHit = true;
     InputManager inputManager;
     GameManager gameManager;
- 
-    
+    float timer;
+    bool move = true;
+
     Vector3 inicialPosition;
     [SerializeField] HighScore highScore;
 
@@ -99,9 +100,9 @@ public class Player : MonoBehaviour
         Ranani = Ranna.GetComponent<Animator>();
         Ranani.SetLayerWeight(0, 1);
         Ranani.SetLayerWeight(1, 0);
-     
-       
-        
+
+
+
     }
 
 
@@ -133,7 +134,7 @@ public class Player : MonoBehaviour
             if (speed.x <= 40)
             {
                 sekkerInstantiate = true;
-                ISekker();
+                //ISekker();
 
             }
 
@@ -190,20 +191,20 @@ public class Player : MonoBehaviour
             GrindPP.SetActive(true);
             GrindSFX.SetActive(true);
             Ranani.SetBool("SlideTrick", false);
-            
+
         }
         if (!isGrind)
         {
             GrindPP.SetActive(false);
             GrindSFX.SetActive(false);
         }
-        
-        
+
+
     }
     public void Jump()
     {
         assist = true;
-        Debug.Log("character" + characterController.isGrounded) ;
+        Debug.Log("character" + characterController.isGrounded);
         speed.y = Mathf.Sqrt(jumpSpeed * -2.0f * gravity);
         soundManager.PlaySound(SoundType.Jump);
 
@@ -237,32 +238,32 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-    
+
         Vector2 pos = transform.position;
 
         if (isDead)
         {
-            
-            
+
+
             return;
-           
+
         }
 
-        
+
         if (pos.y <= 3 && cheat == false)
 
-            {
-                deadbyfall = true;
-               
-                speed.x = 0;
-                end2.SetActive(true);
-                gameManager.EndGame();
-                return;
-
-            }
-         if (pos.y <= 3 && cheat == true)
         {
-            
+            deadbyfall = true;
+
+            speed.x = 0;
+            end2.SetActive(true);
+            gameManager.EndGame();
+            return;
+
+        }
+        if (pos.y <= 3 && cheat == true)
+        {
+
             speed.y = groundHeight + 20;
             speed.x = 5;
 
@@ -289,10 +290,10 @@ public class Player : MonoBehaviour
             Ranani.SetBool("GrindTrick", false);
 
         }
-       
+
         distance = Vector3.Distance(inicialPosition, transform.position);
 
-        if (characterController.isGrounded)
+        if (characterController.isGrounded && move == true)
         {
 
             speed.x += acceleration * Time.fixedDeltaTime;
@@ -306,23 +307,35 @@ public class Player : MonoBehaviour
             }
 
         }
-   
-        characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
+        if (firstHit == false)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 20)
+            {
+                firstHit = true;
+                timer = 0;
+            }
+        }
+        
+            characterController.Move(new Vector2(speed.x, speed.y) * Time.deltaTime);
+        
+      
 
     }
     void ISekker()
     {
-        Vector2 pos = transform.position;
-        Vector2 sekkerPos = new Vector2(pos.x - 10, pos.y);
-        prefab = Instantiate(sekker, sekkerPos, Quaternion.identity);
-         isSekkerInstantiate = true;
+
+        prefab.SetActive(true);
+        isSekkerInstantiate = true;
     }
 
     public void HitObstacle(Obstacle obstacle)
     {
         obstacle.boxCollider.enabled = false;
         ouch = true;
-        speed.x *= 0.8f;
+        firstHit = false;
+        speed.x *= 0.2f;
+       
         soundManager.PlaySound(SoundType.Hit);
         Ranani.SetTrigger("Hit");
         CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
@@ -341,31 +354,35 @@ public class Player : MonoBehaviour
 
         if (hit.collider.CompareTag("Ground") && isDead == false)
         {
-           
+
             transform.rotation = rotationBase;
             GrindPP.transform.rotation = rotationBase;
 
             isGrind = false;
-            
+
             Ranani.SetBool("GrindTrick", false);
 
         }
 
-        if (hit.collider.CompareTag("Grind") && isDead == false)
+        if (hit.collider.CompareTag("Grind") && isDead == false && hit.moveDirection == Vector3.down)
         {
             Debug.Log("aaaaaaaaaaasssssssssaaaa");
-            
+
             transform.rotation = grind.transform.rotation;
             GrindPP.transform.rotation = grind.transform.rotation;
             isGrind = true;
             Debug.Log(isGrind);
-            
+
             Ranani.SetInteger("GrindTrickIndex", Random.Range(0, 5));
             Ranani.SetBool("GrindTrick", true);
 
         }
+        if (hit.collider.CompareTag("Grind") && isDead == false && hit.moveDirection == Vector3.right)
+        {
+            Debug.Log("voce consegui");
+        }
 
-        
+
 
     }
 
@@ -374,7 +391,15 @@ public class Player : MonoBehaviour
         Obstacle obstacle = other.GetComponent<Obstacle>();
         if (obstacle != null)
         {
+
+            if (firstHit == false)
+            {
+                move = false;
+                speed.x = 0;
+                ISekker();
+            }
             HitObstacle(obstacle);
+
         }
 
         if (other.gameObject.CompareTag("Glass"))
@@ -413,7 +438,7 @@ public class Player : MonoBehaviour
         {
             Ransekker.SetActive(true);
             end1.SetActive(true);
-            
+
             gameManager.EndGame();
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("seekergrab");
@@ -421,11 +446,11 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("wall"))
         {
-            
+
             gameManager.EndGame();
-            
+
             soundManager.PlaySound(SoundType.Hit);
-          
+
             if (deadbyfall)
 
             {
@@ -442,7 +467,7 @@ public class Player : MonoBehaviour
             CAM.DOShakeRotation(0.3f, 4, 2, 1, true);
             Ranani.Play("WallHitAni");
 
-            
+
         }
     }
 
