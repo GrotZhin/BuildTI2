@@ -123,8 +123,8 @@ public class GameUiController : MonoBehaviour
 
                 ResoultsAni();
                 resultPanel.SetActive(true);
-                finalDistanceTxt.text = distance + "m";
-                finalScoreTxt.text = "TP: " + player.score;
+                finalDistanceTxt.text = "Distance: " + distance + "m";
+                finalScoreTxt.text = "TRICKPOINTS: " + player.score;
             }
         }
         if (hypeBar.fillAmount == 1)
